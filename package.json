@@ -86,7 +86,7 @@
     "@swc/core": "~1.15.10",
     "@swc/helpers": "~0.5.11",
     "@types/jest": "^30.0.0",
-    "@types/node": "25.2.2",
+    "@types/node": "25.2.3",
     "@types/three": "^0.182.0",
     "@types/xlsx": "^0.0.35",
     "@typescript-eslint/utils": "^8.54.0",
