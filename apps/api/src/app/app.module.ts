@@ -7,6 +7,7 @@ import { DataLoadModule } from './data-load/data-load.module';
 import { SquadModule } from './squad/squad.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { FeedModule } from './feed/feed.module';
 
 const ENV = process.env.NODE_ENV;
 
@@ -60,6 +61,7 @@ const ENV = process.env.NODE_ENV;
     }),
     SquadModule,
     DataLoadModule,
+    FeedModule,
   ],
   controllers: [AppController],
   providers: [AppService],
