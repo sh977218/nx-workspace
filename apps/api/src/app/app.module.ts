@@ -4,10 +4,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 import * as Joi from 'joi';
 
 import { DataLoadModule } from './data-load/data-load.module';
+import { FeedModule } from './feed/feed.module';
 import { SquadModule } from './squad/squad.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { FeedModule } from './feed/feed.module';
 
 const ENV = process.env.NODE_ENV;
 
