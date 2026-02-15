@@ -1,15 +1,15 @@
 import { z } from 'zod';
 
-const $Schema = z.object({
-  $: z.string(),
-  channel: z.string()
-});
-
 const ItemSchema = z.object({
   title: z.string(),
   link: z.string(),
-  guid: z.string(),
-  pubDate: z.string(),
+  guid: z.object({
+    _: z.string(),
+    $: z.object({
+      isPermaLink: z.string(),
+    }),
+  }),
+  pubDate: z.string().optional(),
   'media:group': z.object({
     'media:content': z.array(
       z.object({
@@ -18,11 +18,11 @@ const ItemSchema = z.object({
           url: z.string(),
           height: z.string(),
           width: z.string(),
-          type: z.string()
-        })
-      })
-    )
-  })
+          type: z.string(),
+        }),
+      }),
+    ),
+  }),
 });
 
 export const ChannelSchema = z.object({
@@ -44,8 +44,16 @@ export const ChannelSchema = z.object({
 });
 
 export const RssSchema = z.object({
-  $: z.object($Schema),
-  channel: z.object(ChannelSchema)
+  rss: z.object({
+    $: z.object({
+      'xmlns:dc': z.string(),
+      'xmlns:content': z.string(),
+      'xmlns:atom': z.string(),
+      version: z.string(),
+      'xmlns:media': z.string()
+    }),
+    channel: ChannelSchema
+  })
 });
 
 export type Rss = z.infer<typeof RssSchema>;
