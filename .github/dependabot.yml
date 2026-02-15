@@ -8,10 +8,10 @@ updates:
       day: "monday"
       time: "03:00"
     open-pull-requests-limit: 10
+    reviewers:
+      - "sh977218"
     assignees:
       - "sh977218"
-      - "Peter Huang"
-      - "Peter"
     allow:
       - dependency-type: "all"
     commit-message:
@@ -25,10 +25,10 @@ updates:
       interval: "daily"
       time: "04:00"
     open-pull-requests-limit: 10
+    reviewers:
+      - "sh977218"
     assignees:
       - "sh977218"
-      - "Peter Huang"
-      - "Peter"
     commit-message:
       prefix: "chore"
       include: "scope"
