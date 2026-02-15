@@ -13,8 +13,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Sync reviewers to CODEOWNERS
         id: sync
@@ -55,20 +53,20 @@ jobs:
                   'swift': ['Package.swift', 'Package.resolved'],
                   'terraform': ['*.tf', '*.tfvars', '*.hcl']
               }
-              
+
               directory = directory.strip()
               if not directory.startswith('/'):
                   directory = '/' + directory
-              
+
               # Normalize directory path - remove trailing slash and handle root
               if directory == '/':
                   directory = ''
               else:
                   directory = directory.rstrip('/')
-              
+
               manifest_files = ecosystem_manifests.get(ecosystem, [])
               patterns = []
-              
+
               for manifest in manifest_files:
                   # Handle different pattern types for CODEOWNERS
                   if directory:
@@ -105,14 +103,14 @@ jobs:
                       else:
                           pattern = f"/{manifest}"
                           patterns.append(pattern)
-              
+
               seen = set()
               unique_patterns = []
               for pattern in patterns:
                   if pattern not in seen:
                       seen.add(pattern)
                       unique_patterns.append(pattern)
-              
+
               return unique_patterns
           def main():
               try:
@@ -134,10 +132,10 @@ jobs:
                                   directories = [update['directory']]
                               elif 'directories' in update:
                                   directories = update['directories']
-                              
+
                               for directory in directories:
                                   manifest_patterns = get_manifest_files_for_ecosystem(ecosystem, directory)
-                                  
+
                                   dir_reviewers = []
                                   for reviewer in update['reviewers']:
 
@@ -145,7 +143,7 @@ jobs:
                                           dir_reviewers.append(reviewer)
                                       elif isinstance(reviewer, dict) and 'username' in reviewer:
                                           dir_reviewers.append(reviewer['username'])
-                                  
+
                                   if dir_reviewers and manifest_patterns:
                                       print(f'Processing ecosystem: {ecosystem}, directory: {directory}, manifest files: {manifest_patterns}')
                                       for pattern in manifest_patterns:
@@ -166,11 +164,11 @@ jobs:
                       '.github/CODEOWNERS',   # .github/ directory
                       'docs/CODEOWNERS'       # docs/ directory
                   ]
-                  
+
                   codeowners_file_path = None
                   codeowners_content = ''
                   has_changes = False
-                  
+
                   # Find existing CODEOWNERS file
                   for path in possible_codeowners_paths:
                       if os.path.exists(path):
@@ -179,7 +177,7 @@ jobs:
                               codeowners_content = f.read()
                           print(f'Found existing CODEOWNERS file at: {path}')
                           break
-                  
+
                   # If no CODEOWNERS file exists, use the root directory as default
                   if codeowners_file_path is None:
                       codeowners_file_path = 'CODEOWNERS'
@@ -187,20 +185,20 @@ jobs:
 
                   # We need this to ensure the section is added correctly for new as well as existing
                   dependabot_section = '# Dependabot reviewers (migrated from .github/dependabot.yml)'
-                  
+
                   new_reviewers_lines = []
                   for dir_config in directory_reviewers:
                       manifest_pattern = dir_config['directory']
                       reviewers = dir_config['reviewers']
-                      
+
                       formatted_reviewers = []
                       for reviewer in reviewers:
                           formatted_reviewer = reviewer if reviewer.startswith('@') else '@' + reviewer
                           formatted_reviewers.append(formatted_reviewer)
-                      
+
                       line = f"{manifest_pattern} {' '.join(formatted_reviewers)}"
                       new_reviewers_lines.append(line)
-                  
+
                   def sort_codeowners_lines(line):
                       """
                       Sort CODEOWNERS lines for proper precedence.
@@ -212,35 +210,35 @@ jobs:
                       parts = line.strip().split()
                       if not parts:
                           return (999, line)
-                      
+
                       pattern = parts[0]
-                      
+
                       wildcard_count = pattern.count('*') + pattern.count('?')
-                      
+
                       path_depth = pattern.count('/')
-                      
+
                       has_extension = '.' in pattern.split('/')[-1] if '/' in pattern else '.' in pattern
-                      
+
                       is_root_pattern = pattern.startswith('/*') and not pattern.startswith('/**')
-                      
+
                       return (
-                          0 if is_root_pattern else 1,  
+                          0 if is_root_pattern else 1,
                           wildcard_count,
                           0 if has_extension else 1,
                           path_depth,
                           pattern
                       )
-                  
+
                   new_reviewers_lines.sort(key=sort_codeowners_lines)
-                  
+
                   lines = codeowners_content.split('\n')
                   dependabot_section_index = -1
-                  
+
                   for i, line in enumerate(lines):
                       if '# Dependabot reviewers' in line:
                           dependabot_section_index = i
                           break
-                  
+
                   if dependabot_section_index >= 0:
                       # Update existing section
                       next_section_index = -1
@@ -248,16 +246,16 @@ jobs:
                           if lines[i].startswith('#') and '# Dependabot reviewers' not in lines[i]:
                               next_section_index = i
                               break
-                      
+
                       end_index = next_section_index if next_section_index >= 0 else len(lines)
-                      
+
                       current_reviewers_lines = []
                       for i in range(dependabot_section_index + 1, end_index):
                           if i < len(lines):
                               line = lines[i].strip()
                               if (line.startswith('/') and '@' in line) or line.startswith('* @'):
                                   current_reviewers_lines.append(lines[i])
-                      
+
                       # Check if reviewers need updating
                       if current_reviewers_lines != new_reviewers_lines:
                           for i in range(end_index - 1, dependabot_section_index, -1):
@@ -266,10 +264,10 @@ jobs:
 
                                   if (line.startswith('/') and '@' in line) or line.startswith('* @'):
                                       lines.pop(i)
-                          
+
                           for i, line in enumerate(new_reviewers_lines):
                               lines.insert(dependabot_section_index + 1 + i, line)
-                          
+
                           has_changes = True
                   else:
                       if codeowners_content.strip() != '':
@@ -285,7 +283,7 @@ jobs:
                       if codeowners_dir and not os.path.exists(codeowners_dir):
                           os.makedirs(codeowners_dir, exist_ok=True)
                           print(f'Created directory: {codeowners_dir}')
-                      
+
                       new_content = '\n'.join(lines)
                       if not new_content.endswith('\n'):
                           new_content += '\n'
@@ -307,7 +305,7 @@ jobs:
               print('has_changes=true')
               with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
                   f.write('has_changes=true\n')
-              
+
               # Output the CODEOWNERS file path for the PR body
               possible_paths = ['CODEOWNERS', '.github/CODEOWNERS', 'docs/CODEOWNERS']
               used_path = 'CODEOWNERS'  # default
