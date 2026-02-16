@@ -8,6 +8,8 @@ export const SquadSchema = z.object({
   content: z.string(),
   homeTown: z.string(),
   secretBase: z.string(),
+  formed: z.number(),
+  active: z.boolean(),
   members: z.array(MemberSchema),
 });
 
