@@ -111,7 +111,7 @@
     "jest": "^30.0.2",
     "jest-environment-node": "^30.0.2",
     "jest-util": "^30.0.2",
-    "jsdom": "^27.1.0",
+    "jsdom": "^28.1.0",
     "jsonc-eslint-parser": "^2.1.0",
     "lodash-es": "^4.17.23",
     "ng-packagr": "~21.1.0",
