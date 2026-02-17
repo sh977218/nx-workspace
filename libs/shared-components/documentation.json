@@ -24,7 +24,7 @@
                 "name": "MemberDialogStory",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "libs/shared-components/member/src/lib/member.dialog.stories.ts",
+                "file": "libs/shared-components/member/src/lib/member-dialog.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -44,6 +44,16 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "libs/shared-components/member/src/lib/member-dialog.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<MemberDialogComponent>",
+                "defaultValue": "{\r\n  title: 'MemberDialogComponent',\r\n  component: MemberDialogComponent,\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "libs/shared-components/member/src/lib/member.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -54,21 +64,11 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "libs/shared-components/member/src/lib/member.dialog.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<MemberDialog>",
-                "defaultValue": "{\r\n  component: MemberDialog,\r\n  title: 'MemberDialog',\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "libs/shared-components/squad/src/lib/squad-dialog.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<SquadDialog>",
-                "defaultValue": "{\n  title: 'SquadDialog',\n  component: SquadDialog,\n  decorators: [\n    moduleMetadata({\n      imports: [MatCardModule, MatListModule, MatButtonModule, MatDialogModule],\n    }),\n  ],\n}"
+                "defaultValue": "{\n  title: 'SquadDialogComponent',\n  component: SquadDialog,\n  decorators: [\n    moduleMetadata({\n      imports: [MatCardModule, MatListModule, MatButtonModule, MatDialogModule],\n    }),\n  ],\n}"
             },
             {
                 "name": "meta",
@@ -147,8 +147,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<MemberComponent>",
-                "file": "libs/shared-components/member/src/lib/member.component.stories.ts",
+                "rawtype": "StoryObj<MemberDialogComponent>",
+                "file": "libs/shared-components/member/src/lib/member-dialog.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -158,8 +158,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<MemberDialog>",
-                "file": "libs/shared-components/member/src/lib/member.dialog.stories.ts",
+                "rawtype": "StoryObj<MemberComponent>",
+                "file": "libs/shared-components/member/src/lib/member.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -202,12 +202,12 @@
                     "defaultValue": "{\r\n  stories: ['../**/*.@(mdx|stories.@(js|jsx|ts|tsx))'],\r\n  addons: [],\r\n  framework: {\r\n    name: getAbsolutePath(\"@storybook/angular\"),\r\n    options: {},\r\n  },\r\n}"
                 }
             ],
-            "libs/shared-components/member/src/lib/member.dialog.stories.ts": [
+            "libs/shared-components/member/src/lib/member-dialog.component.stories.ts": [
                 {
                     "name": "MemberDialogStory",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "libs/shared-components/member/src/lib/member.dialog.stories.ts",
+                    "file": "libs/shared-components/member/src/lib/member-dialog.component.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -217,11 +217,11 @@
                     "name": "meta",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "libs/shared-components/member/src/lib/member.dialog.stories.ts",
+                    "file": "libs/shared-components/member/src/lib/member-dialog.component.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Meta<MemberDialog>",
-                    "defaultValue": "{\r\n  component: MemberDialog,\r\n  title: 'MemberDialog',\r\n}"
+                    "type": "Meta<MemberDialogComponent>",
+                    "defaultValue": "{\r\n  title: 'MemberDialogComponent',\r\n  component: MemberDialogComponent,\r\n}"
                 }
             ],
             "libs/shared-components/member/src/lib/member.component.stories.ts": [
@@ -255,7 +255,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<SquadDialog>",
-                    "defaultValue": "{\n  title: 'SquadDialog',\n  component: SquadDialog,\n  decorators: [\n    moduleMetadata({\n      imports: [MatCardModule, MatListModule, MatButtonModule, MatDialogModule],\n    }),\n  ],\n}"
+                    "defaultValue": "{\n  title: 'SquadDialogComponent',\n  component: SquadDialog,\n  decorators: [\n    moduleMetadata({\n      imports: [MatCardModule, MatListModule, MatButtonModule, MatDialogModule],\n    }),\n  ],\n}"
                 },
                 {
                     "name": "SquadDialogStory",
@@ -338,6 +338,19 @@
         },
         "groupedEnumerations": {},
         "groupedTypeAliases": {
+            "libs/shared-components/member/src/lib/member-dialog.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<MemberDialogComponent>",
+                    "file": "libs/shared-components/member/src/lib/member-dialog.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
             "libs/shared-components/member/src/lib/member.component.stories.ts": [
                 {
                     "name": "Story",
@@ -345,19 +358,6 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<MemberComponent>",
                     "file": "libs/shared-components/member/src/lib/member.component.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 184
-                }
-            ],
-            "libs/shared-components/member/src/lib/member.dialog.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<MemberDialog>",
-                    "file": "libs/shared-components/member/src/lib/member.dialog.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -432,6 +432,36 @@
                 "status": "low"
             },
             {
+                "filePath": "libs/shared-components/member/src/lib/member-dialog.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "MemberDialogStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/shared-components/member/src/lib/member-dialog.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/shared-components/member/src/lib/member-dialog.component.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "libs/shared-components/member/src/lib/member.component.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -453,36 +483,6 @@
             },
             {
                 "filePath": "libs/shared-components/member/src/lib/member.component.stories.ts",
-                "type": "type alias",
-                "linktype": "miscellaneous",
-                "linksubtype": "typealias",
-                "name": "Story",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "libs/shared-components/member/src/lib/member.dialog.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "MemberDialogStory",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "libs/shared-components/member/src/lib/member.dialog.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "meta",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "libs/shared-components/member/src/lib/member.dialog.stories.ts",
                 "type": "type alias",
                 "linktype": "miscellaneous",
                 "linksubtype": "typealias",
