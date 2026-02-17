@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 
 import { MemberComponent } from './member.component';
-import { MemberDialog } from './member.dialog';
+import { MemberDialogComponent } from './member-dialog.component';
 
 @NgModule({
-  imports: [MemberComponent,MemberDialog],
-  exports: [MemberComponent,MemberDialog],
+  imports: [MemberComponent,MemberDialogComponent],
+  exports: [MemberComponent,MemberDialogComponent],
 })
 export class MemberModule {}
