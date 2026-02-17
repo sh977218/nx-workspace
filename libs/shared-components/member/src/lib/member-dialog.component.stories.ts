@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 
-import { MemberDialog } from './member.dialog';
+import { MemberDialogComponent } from './member-dialog.component';
 
-const meta: Meta<MemberDialog> = {
-  component: MemberDialog,
-  title: 'MemberDialog',
+const meta: Meta<MemberDialogComponent> = {
+  title: 'MemberDialogComponent',
+  component: MemberDialogComponent,
 };
 export default meta;
 
-type Story = StoryObj<MemberDialog>;
+type Story = StoryObj<MemberDialogComponent>;
 
 export const MemberDialogStory: Story = {
   args: {

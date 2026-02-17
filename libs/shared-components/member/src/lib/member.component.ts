@@ -7,7 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { Member } from '@shared-models/shared-models';
 
-import { MemberDialog } from './member.dialog';
+import { MemberDialogComponent } from './member-dialog.component';
 
 @Component({
   selector: 'lib-member',
@@ -62,7 +62,7 @@ export class MemberComponent {
   member = input.required<Member>();
 
   openMemberDetailDialog() {
-    this.dialog.open(MemberDialog, {
+    this.dialog.open(MemberDialogComponent, {
       data: { member: this.member() }
     });
   }
