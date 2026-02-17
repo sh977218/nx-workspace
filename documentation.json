@@ -48,7 +48,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<MemberComponent>",
-                "defaultValue": "{\r\n  component: MemberComponent,\r\n  title: 'MemberComponent'\r\n}"
+                "defaultValue": "{\r\n  title: 'MemberComponent',\r\n  component: MemberComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [MatIconModule],\r\n    }),\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -68,7 +68,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<SquadDialog>",
-                "defaultValue": "{\r\n  component: SquadDialog,\r\n  title: 'SquadDialog'\r\n}"
+                "defaultValue": "{\n  title: 'SquadDialog',\n  component: SquadDialog,\n  decorators: [\n    moduleMetadata({\n      imports: [MatCardModule, MatListModule, MatButtonModule, MatDialogModule],\n    }),\n  ],\n}"
             },
             {
                 "name": "meta",
@@ -78,7 +78,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<SquadComponent>",
-                "defaultValue": "{\r\n  component: SquadComponent,\r\n  title: 'SquadComponent',\r\n} satisfies Meta<typeof SquadComponent>"
+                "defaultValue": "{\n  title: 'SquadComponent',\n  component: SquadComponent,\n} satisfies Meta<typeof SquadComponent>"
             },
             {
                 "name": "preview",
@@ -98,7 +98,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    data: {\r\n      squad: {\r\n        squadName: 'Lonely Super hero',\r\n        homeTown: 'Lonely City',\r\n        formed: 2025,\r\n        secretBase: 'Lonely tower',\r\n        active: false,\r\n        content:\r\n          'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',\r\n        avatar: '',\r\n        members: []\r\n      }\r\n    }\r\n  }\r\n}"
+                "defaultValue": "{\n  args: {\n    data: {\n      squad: {\n        squadName: 'Lonely Super hero',\n        homeTown: 'Lonely City',\n        formed: 2025,\n        secretBase: 'Lonely tower',\n        active: false,\n        content:\n          'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',\n        avatar: '',\n        members: []\n      }\n    }\n  }\n}"
             },
             {
                 "name": "SquadStory",
@@ -108,7 +108,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\r\n  args: {\r\n    squad: {\r\n      squadName: 'Lonely Super hero',\r\n      homeTown: 'Lonely City',\r\n      formed: 2025,\r\n      secretBase: 'Lonely tower',\r\n      active: false,\r\n      content:\r\n        'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',\r\n      avatar: '',\r\n      members: [],\r\n    },\r\n  },\r\n}"
+                "defaultValue": "{\n  args: {\n    squad: {\n      squadName: 'Lonely Super hero',\n      homeTown: 'Lonely City',\n      formed: 2025,\n      secretBase: 'Lonely tower',\n      active: false,\n      content:\n        'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',\n      avatar: '',\n      members: [],\n    },\n  },\n}"
             }
         ],
         "functions": [
@@ -243,7 +243,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<MemberComponent>",
-                    "defaultValue": "{\r\n  component: MemberComponent,\r\n  title: 'MemberComponent'\r\n}"
+                    "defaultValue": "{\r\n  title: 'MemberComponent',\r\n  component: MemberComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [MatIconModule],\r\n    }),\r\n  ],\r\n}"
                 }
             ],
             "libs/shared-components/squad/src/lib/squad-dialog.component.stories.ts": [
@@ -255,7 +255,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<SquadDialog>",
-                    "defaultValue": "{\r\n  component: SquadDialog,\r\n  title: 'SquadDialog'\r\n}"
+                    "defaultValue": "{\n  title: 'SquadDialog',\n  component: SquadDialog,\n  decorators: [\n    moduleMetadata({\n      imports: [MatCardModule, MatListModule, MatButtonModule, MatDialogModule],\n    }),\n  ],\n}"
                 },
                 {
                     "name": "SquadDialogStory",
@@ -265,7 +265,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    data: {\r\n      squad: {\r\n        squadName: 'Lonely Super hero',\r\n        homeTown: 'Lonely City',\r\n        formed: 2025,\r\n        secretBase: 'Lonely tower',\r\n        active: false,\r\n        content:\r\n          'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',\r\n        avatar: '',\r\n        members: []\r\n      }\r\n    }\r\n  }\r\n}"
+                    "defaultValue": "{\n  args: {\n    data: {\n      squad: {\n        squadName: 'Lonely Super hero',\n        homeTown: 'Lonely City',\n        formed: 2025,\n        secretBase: 'Lonely tower',\n        active: false,\n        content:\n          'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',\n        avatar: '',\n        members: []\n      }\n    }\n  }\n}"
                 }
             ],
             "libs/shared-components/squad/src/lib/squad.component.stories.ts": [
@@ -277,7 +277,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<SquadComponent>",
-                    "defaultValue": "{\r\n  component: SquadComponent,\r\n  title: 'SquadComponent',\r\n} satisfies Meta<typeof SquadComponent>"
+                    "defaultValue": "{\n  title: 'SquadComponent',\n  component: SquadComponent,\n} satisfies Meta<typeof SquadComponent>"
                 },
                 {
                     "name": "SquadStory",
@@ -287,7 +287,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\r\n  args: {\r\n    squad: {\r\n      squadName: 'Lonely Super hero',\r\n      homeTown: 'Lonely City',\r\n      formed: 2025,\r\n      secretBase: 'Lonely tower',\r\n      active: false,\r\n      content:\r\n        'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',\r\n      avatar: '',\r\n      members: [],\r\n    },\r\n  },\r\n}"
+                    "defaultValue": "{\n  args: {\n    squad: {\n      squadName: 'Lonely Super hero',\n      homeTown: 'Lonely City',\n      formed: 2025,\n      secretBase: 'Lonely tower',\n      active: false,\n      content:\n        'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',\n      avatar: '',\n      members: [],\n    },\n  },\n}"
                 }
             ],
             "libs/shared-components/.storybook/preview.ts": [
