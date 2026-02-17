@@ -1,10 +1,19 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatListModule } from '@angular/material/list';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
 import { SquadDialog } from './squad-dialog.component';
 
 const meta: Meta<SquadDialog> = {
+  title: 'SquadDialog',
   component: SquadDialog,
-  title: 'SquadDialog'
+  decorators: [
+    moduleMetadata({
+      imports: [MatCardModule, MatListModule, MatButtonModule, MatDialogModule],
+    }),
+  ],
 };
 export default meta;
 

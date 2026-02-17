@@ -1,10 +1,16 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import { MatIconModule } from '@angular/material/icon';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
 import { MemberComponent } from './member.component';
 
 const meta: Meta<MemberComponent> = {
+  title: 'MemberComponent',
   component: MemberComponent,
-  title: 'MemberComponent'
+  decorators: [
+    moduleMetadata({
+      imports: [MatIconModule],
+    }),
+  ],
 };
 export default meta;
 
