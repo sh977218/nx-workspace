@@ -24,7 +24,7 @@
                 "name": "MemberDialogStory",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "libs/shared-components/member/src/lib/member-dialog.component.stories.ts",
+                "file": "libs/shared-components/member/src/lib/member.dialog.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -44,16 +44,6 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "libs/shared-components/member/src/lib/member-dialog.component.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Meta<MemberDialogComponent>",
-                "defaultValue": "{\r\n  title: 'MemberDialogComponent',\r\n  component: MemberDialogComponent,\r\n}"
-            },
-            {
-                "name": "meta",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "libs/shared-components/member/src/lib/member.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -64,11 +54,21 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "libs/shared-components/member/src/lib/member.dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<MemberDialog>",
+                "defaultValue": "{\r\n  component: MemberDialog,\r\n  title: 'MemberDialog',\r\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "libs/shared-components/squad/src/lib/squad-dialog.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<SquadDialog>",
-                "defaultValue": "{\n  title: 'SquadDialogComponent',\n  component: SquadDialog,\n  decorators: [\n    moduleMetadata({\n      imports: [MatCardModule, MatListModule, MatButtonModule, MatDialogModule],\n    }),\n  ],\n}"
+                "defaultValue": "{\r\n  title: 'SquadDialog',\r\n  component: SquadDialog,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [MatCardModule, MatListModule, MatButtonModule, MatDialogModule],\r\n    }),\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -78,7 +78,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<SquadComponent>",
-                "defaultValue": "{\n  title: 'SquadComponent',\n  component: SquadComponent,\n} satisfies Meta<typeof SquadComponent>"
+                "defaultValue": "{\r\n  title: 'SquadComponent',\r\n  component: SquadComponent,\r\n} satisfies Meta<typeof SquadComponent>"
             },
             {
                 "name": "preview",
@@ -98,7 +98,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    data: {\n      squad: {\n        squadName: 'Lonely Super hero',\n        homeTown: 'Lonely City',\n        formed: 2025,\n        secretBase: 'Lonely tower',\n        active: false,\n        content:\n          'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',\n        avatar: '',\n        members: []\n      }\n    }\n  }\n}"
+                "defaultValue": "{\r\n  args: {\r\n    data: {\r\n      squad: {\r\n        squadName: 'Lonely Super hero',\r\n        homeTown: 'Lonely City',\r\n        formed: 2025,\r\n        secretBase: 'Lonely tower',\r\n        active: false,\r\n        content:\r\n          'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',\r\n        avatar: '',\r\n        members: []\r\n      }\r\n    }\r\n  }\r\n}"
             },
             {
                 "name": "SquadStory",
@@ -108,7 +108,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    squad: {\n      squadName: 'Lonely Super hero',\n      homeTown: 'Lonely City',\n      formed: 2025,\n      secretBase: 'Lonely tower',\n      active: false,\n      content:\n        'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',\n      avatar: '',\n      members: [],\n    },\n  },\n}"
+                "defaultValue": "{\r\n  args: {\r\n    squad: {\r\n      squadName: 'Lonely Super hero',\r\n      homeTown: 'Lonely City',\r\n      formed: 2025,\r\n      secretBase: 'Lonely tower',\r\n      active: false,\r\n      content:\r\n        'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',\r\n      avatar: '',\r\n      members: [],\r\n    },\r\n  },\r\n}"
             }
         ],
         "functions": [
@@ -147,8 +147,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<MemberDialogComponent>",
-                "file": "libs/shared-components/member/src/lib/member-dialog.component.stories.ts",
+                "rawtype": "StoryObj<MemberComponent>",
+                "file": "libs/shared-components/member/src/lib/member.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -158,8 +158,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<MemberComponent>",
-                "file": "libs/shared-components/member/src/lib/member.component.stories.ts",
+                "rawtype": "StoryObj<MemberDialog>",
+                "file": "libs/shared-components/member/src/lib/member.dialog.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -202,12 +202,12 @@
                     "defaultValue": "{\r\n  stories: ['../**/*.@(mdx|stories.@(js|jsx|ts|tsx))'],\r\n  addons: [],\r\n  framework: {\r\n    name: getAbsolutePath(\"@storybook/angular\"),\r\n    options: {},\r\n  },\r\n}"
                 }
             ],
-            "libs/shared-components/member/src/lib/member-dialog.component.stories.ts": [
+            "libs/shared-components/member/src/lib/member.dialog.stories.ts": [
                 {
                     "name": "MemberDialogStory",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "libs/shared-components/member/src/lib/member-dialog.component.stories.ts",
+                    "file": "libs/shared-components/member/src/lib/member.dialog.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -217,11 +217,11 @@
                     "name": "meta",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "libs/shared-components/member/src/lib/member-dialog.component.stories.ts",
+                    "file": "libs/shared-components/member/src/lib/member.dialog.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Meta<MemberDialogComponent>",
-                    "defaultValue": "{\r\n  title: 'MemberDialogComponent',\r\n  component: MemberDialogComponent,\r\n}"
+                    "type": "Meta<MemberDialog>",
+                    "defaultValue": "{\r\n  component: MemberDialog,\r\n  title: 'MemberDialog',\r\n}"
                 }
             ],
             "libs/shared-components/member/src/lib/member.component.stories.ts": [
@@ -255,7 +255,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<SquadDialog>",
-                    "defaultValue": "{\n  title: 'SquadDialogComponent',\n  component: SquadDialog,\n  decorators: [\n    moduleMetadata({\n      imports: [MatCardModule, MatListModule, MatButtonModule, MatDialogModule],\n    }),\n  ],\n}"
+                    "defaultValue": "{\r\n  title: 'SquadDialog',\r\n  component: SquadDialog,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [MatCardModule, MatListModule, MatButtonModule, MatDialogModule],\r\n    }),\r\n  ],\r\n}"
                 },
                 {
                     "name": "SquadDialogStory",
@@ -265,7 +265,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  args: {\n    data: {\n      squad: {\n        squadName: 'Lonely Super hero',\n        homeTown: 'Lonely City',\n        formed: 2025,\n        secretBase: 'Lonely tower',\n        active: false,\n        content:\n          'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',\n        avatar: '',\n        members: []\n      }\n    }\n  }\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    data: {\r\n      squad: {\r\n        squadName: 'Lonely Super hero',\r\n        homeTown: 'Lonely City',\r\n        formed: 2025,\r\n        secretBase: 'Lonely tower',\r\n        active: false,\r\n        content:\r\n          'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',\r\n        avatar: '',\r\n        members: []\r\n      }\r\n    }\r\n  }\r\n}"
                 }
             ],
             "libs/shared-components/squad/src/lib/squad.component.stories.ts": [
@@ -277,7 +277,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<SquadComponent>",
-                    "defaultValue": "{\n  title: 'SquadComponent',\n  component: SquadComponent,\n} satisfies Meta<typeof SquadComponent>"
+                    "defaultValue": "{\r\n  title: 'SquadComponent',\r\n  component: SquadComponent,\r\n} satisfies Meta<typeof SquadComponent>"
                 },
                 {
                     "name": "SquadStory",
@@ -287,7 +287,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  args: {\n    squad: {\n      squadName: 'Lonely Super hero',\n      homeTown: 'Lonely City',\n      formed: 2025,\n      secretBase: 'Lonely tower',\n      active: false,\n      content:\n        'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',\n      avatar: '',\n      members: [],\n    },\n  },\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    squad: {\r\n      squadName: 'Lonely Super hero',\r\n      homeTown: 'Lonely City',\r\n      formed: 2025,\r\n      secretBase: 'Lonely tower',\r\n      active: false,\r\n      content:\r\n        'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',\r\n      avatar: '',\r\n      members: [],\r\n    },\r\n  },\r\n}"
                 }
             ],
             "libs/shared-components/.storybook/preview.ts": [
@@ -338,19 +338,6 @@
         },
         "groupedEnumerations": {},
         "groupedTypeAliases": {
-            "libs/shared-components/member/src/lib/member-dialog.component.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<MemberDialogComponent>",
-                    "file": "libs/shared-components/member/src/lib/member-dialog.component.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 184
-                }
-            ],
             "libs/shared-components/member/src/lib/member.component.stories.ts": [
                 {
                     "name": "Story",
@@ -358,6 +345,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<MemberComponent>",
                     "file": "libs/shared-components/member/src/lib/member.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 184
+                }
+            ],
+            "libs/shared-components/member/src/lib/member.dialog.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<MemberDialog>",
+                    "file": "libs/shared-components/member/src/lib/member.dialog.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -432,36 +432,6 @@
                 "status": "low"
             },
             {
-                "filePath": "libs/shared-components/member/src/lib/member-dialog.component.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "MemberDialogStory",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "libs/shared-components/member/src/lib/member-dialog.component.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "meta",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "libs/shared-components/member/src/lib/member-dialog.component.stories.ts",
-                "type": "type alias",
-                "linktype": "miscellaneous",
-                "linksubtype": "typealias",
-                "name": "Story",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
                 "filePath": "libs/shared-components/member/src/lib/member.component.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -483,6 +453,36 @@
             },
             {
                 "filePath": "libs/shared-components/member/src/lib/member.component.stories.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "Story",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/shared-components/member/src/lib/member.dialog.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "MemberDialogStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/shared-components/member/src/lib/member.dialog.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/shared-components/member/src/lib/member.dialog.stories.ts",
                 "type": "type alias",
                 "linktype": "miscellaneous",
                 "linksubtype": "typealias",
