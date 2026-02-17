@@ -18,7 +18,27 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "StorybookConfig",
-                "defaultValue": "{\n  stories: ['../**/*.@(mdx|stories.@(js|jsx|ts|tsx))'],\n  addons: [],\n  framework: {\n    name: '@storybook/angular',\n    options: {},\n  },\n}"
+                "defaultValue": "{\r\n  stories: ['../**/*.@(mdx|stories.@(js|jsx|ts|tsx))'],\r\n  addons: [],\r\n  framework: {\r\n    name: getAbsolutePath(\"@storybook/angular\"),\r\n    options: {},\r\n  },\r\n}"
+            },
+            {
+                "name": "MemberDialogStory",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/shared-components/member/src/lib/member.dialog.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    data: {\r\n      member: {\r\n        name: 'Starlight',\r\n        age: 31,\r\n        secretIdentity: 'Yuki Tanaka',\r\n        content:\r\n          \"A celestial warrior wielding stellar energy and defensive barriers, serving as the team's protective beacon in cosmic battles.\",\r\n        avatar:\r\n          'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI0ZGRDEwMCIvPjxjaXJjbGUgY3g9Ijc1IiBjeT0iNDUiIHI9IjMwIiBmaWxsPSIjRkZGIi8+PHBvbHlnb24gcG9pbnRzPSI3NSw2MCAxMDAsOTAgNzUsOTUgNTAsOTAiIGZpbGw9IiNGRkQxMDAiIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+',\r\n        powers: ['Energy manipulation', 'Flight', 'Force field generation'],\r\n      },\r\n    },\r\n  },\r\n}"
+            },
+            {
+                "name": "MemberStory",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "libs/shared-components/member/src/lib/member.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  args: {\r\n    member: {\r\n      name: 'Starlight',\r\n      age: 31,\r\n      secretIdentity: 'Yuki Tanaka',\r\n      content:\r\n        \"A celestial warrior wielding stellar energy and defensive barriers, serving as the team's protective beacon in cosmic battles.\",\r\n      avatar:\r\n        'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI0ZGRDEwMCIvPjxjaXJjbGUgY3g9Ijc1IiBjeT0iNDUiIHI9IjMwIiBmaWxsPSIjRkZGIi8+PHBvbHlnb24gcG9pbnRzPSI3NSw2MCAxMDAsOTAgNzUsOTUgNTAsOTAiIGZpbGw9IiNGRkQxMDAiIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+',\r\n      powers: ['Energy manipulation', 'Flight', 'Force field generation'],\r\n    },\r\n  },\r\n}"
             },
             {
                 "name": "meta",
@@ -28,7 +48,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<MemberComponent>",
-                "defaultValue": "{\n  component: MemberComponent,\n  title: 'MemberComponent',\n}"
+                "defaultValue": "{\r\n  title: 'MemberComponent',\r\n  component: MemberComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [MatIconModule],\r\n    }),\r\n  ],\r\n}"
             },
             {
                 "name": "meta",
@@ -38,7 +58,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<MemberDialog>",
-                "defaultValue": "{\n  component: MemberDialog,\n  title: 'MemberDialog',\n}"
+                "defaultValue": "{\r\n  component: MemberDialog,\r\n  title: 'MemberDialog',\r\n}"
             },
             {
                 "name": "meta",
@@ -48,7 +68,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<SquadDialog>",
-                "defaultValue": "{\n  component: SquadDialog,\n  title: 'SquadDialog',\n}"
+                "defaultValue": "{\n  title: 'SquadDialog',\n  component: SquadDialog,\n  decorators: [\n    moduleMetadata({\n      imports: [MatCardModule, MatListModule, MatButtonModule, MatDialogModule],\n    }),\n  ],\n}"
             },
             {
                 "name": "meta",
@@ -58,7 +78,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<SquadComponent>",
-                "defaultValue": "{\n  component: SquadComponent,\n  title: 'SquadComponent',\n//  argTypes: { squad: { control: 'string' } },\n} satisfies Meta<typeof SquadComponent>"
+                "defaultValue": "{\n  title: 'SquadComponent',\n  component: SquadComponent,\n} satisfies Meta<typeof SquadComponent>"
             },
             {
                 "name": "preview",
@@ -68,50 +88,60 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Preview",
-                "defaultValue": "{\n  parameters: {\n    actions: { argTypesRegex: '^on[A-Z].*' },\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/,\n      },\n    },\n  },\n}"
+                "defaultValue": "{\r\n  parameters: {\r\n    actions: { argTypesRegex: '^on[A-Z].*' },\r\n    controls: {\r\n      matchers: {\r\n        color: /(background|color)$/i,\r\n        date: /Date$/,\r\n      },\r\n    },\r\n  },\r\n}"
             },
             {
-                "name": "Primary",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "libs/shared-components/member/src/lib/member.component.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {},\n}"
-            },
-            {
-                "name": "Primary",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "libs/shared-components/member/src/lib/member.dialog.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {},\n}"
-            },
-            {
-                "name": "Primary",
+                "name": "SquadDialogStory",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "libs/shared-components/squad/src/lib/squad-dialog.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {},\n}"
+                "defaultValue": "{\n  args: {\n    data: {\n      squad: {\n        squadName: 'Lonely Super hero',\n        homeTown: 'Lonely City',\n        formed: 2025,\n        secretBase: 'Lonely tower',\n        active: false,\n        content:\n          'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',\n        avatar: '',\n        members: []\n      }\n    }\n  }\n}"
             },
             {
-                "name": "Primary",
+                "name": "SquadStory",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "libs/shared-components/squad/src/lib/squad.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    squad: {\n      'squadName': 'Lonely Super hero',\n      'homeTown': 'Lonely City',\n      'formed': 2025,\n      'secretBase': 'Lonely tower',\n      'active': false,\n      'content': 'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',\n      avatar: '',\n      members: []\n    }\n  }\n}"
+                "defaultValue": "{\n  args: {\n    squad: {\n      squadName: 'Lonely Super hero',\n      homeTown: 'Lonely City',\n      formed: 2025,\n      secretBase: 'Lonely tower',\n      active: false,\n      content:\n        'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',\n      avatar: '',\n      members: [],\n    },\n  },\n}"
             }
         ],
-        "functions": [],
+        "functions": [
+            {
+                "name": "getAbsolutePath",
+                "file": "libs/shared-components/.storybook/main.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "args": [
+                    {
+                        "name": "value",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "returnType": "any",
+                "jsdoctags": [
+                    {
+                        "name": "value",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            }
+        ],
         "typealiases": [
             {
                 "name": "Story",
@@ -169,32 +199,20 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "StorybookConfig",
-                    "defaultValue": "{\n  stories: ['../**/*.@(mdx|stories.@(js|jsx|ts|tsx))'],\n  addons: [],\n  framework: {\n    name: '@storybook/angular',\n    options: {},\n  },\n}"
-                }
-            ],
-            "libs/shared-components/member/src/lib/member.component.stories.ts": [
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "libs/shared-components/member/src/lib/member.component.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<MemberComponent>",
-                    "defaultValue": "{\n  component: MemberComponent,\n  title: 'MemberComponent',\n}"
-                },
-                {
-                    "name": "Primary",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "libs/shared-components/member/src/lib/member.component.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {},\n}"
+                    "defaultValue": "{\r\n  stories: ['../**/*.@(mdx|stories.@(js|jsx|ts|tsx))'],\r\n  addons: [],\r\n  framework: {\r\n    name: getAbsolutePath(\"@storybook/angular\"),\r\n    options: {},\r\n  },\r\n}"
                 }
             ],
             "libs/shared-components/member/src/lib/member.dialog.stories.ts": [
+                {
+                    "name": "MemberDialogStory",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/shared-components/member/src/lib/member.dialog.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  args: {\r\n    data: {\r\n      member: {\r\n        name: 'Starlight',\r\n        age: 31,\r\n        secretIdentity: 'Yuki Tanaka',\r\n        content:\r\n          \"A celestial warrior wielding stellar energy and defensive barriers, serving as the team's protective beacon in cosmic battles.\",\r\n        avatar:\r\n          'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI0ZGRDEwMCIvPjxjaXJjbGUgY3g9Ijc1IiBjeT0iNDUiIHI9IjMwIiBmaWxsPSIjRkZGIi8+PHBvbHlnb24gcG9pbnRzPSI3NSw2MCAxMDAsOTAgNzUsOTUgNTAsOTAiIGZpbGw9IiNGRkQxMDAiIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+',\r\n        powers: ['Energy manipulation', 'Flight', 'Force field generation'],\r\n      },\r\n    },\r\n  },\r\n}"
+                },
                 {
                     "name": "meta",
                     "ctype": "miscellaneous",
@@ -203,17 +221,29 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<MemberDialog>",
-                    "defaultValue": "{\n  component: MemberDialog,\n  title: 'MemberDialog',\n}"
-                },
+                    "defaultValue": "{\r\n  component: MemberDialog,\r\n  title: 'MemberDialog',\r\n}"
+                }
+            ],
+            "libs/shared-components/member/src/lib/member.component.stories.ts": [
                 {
-                    "name": "Primary",
+                    "name": "MemberStory",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "libs/shared-components/member/src/lib/member.dialog.stories.ts",
+                    "file": "libs/shared-components/member/src/lib/member.component.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  args: {},\n}"
+                    "defaultValue": "{\r\n  args: {\r\n    member: {\r\n      name: 'Starlight',\r\n      age: 31,\r\n      secretIdentity: 'Yuki Tanaka',\r\n      content:\r\n        \"A celestial warrior wielding stellar energy and defensive barriers, serving as the team's protective beacon in cosmic battles.\",\r\n      avatar:\r\n        'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI0ZGRDEwMCIvPjxjaXJjbGUgY3g9Ijc1IiBjeT0iNDUiIHI9IjMwIiBmaWxsPSIjRkZGIi8+PHBvbHlnb24gcG9pbnRzPSI3NSw2MCAxMDAsOTAgNzUsOTUgNTAsOTAiIGZpbGw9IiNGRkQxMDAiIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+',\r\n      powers: ['Energy manipulation', 'Flight', 'Force field generation'],\r\n    },\r\n  },\r\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "libs/shared-components/member/src/lib/member.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<MemberComponent>",
+                    "defaultValue": "{\r\n  title: 'MemberComponent',\r\n  component: MemberComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [MatIconModule],\r\n    }),\r\n  ],\r\n}"
                 }
             ],
             "libs/shared-components/squad/src/lib/squad-dialog.component.stories.ts": [
@@ -225,17 +255,17 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<SquadDialog>",
-                    "defaultValue": "{\n  component: SquadDialog,\n  title: 'SquadDialog',\n}"
+                    "defaultValue": "{\n  title: 'SquadDialog',\n  component: SquadDialog,\n  decorators: [\n    moduleMetadata({\n      imports: [MatCardModule, MatListModule, MatButtonModule, MatDialogModule],\n    }),\n  ],\n}"
                 },
                 {
-                    "name": "Primary",
+                    "name": "SquadDialogStory",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "libs/shared-components/squad/src/lib/squad-dialog.component.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  args: {},\n}"
+                    "defaultValue": "{\n  args: {\n    data: {\n      squad: {\n        squadName: 'Lonely Super hero',\n        homeTown: 'Lonely City',\n        formed: 2025,\n        secretBase: 'Lonely tower',\n        active: false,\n        content:\n          'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',\n        avatar: '',\n        members: []\n      }\n    }\n  }\n}"
                 }
             ],
             "libs/shared-components/squad/src/lib/squad.component.stories.ts": [
@@ -247,17 +277,17 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<SquadComponent>",
-                    "defaultValue": "{\n  component: SquadComponent,\n  title: 'SquadComponent',\n//  argTypes: { squad: { control: 'string' } },\n} satisfies Meta<typeof SquadComponent>"
+                    "defaultValue": "{\n  title: 'SquadComponent',\n  component: SquadComponent,\n} satisfies Meta<typeof SquadComponent>"
                 },
                 {
-                    "name": "Primary",
+                    "name": "SquadStory",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "libs/shared-components/squad/src/lib/squad.component.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  args: {\n    squad: {\n      'squadName': 'Lonely Super hero',\n      'homeTown': 'Lonely City',\n      'formed': 2025,\n      'secretBase': 'Lonely tower',\n      'active': false,\n      'content': 'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',\n      avatar: '',\n      members: []\n    }\n  }\n}"
+                    "defaultValue": "{\n  args: {\n    squad: {\n      squadName: 'Lonely Super hero',\n      homeTown: 'Lonely City',\n      formed: 2025,\n      secretBase: 'Lonely tower',\n      active: false,\n      content:\n        'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',\n      avatar: '',\n      members: [],\n    },\n  },\n}"
                 }
             ],
             "libs/shared-components/.storybook/preview.ts": [
@@ -269,11 +299,43 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Preview",
-                    "defaultValue": "{\n  parameters: {\n    actions: { argTypesRegex: '^on[A-Z].*' },\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/,\n      },\n    },\n  },\n}"
+                    "defaultValue": "{\r\n  parameters: {\r\n    actions: { argTypesRegex: '^on[A-Z].*' },\r\n    controls: {\r\n      matchers: {\r\n        color: /(background|color)$/i,\r\n        date: /Date$/,\r\n      },\r\n    },\r\n  },\r\n}"
                 }
             ]
         },
-        "groupedFunctions": {},
+        "groupedFunctions": {
+            "libs/shared-components/.storybook/main.ts": [
+                {
+                    "name": "getAbsolutePath",
+                    "file": "libs/shared-components/.storybook/main.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "returnType": "any",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
         "groupedEnumerations": {},
         "groupedTypeAliases": {
             "libs/shared-components/member/src/lib/member.component.stories.ts": [
@@ -341,6 +403,16 @@
         "files": [
             {
                 "filePath": "libs/shared-components/.storybook/main.ts",
+                "type": "function",
+                "linktype": "miscellaneous",
+                "linksubtype": "function",
+                "name": "getAbsolutePath",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "libs/shared-components/.storybook/main.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -364,7 +436,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "meta",
+                "name": "MemberStory",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -374,7 +446,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Primary",
+                "name": "meta",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -394,7 +466,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "meta",
+                "name": "MemberDialogStory",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -404,7 +476,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Primary",
+                "name": "meta",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -434,7 +506,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Primary",
+                "name": "SquadDialogStory",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -464,7 +536,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Primary",
+                "name": "SquadStory",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
