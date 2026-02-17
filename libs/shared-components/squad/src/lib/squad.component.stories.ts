@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import { Meta,  StoryObj } from '@storybook/angular';
 
 import { SquadComponent } from './squad.component';
 
 const meta: Meta<SquadComponent> = {
-  component: SquadComponent,
   title: 'SquadComponent',
+  component: SquadComponent,
 } satisfies Meta<typeof SquadComponent>;
 export default meta;
 

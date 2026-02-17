@@ -1,12 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { MatButton } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import {
   MAT_DIALOG_DATA,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogTitle,
+  MatDialogModule
 } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
 import { Squad } from '@shared-models/shared-models';
@@ -15,11 +12,8 @@ import { Squad } from '@shared-models/shared-models';
   imports: [
     MatCardModule,
     MatListModule,
-    MatButton,
-    MatDialogClose,
-    MatDialogTitle,
-    MatDialogContent,
-    MatDialogActions,
+    MatButtonModule,
+    MatDialogModule
   ],
   template: `
     <h2 matDialogTitle>{{ squad.squadName }}</h2>
@@ -42,7 +36,7 @@ import { Squad } from '@shared-models/shared-models';
     <mat-dialog-actions>
       <button matButton matDialogClose cdkFocusInitial>Ok</button>
     </mat-dialog-actions>
-  `,
+  `
 })
 export class SquadDialog {
   readonly data = inject<{ squad: Squad }>(MAT_DIALOG_DATA);

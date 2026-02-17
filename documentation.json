@@ -18,7 +18,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "StorybookConfig",
-                "defaultValue": "{\r\n  stories: ['../**/*.@(mdx|stories.@(js|jsx|ts|tsx))'],\r\n  addons: [],\r\n  framework: {\r\n    name: '@storybook/angular',\r\n    options: {},\r\n  },\r\n}"
+                "defaultValue": "{\r\n  stories: ['../**/*.@(mdx|stories.@(js|jsx|ts|tsx))'],\r\n  addons: [],\r\n  framework: {\r\n    name: getAbsolutePath(\"@storybook/angular\"),\r\n    options: {},\r\n  },\r\n}"
             },
             {
                 "name": "MemberDialogStory",
@@ -111,7 +111,37 @@
                 "defaultValue": "{\r\n  args: {\r\n    squad: {\r\n      squadName: 'Lonely Super hero',\r\n      homeTown: 'Lonely City',\r\n      formed: 2025,\r\n      secretBase: 'Lonely tower',\r\n      active: false,\r\n      content:\r\n        'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',\r\n      avatar: '',\r\n      members: [],\r\n    },\r\n  },\r\n}"
             }
         ],
-        "functions": [],
+        "functions": [
+            {
+                "name": "getAbsolutePath",
+                "file": "libs/shared-components/.storybook/main.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "args": [
+                    {
+                        "name": "value",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "returnType": "any",
+                "jsdoctags": [
+                    {
+                        "name": "value",
+                        "type": "string",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            }
+        ],
         "typealiases": [
             {
                 "name": "Story",
@@ -169,7 +199,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "StorybookConfig",
-                    "defaultValue": "{\r\n  stories: ['../**/*.@(mdx|stories.@(js|jsx|ts|tsx))'],\r\n  addons: [],\r\n  framework: {\r\n    name: '@storybook/angular',\r\n    options: {},\r\n  },\r\n}"
+                    "defaultValue": "{\r\n  stories: ['../**/*.@(mdx|stories.@(js|jsx|ts|tsx))'],\r\n  addons: [],\r\n  framework: {\r\n    name: getAbsolutePath(\"@storybook/angular\"),\r\n    options: {},\r\n  },\r\n}"
                 }
             ],
             "libs/shared-components/member/src/lib/member.dialog.stories.ts": [
@@ -273,7 +303,39 @@
                 }
             ]
         },
-        "groupedFunctions": {},
+        "groupedFunctions": {
+            "libs/shared-components/.storybook/main.ts": [
+                {
+                    "name": "getAbsolutePath",
+                    "file": "libs/shared-components/.storybook/main.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "returnType": "any",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
         "groupedEnumerations": {},
         "groupedTypeAliases": {
             "libs/shared-components/member/src/lib/member.component.stories.ts": [
@@ -339,6 +401,16 @@
         "count": 0,
         "status": "low",
         "files": [
+            {
+                "filePath": "libs/shared-components/.storybook/main.ts",
+                "type": "function",
+                "linktype": "miscellaneous",
+                "linksubtype": "function",
+                "name": "getAbsolutePath",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
             {
                 "filePath": "libs/shared-components/.storybook/main.ts",
                 "type": "variable",

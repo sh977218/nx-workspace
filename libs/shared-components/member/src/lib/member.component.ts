@@ -1,15 +1,10 @@
 import { Component, inject, input } from '@angular/core';
-import { MatIconButton } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import {
-  MatCard,
-  MatCardActions,
-  MatCardAvatar,
-  MatCardContent,
-  MatCardHeader,
-  MatCardTitle
+  MatCardModule
 } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
-import { MatIcon } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { Member } from '@shared-models/shared-models';
 
 import { MemberDialog } from './member.dialog';
@@ -17,14 +12,9 @@ import { MemberDialog } from './member.dialog';
 @Component({
   selector: 'lib-member',
   imports: [
-    MatCard,
-    MatCardActions,
-    MatCardAvatar,
-    MatCardContent,
-    MatCardHeader,
-    MatCardTitle,
-    MatIcon,
-    MatIconButton,
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule
   ],
   template: `
     <mat-card appearance="outlined">
@@ -63,8 +53,8 @@ import { MemberDialog } from './member.dialog';
     </mat-card>
   `,
   host: {
-    class: 'flex flex-col flex-wrap justify-between my-2',
-  },
+    class: 'flex flex-col flex-wrap justify-between my-2'
+  }
 })
 export class MemberComponent {
   readonly dialog = inject(MatDialog);
@@ -73,7 +63,7 @@ export class MemberComponent {
 
   openMemberDetailDialog() {
     this.dialog.open(MemberDialog, {
-      data: { member: this.member() },
+      data: { member: this.member() }
     });
   }
 }
