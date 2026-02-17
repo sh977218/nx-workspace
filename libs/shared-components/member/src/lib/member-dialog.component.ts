@@ -41,7 +41,7 @@ import { Member } from '@shared-models/shared-models';
     </mat-dialog-actions>
   `
 })
-export class MemberDialog {
+export class MemberDialogComponent {
   readonly data = inject<{ member: Member }>(MAT_DIALOG_DATA);
   readonly member = this.data.member;
 }

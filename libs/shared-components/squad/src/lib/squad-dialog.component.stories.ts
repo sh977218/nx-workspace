@@ -7,7 +7,7 @@ import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { SquadDialog } from './squad-dialog.component';
 
 const meta: Meta<SquadDialog> = {
-  title: 'SquadDialog',
+  title: 'SquadDialogComponent',
   component: SquadDialog,
   decorators: [
     moduleMetadata({
