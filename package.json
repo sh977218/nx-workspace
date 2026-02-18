@@ -110,7 +110,7 @@
     "eslint-config-prettier": "^10.0.0",
     "eslint-plugin-playwright": "^2.5.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
-    "eslint-plugin-storybook": "^10.2.8",
+    "eslint-plugin-storybook": "^10.2.10",
     "highcharts": "^12.5.0",
     "highcharts-angular": "^5.4.0",
     "jest": "^30.0.2",
