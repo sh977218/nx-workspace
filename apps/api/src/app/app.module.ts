@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import * as Joi from 'joi';
 
 import { DataLoadModule } from './data-load/data-load.module';
+import { EventsModule } from './events/events.module';
 import { FeedModule } from './feed/feed.module';
 import { SquadModule } from './squad/squad.module';
 import { AppController } from './app.controller';
@@ -62,6 +63,7 @@ const ENV = process.env.NODE_ENV;
     SquadModule,
     DataLoadModule,
     FeedModule,
+    EventsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
