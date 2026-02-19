@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { io, Socket } from 'socket.io-client';
 
 import { MaterialModule } from '../material.module';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   imports: [MaterialModule, FormsModule],
