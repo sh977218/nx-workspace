@@ -6,7 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ChatDialogComponent } from './chat-dialog/chat-dialog.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MaterialModule } from './material.module';
-import { ThemeService } from './theme-service';
+import { ThemeService } from './theme.service';
 
 @Component({
   selector: 'app-root',
