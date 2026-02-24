@@ -57,6 +57,14 @@
           DARK MODE
         </div>
       </mat-slide-toggle>
+      <span class="flex-1"></span>
+      @if (userService.loggedInUser) {
+        <button matIconButton>
+          <mat-icon>person</mat-icon>
+        </button>
+      } @else {
+        <button matButton (click)="openLoginDialog()">Login</button>
+      }
     </mat-toolbar>
     <main class="p-5 h-full">
       <router-outlet/>
