@@ -3,6 +3,7 @@ import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -11,7 +12,6 @@ import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
 import { MaterialModule } from '../material.module';
 import { ThemeService } from '../theme.service';
 import { UserService } from '../user.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-nav-bar',
