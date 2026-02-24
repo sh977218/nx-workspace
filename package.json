@@ -60,7 +60,7 @@
     "@angular-devkit/schematics": "~21.1.0",
     "@angular/build": "~21.1.0",
     "@angular/cdk": "^21.1.5",
-    "@angular/cli": "~21.1.2",
+    "@angular/cli": "~21.1.5",
     "@angular/compiler-cli": "~21.1.5",
     "@angular/language-service": "~21.1.5",
     "@angular/material": "^21.1.5",
