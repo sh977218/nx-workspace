@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { User } from '@shared-models/shared-models';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
@@ -69,9 +70,9 @@ export class NavBarComponent {
         width: '600px'
       })
       .afterClosed()
-      .subscribe((result) => {
+      .subscribe((result: User | null) => {
         if (result) {
-          this.userService.loggedInUser = result;
+          this.userService.loggedInUser.set(result);
           this._snackBar.open(`${result.name} logged in.`, 'Close');
         }
       });

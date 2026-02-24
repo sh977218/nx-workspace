@@ -1,8 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { io, Socket } from 'socket.io-client';
 
 import { MaterialModule } from '../material.module';
+import { UserService } from '../user.service';
+
+interface ChatMessage {
+  sender: string;
+  message: string;
+}
 
 @Component({
   imports: [MaterialModule, FormsModule],
@@ -10,10 +16,22 @@ import { MaterialModule } from '../material.module';
     <h2 matDialogTitle>Chat</h2>
     <mat-dialog-content>
       <ul class="flex flex-col gap-2 p-3 border-2 border-gray-300 rounded-lg">
-        @for (message of messages; track message) {
-          <li class="flex align-baseline odd:bg-white even:bg-gray-50">
+        @for (chatMessage of chatMessages(); track $index) {
+          <li
+            class="flex align-baseline"
+            [class]="{
+              'bg-white': userService.isMyself(chatMessage.sender),
+              'bg-gray-50': !userService.isMyself(chatMessage.sender),
+              'flex-row-reverse': !userService.isMyself(chatMessage.sender),
+            }"
+          >
             <mat-icon>person</mat-icon>
-            {{ message }}
+            {{
+              userService.isMyself(chatMessage.sender)
+                ? 'me'
+                : chatMessage.sender
+            }}:
+            {{ chatMessage.message }}
           </li>
         }
       </ul>
@@ -23,29 +41,39 @@ import { MaterialModule } from '../material.module';
         <mat-label>Type Messages</mat-label>
         <textarea matInput [(ngModel)]="message"></textarea>
       </mat-form-field>
-      <button matButton cdkFocusInitial (click)="sendMessage()">
-        Send
-      </button>
+      <button matButton cdkFocusInitial (click)="sendMessage()">Send</button>
       <button matButton matDialogClose>Close</button>
     </mat-dialog-actions>
-  `,
+  `
 })
-export class ChatDialogComponent implements OnInit {
+export class ChatDialogComponent {
+  userService = inject(UserService);
   private socket: Socket;
   message = '';
-  messages: string[] = [];
+  roomName = 'chat room';
+  chatMessages = signal<ChatMessage[]>([]);
 
   constructor() {
     this.socket = io('http://localhost:3000'); // Connect to Socket.IO server
-  }
 
-  ngOnInit(): void {
-    this.socket.on('events', (msg) => {
-      this.messages.push(msg);
+    this.socket.on('connect', () => {
+      this.socket.emit('joinRoom', {
+        roomName: this.roomName,
+        userId: this.userService.loggedInUser()?.name
+      });
+    });
+
+    this.socket.on('msgToClient', (data: ChatMessage) => {
+      this.chatMessages.update((chatMessages) => [...chatMessages, data]);
     });
   }
 
   sendMessage(): void {
-    this.socket.emit('events', this.message);
+    this.socket.emit('sendMessageToRoom', {
+      roomName: this.roomName,
+      message: this.message,
+      sender: this.userService.loggedInUser()?.name
+    });
+    this.message = '';
   }
 }
