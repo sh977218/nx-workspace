@@ -58,7 +58,7 @@
         </div>
       </mat-slide-toggle>
       <span class="flex-1"></span>
-      @if (userService.loggedInUser) {
+      @if (userService.loggedInUser()) {
         <button matIconButton>
           <mat-icon>person</mat-icon>
         </button>
