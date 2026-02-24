@@ -84,7 +84,7 @@
     "@nx/playwright": "^22.5.2",
     "@nx/storybook": "^22.5.2",
     "@nx/vitest": "^22.5.2",
-    "@nx/web": "22.5.1",
+    "@nx/web": "22.5.2",
     "@nx/webpack": "22.5.2",
     "@nx/workspace": "22.5.2",
     "@playwright/test": "^1.58.2",
