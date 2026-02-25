@@ -3,13 +3,10 @@ import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { User } from '@shared-models/shared-models';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
-import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
 import { MaterialModule } from '../material.module';
 import { ThemeService } from '../theme.service';
 import { UserService } from '../user.service';
@@ -29,9 +26,8 @@ import { UserService } from '../user.service';
 })
 export class NavBarComponent {
   readonly dialog = inject(MatDialog);
-  themeService = inject(ThemeService);
-  userService = inject(UserService);
-  _snackBar = inject(MatSnackBar);
+  readonly themeService = inject(ThemeService);
+  readonly userService = inject(UserService);
 
   routes = [
     {
@@ -62,19 +58,4 @@ export class NavBarComponent {
       map((result) => result.matches),
       shareReplay()
     );
-
-  openLoginDialog() {
-    this.dialog
-      .open(LoginDialogComponent, {
-        height: '1000px',
-        width: '600px'
-      })
-      .afterClosed()
-      .subscribe((result: User | null) => {
-        if (result) {
-          this.userService.loggedInUser.set(result);
-          this._snackBar.open(`${result.username} logged in.`, 'Close');
-        }
-      });
-  }
 }

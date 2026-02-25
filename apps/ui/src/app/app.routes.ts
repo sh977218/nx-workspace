@@ -2,6 +2,23 @@ import { Routes } from '@angular/router';
 
 export const appRoutes: Routes = [
   {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+  {
+    path: 'home',
+    loadComponent: () =>
+      import('./home/home.component').then((c) => c.HomeComponent),
+    title: 'Home',
+  },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./login/login.component').then((c) => c.LoginComponent),
+    title: 'Login',
+  },
+  {
     path: 'search',
     loadComponent: () =>
       import('./search/search.component').then((c) => c.SearchComponent),
@@ -16,7 +33,9 @@ export const appRoutes: Routes = [
   {
     path: 'dashboard',
     loadComponent: () =>
-      import('./dashboard/dashboard.component').then((c) => c.DashboardComponent),
+      import('./dashboard/dashboard.component').then(
+        (c) => c.DashboardComponent,
+      ),
     title: 'Dashboard',
   },
   {
@@ -30,5 +49,5 @@ export const appRoutes: Routes = [
     loadComponent: () =>
       import('./feed/feed.component').then((c) => c.FeedComponent),
     title: 'Feed',
-  }
+  },
 ];
