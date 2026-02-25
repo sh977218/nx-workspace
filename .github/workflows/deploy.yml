@@ -1,18 +1,18 @@
-name: deploy.yml
+name: Deploy To Render
 on:
   workflow_dispatch:
     inputs:
       deploy-to-ui:
         type: boolean
-        description: 'Deploy Service UI?'
+        description: 'Deploy UI?'
         default: true
       deploy-to-api:
         type: boolean
-        description: 'Deploy Service API?'
+        description: 'Deploy API?'
         default: true
       deploy-to-storybook:
         type: boolean
-        description: 'Deploy Service Storybook?'
+        description: 'Deploy Storybook?'
         default: true
 jobs:
   deploy-ui-to-render:

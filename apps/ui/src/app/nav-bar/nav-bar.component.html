@@ -63,6 +63,7 @@
           <mat-icon>person</mat-icon>
         </button>
         <mat-menu #profileMenu="matMenu">
+          <button mat-menu-item routerLink="profile">Profile</button>
           <button mat-menu-item (click)="userService.logout()">Logout</button>
         </mat-menu>
       } @else {

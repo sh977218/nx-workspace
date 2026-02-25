@@ -1,4 +1,4 @@
-import { httpResource } from '@angular/common/http';
+import { HttpClient, httpResource } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -10,8 +10,10 @@ import { environment } from '../environments/environment';
 export class UserService {
   private readonly _snackBar = inject(MatSnackBar);
   private readonly _router = inject(Router);
+  private readonly _http = inject(HttpClient);
 
   userUrl = `${environment.api}/users`;
+  loginUrl = `${environment.api}/auth/login`;
 
   loggedInUser = signal<User | null>(null);
 
@@ -23,16 +25,29 @@ export class UserService {
 
   login(user: User) {
     if (user) {
-      this.loggedInUser.set(user);
-      this._snackBar.open(`${user.username} logged in.`, 'Close');
-      this._router.navigate(['/']);
+      this._http
+        .post(this.loginUrl, {
+          username: user.username,
+          password: user.password
+        })
+        .subscribe({
+          next: () => {
+            this.loggedInUser.set(user);
+            this._snackBar.open(`${user.username} logged in.`, 'Close');
+            this._router.navigate(['/']);
+          },
+          error: (err) => {
+            this.loggedInUser.set(null);
+            this._snackBar.open(`No user selected`, 'Close');
+          }
+        });
     } else {
       this.loggedInUser.set(null);
       this._snackBar.open(`No user selected`, 'Close');
     }
   }
 
-  logout(){
+  logout() {
     this.loggedInUser.set(null);
     this._snackBar.open(`You have been logged out.`, 'Close');
   }
