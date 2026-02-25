@@ -1,5 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
-import { ApiResponse } from '@nestjs/swagger';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 
 import { UserService } from './user.service';
 
@@ -13,13 +12,12 @@ export class UserController {
     return await this.userService.findAll();
   }
 
-  @Get(':id')
-  @ApiResponse({
-    status: 200,
-    description: 'The squad have been successfully retrieved.'
-  })
-  @ApiResponse({ status: 404, description: 'The hero is not found.' })
-  findOne(@Param('id') id: string) {
-    return this.userService.findOne(id);
+  @Post(':username')
+  findOne(@Body() username: string) {
+    if (username === 'me') {
+      const myUsername = username;
+      return this.userService.findOne(myUsername);
+    }
+    return this.userService.findOne(username);
   }
 }

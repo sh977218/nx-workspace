@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import * as Joi from 'joi';
 
+import { AuthModule } from './auth/auth.module';
 import { DataLoadModule } from './data-load/data-load.module';
 import { EventsModule } from './events/events.module';
 import { FeedModule } from './feed/feed.module';
@@ -66,6 +67,7 @@ const ENV = process.env.NODE_ENV;
     DataLoadModule,
     FeedModule,
     EventsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
