@@ -59,11 +59,14 @@
       </mat-slide-toggle>
       <span class="flex-1"></span>
       @if (userService.loggedInUser()) {
-        <button matIconButton>
+        <button matIconButton [matMenuTriggerFor]="profileMenu">
           <mat-icon>person</mat-icon>
         </button>
+        <mat-menu #profileMenu="matMenu">
+          <button mat-menu-item (click)="userService.logout()">Logout</button>
+        </mat-menu>
       } @else {
-        <button matButton (click)="openLoginDialog()">Login</button>
+        <a matButton routerLink="login">Login</a>
       }
     </mat-toolbar>
     <main class="p-5 h-full">
