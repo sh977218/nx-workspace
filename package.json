@@ -42,7 +42,7 @@
     "axios": "^1.13.5",
     "cookie-parser": "^1.4.7",
     "joi": "^18.0.2",
-    "mongoose": "^9.1.4",
+    "mongoose": "^9.2.2",
     "ngxtension": "^7.0.0",
     "postcss": "^8.5.6",
     "reflect-metadata": "^0.2.2",
