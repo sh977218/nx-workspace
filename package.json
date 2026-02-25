@@ -92,7 +92,7 @@
     "@storybook/addon-docs": "^10.2.12",
     "@storybook/angular": "^10.2.12",
     "@swc-node/register": "~1.11.1",
-    "@swc/core": "~1.15.10",
+    "@swc/core": "~1.15.13",
     "@swc/helpers": "~0.5.19",
     "@types/cookie-parser": "^1.4.10",
     "@types/jest": "^30.0.0",
