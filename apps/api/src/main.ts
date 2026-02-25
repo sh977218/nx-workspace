@@ -15,6 +15,7 @@ async function bootstrap() {
 
   const dataLoadService = app.get(DataLoadService);
   await dataLoadService.resetAndLoadHeroes();
+  await dataLoadService.resetAndLoadUsers();
 
   const config = new DocumentBuilder()
     .setTitle('NX Workspace OpenAPI')
