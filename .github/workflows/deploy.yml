@@ -1,0 +1,49 @@
+name: deploy.yml
+on:
+  workflow_dispatch:
+    inputs:
+      deploy-to-ui:
+        type: boolean
+        description: 'Deploy Service UI?'
+        default: true
+      deploy-to-api:
+        type: boolean
+        description: 'Deploy Service API?'
+        default: true
+      deploy-to-storybook:
+        type: boolean
+        description: 'Deploy Service Storybook?'
+        default: true
+jobs:
+  deploy-ui-to-render:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.deploy-to-ui == 'true'}}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Deploy
+        run: |
+          curl ${{ secrets.RENDER_DEPLOYMENT_HOOK_UI }}
+
+  deploy-api-to-render:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.deploy-to-api == 'true' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Deploy
+        run: |
+          curl ${{ secrets.RENDER_DEPLOYMENT_HOOK_API }}
+
+  deploy-story-to-render:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.deploy-to-storybook == 'true' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Deploy
+        run: |
+          curl ${{ secrets.RENDER_DEPLOYMENT_HOOK_STORYBOOK }}
