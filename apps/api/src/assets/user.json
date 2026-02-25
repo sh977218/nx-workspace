@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "username": "admin_user",
+    "email": "admin@example.test",
+    "password": "Password123!",
+    "role": "admin",
+    "status": "active"
+  },
+  {
+    "id": 2,
+    "username": "standard_jdoe",
+    "email": "john.doe@mock.com",
+    "password": "safePassword456",
+    "role": "user",
+    "status": "active"
+  },
+  {
+    "id": 3,
+    "username": "locked_out_99",
+    "email": "locked@test.io",
+    "password": "lockedPassword789",
+    "role": "user",
+    "status": "locked"
+  },
+  {
+    "id": 4,
+    "username": "user_with_special_#@!",
+    "email": "special@mockdata.net",
+    "password": "complexPassword000",
+    "role": "user",
+    "status": "active"
+  }
+]

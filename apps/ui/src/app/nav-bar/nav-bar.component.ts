@@ -73,7 +73,7 @@ export class NavBarComponent {
       .subscribe((result: User | null) => {
         if (result) {
           this.userService.loggedInUser.set(result);
-          this._snackBar.open(`${result.name} logged in.`, 'Close');
+          this._snackBar.open(`${result.username} logged in.`, 'Close');
         }
       });
   }
