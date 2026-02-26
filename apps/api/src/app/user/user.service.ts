@@ -13,11 +13,11 @@ export class UserService {
   }
 
   async findAll() {
-    return await this.userModel.find().lean().exec();
+    return await this.userModel.find({}, { password: 0 }).lean().exec();
   }
 
   async findOne(username: string) {
-    return this.userModel.findOne({ username }).exec();
+    return this.userModel.findOne({ username }, { password: 0 }).exec();
   }
 
   deleteAllUsers() {

@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
 import { MaterialModule } from '../material.module';
-import { ThemeService } from '../theme.service';
-import { UserService } from '../user.service';
+import { ThemeService } from '../services/theme.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-nav-bar',

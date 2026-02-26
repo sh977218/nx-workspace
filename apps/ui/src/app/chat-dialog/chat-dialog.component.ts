@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { io, Socket } from 'socket.io-client';
 
 import { MaterialModule } from '../material.module';
-import { UserService } from '../user.service';
+import { UserService } from '../services/user.service';
 
 interface ChatMessage {
   sender: string;
