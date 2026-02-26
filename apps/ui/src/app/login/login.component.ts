@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from '../material.module';
-import { UserService } from '../user.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   imports: [MaterialModule, FormsModule, ReactiveFormsModule],
@@ -49,16 +49,16 @@ import { UserService } from '../user.service';
         <button
           matButton="filled"
           color="primary"
-          (click)="userService.login(userControl.value?.at(0))"
+          (click)="userService.loginByUser(userControl.value?.at(0))"
         >
           Login
         </button>
       </div>
     </form>
   `,
-  host:{
+  host: {
     class: 'flex items-center justify-center',
-  }
+  },
 })
 export class LoginComponent {
   readonly userService = inject(UserService);

@@ -1,4 +1,4 @@
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import {
   ApplicationConfig,
   inject,
@@ -17,6 +17,7 @@ import Highcharts from 'highcharts';
 import { provideHighcharts } from 'highcharts-angular';
 
 import { appRoutes } from './app.routes';
+import { tokenInterceptor } from './token.interceptor';
 
 @Injectable({ providedIn: 'root' })
 class TemplatePageTitleStrategy extends TitleStrategy {
@@ -34,7 +35,7 @@ class TemplatePageTitleStrategy extends TitleStrategy {
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([tokenInterceptor])),
     provideZonelessChangeDetection(),
     provideRouter(appRoutes, withComponentInputBinding()),
     provideNgtRenderer(),
