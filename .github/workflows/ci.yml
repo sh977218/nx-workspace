@@ -81,7 +81,7 @@ jobs:
         run: DEBUG=pw:webserver npx nx run e2e:e2e
 
       - name: Upload playwright html report to Artifacts
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         if: failure() || success()
         with:
           name: playwright-report
@@ -155,7 +155,7 @@ jobs:
 
 #
 #      - name: Upload playwright blob report to Artifacts
-#        uses: actions/upload-artifact@v6
+#        uses: actions/upload-artifact@v7
 #        if: always()
 #        with:
 #          name: blob-report
@@ -163,7 +163,7 @@ jobs:
 #          retention-days: 30
 #
 #      - name: Upload nyc report row data to Artifacts
-#        uses: actions/upload-artifact@v6
+#        uses: actions/upload-artifact@v7
 #        if: always()
 #        with:
 #          name: e2e_nyc_output
@@ -171,7 +171,7 @@ jobs:
 #          retention-days: 30
 #
 #      - name: Upload current run allure result to Artifacts
-#        uses: actions/upload-artifact@v6
+#        uses: actions/upload-artifact@v7
 #        if: always()
 #        with:
 #          name: allure-results
@@ -179,7 +179,7 @@ jobs:
 #          retention-days: 30
 #
 #      - name: Upload error log to Artifacts
-#        uses: actions/upload-artifact@v6
+#        uses: actions/upload-artifact@v7
 #        if: always()
 #        with:
 #          name: error.log
