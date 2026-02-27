@@ -90,7 +90,7 @@
     "@nx/workspace": "22.5.2",
     "@playwright/test": "^1.58.2",
     "@schematics/angular": "~21.0.0",
-    "@storybook/addon-docs": "^10.2.12",
+    "@storybook/addon-docs": "^10.2.13",
     "@storybook/angular": "^10.2.12",
     "@swc-node/register": "~1.11.1",
     "@swc/core": "~1.15.13",
