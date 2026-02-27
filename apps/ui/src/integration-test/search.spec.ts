@@ -19,6 +19,6 @@ test('query elements', async () => {
   const result = await render(MyComponent);
 
   // Test that the search form is rendered
-  const formElement = result.container.querySelector('form');
-  await expect(formElement).toBeVisible();
+  const formElement = result.container.querySelector('#zeroSearchResult');
+  expect(formElement).toBeVisible();
 });
