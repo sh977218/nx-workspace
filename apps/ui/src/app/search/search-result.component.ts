@@ -16,7 +16,9 @@ import { MaterialModule } from '../material.module';
             <lib-squad [squad]="squad" role="listitem" />
           </div>
         } @empty {
-          <p aria-live="polite">No heroes found.</p>
+          <div class="zeroSearchResult" data-test-id="zeroSearchResult">
+            <p aria-live="polite">No heroes found.</p>
+          </div>
         }
       } @else if (squads().isLoading()) {
         <div class="spinner-overlay">
@@ -28,8 +30,8 @@ import { MaterialModule } from '../material.module';
   imports: [MaterialModule, SquadComponent],
   host: {
     role: 'search',
-    class: 'inline-flex flex-col',
-  },
+    class: 'inline-flex flex-col'
+  }
 })
 export class SearchResultComponent {
   squads = input.required<HttpResourceRef<Squad[] | undefined>>();

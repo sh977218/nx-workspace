@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { expect, test } from 'vitest';
+import { page } from 'vitest/browser';
 import { render } from 'vitest-browser-angular';
 
 import { SearchComponent } from '../app/search/search.component';
@@ -16,9 +17,9 @@ export class MyComponent {
 
 test('query elements', async () => {
   // Render the component
-  const result = await render(MyComponent);
+  await render(MyComponent);
 
   // Test that the search form is rendered
-  const formElement = result.container.querySelector('form');
-  await expect(formElement).toBeVisible();
+  const zeroSearchResult = page.getByTestId('zeroSearchResult');
+  await expect.element(zeroSearchResult).toBeVisible();
 });
