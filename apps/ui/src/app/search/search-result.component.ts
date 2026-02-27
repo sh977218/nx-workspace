@@ -16,7 +16,7 @@ import { MaterialModule } from '../material.module';
             <lib-squad [squad]="squad" role="listitem" />
           </div>
         } @empty {
-          <div class="zeroSearchResult" data-test-id="zeroSearchResult">
+          <div id="zeroSearchResult" data-test-id="zeroSearchResult">
             <p aria-live="polite">No heroes found.</p>
           </div>
         }
