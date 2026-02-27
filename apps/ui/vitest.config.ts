@@ -4,10 +4,9 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   test: {
     browser: {
-      provider: playwright({
-      }),
+      provider: playwright(),
       enabled: true,
-      instances: [{ browser: 'chromium' }]
+      instances: [{ browser: 'chromium' }],
     },
-  }
+  },
 });
