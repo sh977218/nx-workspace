@@ -24,7 +24,7 @@ export class UserService {
   users = httpResource<User[]>(() => this.usersUrl);
 
   isMyself(username: string) {
-    return this.loggedInUser()?.name === username;
+    return this.loggedInUser()?.username === username;
   }
 
   loginByUser(user: User) {
