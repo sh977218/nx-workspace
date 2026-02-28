@@ -17,7 +17,7 @@ export class UserService {
   }
 
   async findOne(username: string) {
-    return this.userModel.findOne({ username }, { password: 0 }).exec();
+    return this.userModel.findOne({ username }, { password: 0 }).lean().exec();
   }
 
   deleteAllUsers() {

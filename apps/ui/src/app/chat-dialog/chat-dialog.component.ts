@@ -15,7 +15,7 @@ interface ChatMessage {
   template: `
     <h2 matDialogTitle>Chat</h2>
     <mat-dialog-content>
-      <ul class="flex flex-col gap-2 p-3 border-2 border-gray-300 rounded-lg">
+      <ul class="flex flex-col gap-2 p-3 border-2 border-gray-300 rounded-lg h-full">
         @for (chatMessage of chatMessages(); track $index) {
           <li
             class="flex align-baseline"
@@ -72,7 +72,7 @@ export class ChatDialogComponent {
     this.socket.emit('sendMessageToRoom', {
       roomName: this.roomName,
       message: this.message,
-      sender: this.userService.loggedInUser()?.name
+      sender: this.userService.loggedInUser()?.username
     });
     this.message = '';
   }
