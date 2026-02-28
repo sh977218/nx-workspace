@@ -7,8 +7,6 @@ const test = baseTest.extend<{
 }>({
   page: async ({ page }, use) => {
     await page.goto('/');
-    await page.getByRole('button').filter({ hasText: 'Toggle drawer' }).click();
-    await page.locator('mat-sidenav').waitFor();
     await use(page);
   },
   hasSearchResult: async ({ page }, use) => {
