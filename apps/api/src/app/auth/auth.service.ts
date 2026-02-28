@@ -12,8 +12,7 @@ export class AuthService {
 
   async signIn(username: string, pass: string) {
     const user = await this.userService.findOne(username);
-    const userObj = user?.toObject();
-    if (userObj?.password !== pass) {
+    if (user?.password !== pass) {
       throw new UnauthorizedException();
     }
     const payload = { sub: user.id, username: user.username };
