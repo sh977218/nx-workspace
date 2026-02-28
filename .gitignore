@@ -85,3 +85,4 @@ __screenshots__/
 
 
 storybook-static
+vite.config.*.timestamp*
