@@ -1,0 +1,9 @@
+{
+  "name": "idp-ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/idp-ui/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project idp-ui --web",
+  "targets": {}
+}
