@@ -1,4 +1,4 @@
-import { Controller, Get, Headers, Param } from '@nestjs/common';
+import { Controller, Get, Headers } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
 import { UserService } from './user.service';
@@ -16,17 +16,16 @@ export class UserController {
     return await this.userService.findAll();
   }
 
-  @Get(':username')
+  @Get('me')
   async findOne(
-    @Headers('Authorization') bearer: string,
-    @Param('username') username: string
+    @Headers('Authorization') bearer: string
   ) {
-    if (username === 'me') {
-      const jwt = bearer.replace('Bearer ', '');
-      const payload = this.jwtService.decode(jwt);
-      const myUsername = payload.username;
-      return this.userService.findOne(myUsername);
+    if (!bearer) {
+      throw new Error('Missing bearer token');
     }
-    return this.userService.findOne(username);
+    const jwt = bearer.replace('Bearer ', '');
+    const payload = this.jwtService.decode(jwt);
+    const myUsername = payload.username;
+    return this.userService.findOne(myUsername);
   }
 }
