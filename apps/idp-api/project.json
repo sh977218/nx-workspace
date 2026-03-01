@@ -50,7 +50,9 @@
       "dependsOn": ["build"],
       "options": {
         "buildTarget": "idp-api:build",
-        "runBuildTargetDependencies": false
+        "runBuildTargetDependencies": false,
+        "inspect": true,
+        "port": 10229
       },
       "configurations": {
         "development": {
