@@ -10,6 +10,10 @@ on:
         type: boolean
         description: 'Deploy API?'
         default: true
+      deploy-to-idp_api:
+        type: boolean
+        description: 'Deploy IDP API?'
+        default: true
       deploy-to-storybook:
         type: boolean
         description: 'Deploy Storybook?'
@@ -36,6 +40,17 @@ jobs:
       - name: Deploy
         run: |
           curl ${{ secrets.RENDER_DEPLOYMENT_HOOK_API }}
+
+  deploy-idp_api-to-render:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.deploy-to-idp_api == 'true' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Deploy
+        run: |
+          curl ${{ secrets.RENDER_DEPLOYMENT_HOOK_IDP_API }}
 
   deploy-story-to-render:
     runs-on: ubuntu-latest

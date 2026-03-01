@@ -40,6 +40,9 @@ export function Login() {
     console.log('redirectUrl: ', searchParams.get('redirectUrl'));
     const response = await fetch('http://localhost:4000', {
       method: 'POST', // Specify the method
+      headers: {
+        'Content-Type': 'application/json' // Indicate the content type
+      },
       body: JSON.stringify({
         redirectUrl
       }) // Convert the data to a JSON string
@@ -47,6 +50,7 @@ export function Login() {
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
+    window.location.href = 'http://localhost:4200';
   };
 
   return (

@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Res } from '@nestjs/common';
+import type { Response } from 'express'; // Import typings for the underlying library
 
 import { AppService } from './app.service';
 
@@ -13,12 +14,7 @@ export class AppController {
   }
 
   @Post()
-  authAndRedirect(
-    @Body() { redirectUrl }: { redirectUrl: string }
-  ) {
-    return {
-      url: redirectUrl,
-      statusCode: 301
-    };
+  authAndRedirect(@Body() body: { redirectUrl: string }) {
+    return { ok: true };
   }
 }
