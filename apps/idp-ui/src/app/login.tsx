@@ -3,12 +3,11 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import { User } from '@shared-models/shared-models';
 import React, { useEffect, useState } from 'react';
-import { useParams, useSearchParams } from 'react-router';
+import { useSearchParams } from 'react-router';
 
 export function Login() {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const params = useParams();
   const [searchParams] = useSearchParams();
   const [users, setUsers] = useState<User[]>([]);
 
@@ -32,20 +31,17 @@ export function Login() {
 
   const onSignIn = async () => {
     const redirectUrl = searchParams.get('redirectUrl');
-    console.log('email: ', email);
-    console.log('username: ', users[selectedIndex].username);
-    console.log('password: ', password);
-    console.log('params: ', params);
-    console.log('searchParams: ', searchParams);
-    console.log('redirectUrl: ', searchParams.get('redirectUrl'));
+    const _username = email || users[selectedIndex].email;
+    const _password = password || users[selectedIndex].password;
     const response = await fetch('http://localhost:4000', {
-      method: 'POST', // Specify the method
+      method: 'POST',
       headers: {
-        'Content-Type': 'application/json' // Indicate the content type
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        redirectUrl
-      }) // Convert the data to a JSON string
+        username: _username,
+        password: _password
+      })
     });
     if (!response.ok) {
       throw new Error('Network response was not ok');

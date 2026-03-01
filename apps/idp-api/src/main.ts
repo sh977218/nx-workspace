@@ -1,8 +1,3 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
@@ -14,9 +9,11 @@ async function bootstrap() {
     origin: '*'
   });
 
-  const port = process.env.PORT || 4000;
+  const port = process.env['PORT'] ?? 4000;
   await app.listen(port);
-  Logger.log(`🚀 Application is running on: http://localhost:${port}`);
+  Logger.log(`🚀 API Application is running on port ${port}`);
 }
 
-bootstrap();
+bootstrap().catch((e) => {
+  Logger.log(`idp api server started with error: ${e}`);
+});
