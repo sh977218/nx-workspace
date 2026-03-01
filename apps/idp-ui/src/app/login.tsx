@@ -3,7 +3,7 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import { User } from '@shared-models/shared-models';
 import React, { useEffect, useState } from 'react';
-import { useParams, useSearchParams } from 'react-router';
+import { useSearchParams } from 'react-router';
 
 export function Login() {
   const [email, setEmail] = React.useState('');
@@ -36,7 +36,7 @@ export function Login() {
     const response = await fetch('http://localhost:4000/auth/login', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json' // Indicate the content type
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         username: _username,

@@ -55,7 +55,9 @@
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "api:build",
-        "runBuildTargetDependencies": false
+        "runBuildTargetDependencies": false,
+        "inspect": true,
+        "port": 9229
       },
       "configurations": {
         "production": {
