@@ -5,6 +5,12 @@
       "^/api": ""
     }
   },
+  "/idp": {
+    "target": "http://localhost:4000",
+    "pathRewrite": {
+      "^/idp": ""
+    }
+  },
   "/rssfeed": {
     "target": "http://rss.cnn.com/rss/cnn_topstories.rss",
     "secure": false,
