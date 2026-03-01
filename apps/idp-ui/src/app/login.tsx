@@ -31,7 +31,7 @@ export function Login() {
 
   const onSignIn = async () => {
     const redirectUrl = searchParams.get('redirectUrl');
-    const _username = email || users[selectedIndex].email;
+    const _username = email || users[selectedIndex].username;
     const _password = password || users[selectedIndex].password;
     const response = await fetch('http://localhost:4000/auth/login', {
       method: 'POST',
@@ -46,7 +46,7 @@ export function Login() {
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
-    window.location.href = 'http://localhost:4200';
+    window.location.href = redirectUrl || 'http://localhost:4200';
   };
 
   return (

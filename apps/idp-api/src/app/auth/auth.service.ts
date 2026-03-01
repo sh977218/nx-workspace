@@ -11,7 +11,7 @@ export class AuthService {
   ) {
   }
 
-  async signIn(username: string, password: string) {
+  async findUserAndJwt(username: string, password: string) {
     const user = await this.userService.findOneByUsernamePassword(
       username,
       password

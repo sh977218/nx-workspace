@@ -1,4 +1,5 @@
-import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post, Res } from '@nestjs/common';
+import { Response } from 'express';
 
 import { SignInDto } from './dto/sign-in-dto';
 import { AuthService } from './auth.service';
@@ -10,7 +11,15 @@ export class AuthController {
 
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  signIn(@Body() signInDto: SignInDto) {
-    return this.authService.signIn(signInDto.username, signInDto.password);
+  async signIn(@Body() signInDto: SignInDto, @Res() res: Response) {
+    const { access_token } = await this.authService.findUserAndJwt(
+      signInDto.username,
+      signInDto.password
+    );
+    if (access_token) {
+      res.cookie('jwt', access_token);
+      return res.redirect(process.env.UI_URL);
+    }
+    return res.status(HttpStatus.UNAUTHORIZED).json({ 'message': 'Unauthorized' });
   }
 }
