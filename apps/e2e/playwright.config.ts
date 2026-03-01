@@ -58,7 +58,7 @@ export default defineConfig({
       cwd: workspaceRoot
     },
     {
-      command: isCI ? 'nx run idp-api:ci' : 'nx run idp-api:serve',
+      command: isCI ? 'nx run idp-api:serve:ci' : 'nx run idp-api:serve',
       port: 4000,
       reuseExistingServer: true,
       cwd: workspaceRoot
