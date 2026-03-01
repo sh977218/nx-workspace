@@ -1,3 +1,4 @@
+import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import cookieParser from 'cookie-parser';
@@ -30,8 +31,8 @@ async function bootstrap() {
 
   const port = process.env['PORT'] ?? 3000;
   await app.listen(port);
-  console.info(`port: ${port}`);
-  console.info(`NODE_ENV name: ${process.env.NODE_ENV}`);
+  Logger.log(`🚀 IDP API Application is running on port ${port}`);
+
 }
 
 bootstrap().catch((e) => {
