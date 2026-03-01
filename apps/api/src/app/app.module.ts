@@ -33,15 +33,6 @@ const ENV = process.env.NODE_ENV;
         abortEarly: true,
       },
     }),
-    /*
-    ServeStaticModule.forRoot({
-      rootPath: join(
-        __dirname,
-        '.',
-        process.env.COVERAGE ? 'ui' : 'ui/browser',
-      ),
-    }),
-*/
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => {
@@ -64,17 +55,17 @@ const ENV = process.env.NODE_ENV;
       },
       inject: [ConfigService],
     }),
+    JwtModule.register({
+      global: true,
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: '60s' },
+    }),
     SquadModule,
     UserModule,
     DataLoadModule,
     FeedModule,
     EventsModule,
     AuthModule,
-    JwtModule.register({
-      global: true,
-      secret: jwtConstants.secret,
-      signOptions: { expiresIn: '60s' },
-    }),
   ],
   controllers: [AppController],
   providers: [AppService],
