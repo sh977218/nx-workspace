@@ -10,16 +10,4 @@ export class AuthService {
     private jwtService: JwtService
   ) {
   }
-
-  async getJwt(username: string, password: string) {
-    const user = await this.userService.findOneByUsernamePassword(
-      username,
-      password
-    );
-    if (!user) {
-      throw new UnauthorizedException();
-    }
-    const payload = { sub: user.id, username: user.username };
-    return await this.jwtService.signAsync(payload);
-  }
 }

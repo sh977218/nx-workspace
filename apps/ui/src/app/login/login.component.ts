@@ -25,7 +25,7 @@ import { UserService } from '../services/user.service';
               <p>
                 {{
                   usersResource.error()?.message ||
-                  'Failed to fetch users. This may be due to CORS restrictions.'
+                    'Failed to fetch users. This may be due to CORS restrictions.'
                 }}
               </p>
             </mat-card-content>
@@ -40,7 +40,7 @@ import { UserService } from '../services/user.service';
         >
           @for (user of users; track user.id) {
             <mat-list-option [value]="user"
-            >{{ user.username }}
+              >{{ user.username }}
             </mat-list-option>
           }
         </mat-selection-list>
@@ -49,7 +49,7 @@ import { UserService } from '../services/user.service';
         <button
           matButton="filled"
           color="primary"
-          (click)="userService.login(userControl.value?.at(0))"
+          (click)="userService.loginByUsername(userControl.value?.at(0))"
         >
           Login
         </button>

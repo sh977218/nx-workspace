@@ -17,7 +17,6 @@ import Highcharts from 'highcharts';
 import { provideHighcharts } from 'highcharts-angular';
 
 import { appRoutes } from './app.routes';
-import { tokenInterceptor } from './token.interceptor';
 
 @Injectable({ providedIn: 'root' })
 class TemplatePageTitleStrategy extends TitleStrategy {
@@ -35,7 +34,7 @@ class TemplatePageTitleStrategy extends TitleStrategy {
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(withInterceptors([tokenInterceptor])),
+    provideHttpClient(),
     provideZonelessChangeDetection(),
     provideRouter(appRoutes, withComponentInputBinding()),
     provideNgtRenderer(),
