@@ -5,10 +5,10 @@
       "^/api": ""
     }
   },
-  "/idp": {
+  "/idpApi": {
     "target": "http://localhost:4000",
     "pathRewrite": {
-      "^/idp": ""
+      "^/idpApi": ""
     }
   },
   "/rssfeed": {

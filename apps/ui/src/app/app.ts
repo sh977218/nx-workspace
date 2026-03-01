@@ -65,8 +65,4 @@ export class App {
   openChatDialog() {
     this.dialog.open(ChatDialogComponent, { height: '1000px', width: '600px' });
   }
-
-  constructor() {
-    this.userService.loginByJwt();
-  }
 }
