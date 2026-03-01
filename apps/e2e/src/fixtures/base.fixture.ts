@@ -19,15 +19,13 @@ async function codeCoverage(page: Page, testInfo: TestInfo) {
   }
 }
 
-const test = baseTest.extend({
+export const baseFixture = baseTest.extend({
   page: async ({ page }, use) => {
     await page.goto('/');
     await use(page);
   }
 });
 
-test.afterEach(async () => {
+baseFixture.afterEach(async () => {
   /* empty */
 });
-
-export { test };
