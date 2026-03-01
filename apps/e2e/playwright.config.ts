@@ -22,7 +22,7 @@ export default defineConfig({
   globalSetup: require.resolve('./src/global-setup'),
   timeout: 30 * 1000,
   expect: {
-    timeout: 15000,
+    timeout: 15000
   },
   fullyParallel: true,
   forbidOnly: isCI,
@@ -35,7 +35,7 @@ export default defineConfig({
     actionTimeout: 0,
     trace: 'on',
     video: 'on',
-    screenshot: 'on',
+    screenshot: 'on'
   },
   /* Run your local dev server before starting the tests */
   webServer: [
@@ -43,19 +43,31 @@ export default defineConfig({
       command: isCI ? 'nx run ui:serve-static-ci' : 'nx run ui:serve',
       port: 4200,
       reuseExistingServer: true,
-      cwd: workspaceRoot,
+      cwd: workspaceRoot
     },
     {
       command: isCI ? 'nx run api:serve:ci' : 'nx run api:serve',
       port: 3000,
       reuseExistingServer: true,
-      cwd: workspaceRoot,
+      cwd: workspaceRoot
     },
+    {
+      command: 'nx run idp-ui:serve',
+      port: 5200,
+      reuseExistingServer: true,
+      cwd: workspaceRoot
+    },
+    {
+      command: isCI ? 'nx run idp-api:ci' : 'nx run idp-api:serve',
+      port: 4000,
+      reuseExistingServer: true,
+      cwd: workspaceRoot
+    }
   ],
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
-  ],
+      use: { ...devices['Desktop Chrome'] }
+    }
+  ]
 });
