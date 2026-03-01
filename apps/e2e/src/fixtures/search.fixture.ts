@@ -1,7 +1,7 @@
 import { expect, test as baseTest } from '@playwright/test';
 import { SearchPo } from '@shared-models/shared-models';
 
-const test = baseTest.extend<{
+export const searchFixture = baseTest.extend<{
   hasSearchResult: SearchPo;
   hasNoSearchResults: SearchPo;
 }>({
@@ -26,5 +26,3 @@ const test = baseTest.extend<{
     ).toBeVisible();
   }
 });
-
-export { test };
