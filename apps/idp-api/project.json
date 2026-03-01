@@ -1,7 +1,7 @@
 {
-  "name": "idp",
+  "name": "idp-api",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/idp/src",
+  "sourceRoot": "apps/idp-api/src",
   "projectType": "application",
   "tags": [],
   "targets": {
@@ -10,7 +10,7 @@
       "options": {
         "command": "webpack-cli build",
         "args": ["--node-env=production"],
-        "cwd": "apps/idp"
+        "cwd": "apps/idp-api"
       },
       "configurations": {
         "development": {
@@ -23,8 +23,8 @@
       "cache": true,
       "executor": "@nx/js:prune-lockfile",
       "outputs": [
-        "{workspaceRoot}/dist/apps/idp/package.json",
-        "{workspaceRoot}/dist/apps/idp/package-lock.json"
+        "{workspaceRoot}/dist/apps/idp-api/package.json",
+        "{workspaceRoot}/dist/apps/idp-api/package-lock.json"
       ],
       "options": {
         "buildTarget": "build"
@@ -33,7 +33,7 @@
     "copy-workspace-modules": {
       "dependsOn": ["build"],
       "cache": true,
-      "outputs": ["{workspaceRoot}/dist/apps/idp/workspace_modules"],
+      "outputs": ["{workspaceRoot}/dist/apps/idp-api/workspace_modules"],
       "executor": "@nx/js:copy-workspace-modules",
       "options": {
         "buildTarget": "build"
@@ -49,15 +49,15 @@
       "defaultConfiguration": "development",
       "dependsOn": ["build"],
       "options": {
-        "buildTarget": "idp:build",
+        "buildTarget": "idp-api:build",
         "runBuildTargetDependencies": false
       },
       "configurations": {
         "development": {
-          "buildTarget": "idp:build:development"
+          "buildTarget": "idp-api:build:development"
         },
         "production": {
-          "buildTarget": "idp:build:production"
+          "buildTarget": "idp-api:build:production"
         }
       }
     }
