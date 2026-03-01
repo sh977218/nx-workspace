@@ -9,10 +9,10 @@ import { map, shareReplay } from 'rxjs/operators';
 
 import { ChatDialogComponent } from './chat-dialog/chat-dialog.component';
 import { HeaderComponent } from './header/header.component';
+import { LocalStorageService } from './services/local-storage.service';
 import { ThemeService } from './services/theme.service';
 import { UserService } from './services/user.service';
 import { MaterialModule } from './material.module';
-import { LocalStorageService } from './services/local-storage.service';
 
 @Component({
   selector: 'app-root',
