@@ -7,14 +7,20 @@
   "targets": {
     "build": {
       "executor": "nx:run-commands",
+      "defaultConfiguration": "production",
       "options": {
         "command": "webpack-cli build",
-        "args": ["--node-env=production"],
         "cwd": "apps/idp-api"
       },
       "configurations": {
+        "production": {
+          "args": ["--node-env=production"]
+        },
         "development": {
           "args": ["--node-env=development"]
+        },
+        "ci": {
+          "args": ["--node-env=ci"]
         }
       }
     },
@@ -55,11 +61,15 @@
         "port": 10229
       },
       "configurations": {
+        "production": {
+          "buildTarget": "idp-api:build:production"
+        },
         "development": {
           "buildTarget": "idp-api:build:development"
         },
-        "production": {
-          "buildTarget": "idp-api:build:production"
+        "ci": {
+          "buildTarget": "idp-api:build:ci",
+          "inspect": false
         }
       }
     }
