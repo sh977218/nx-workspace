@@ -70,6 +70,7 @@ export class UserService {
 
   logout() {
     this.loggedInUser.set(null);
+    this._localStorageService.removeItem('jwt');
     this._snackBar.open(`You have been logged out.`, 'Close');
   }
 }

@@ -4,9 +4,10 @@ import { Component, inject, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
-import { Observable, shareReplay } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { environment } from '../../environments/environment';
 import { MaterialModule } from '../material.module';
 import { ThemeService } from '../services/theme.service';
 import { UserService } from '../services/user.service';
@@ -22,12 +23,11 @@ export class HeaderComponent {
   readonly dialog = inject(MatDialog);
   readonly themeService = inject(ThemeService);
   readonly userService = inject(UserService);
+  readonly idpUrl = `${environment.idpUrl}/login?redirect=${encodeURIComponent(window.location.host)}`;
 
-  toggleDrawer = output()
+  toggleDrawer = output();
 
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
-    .pipe(
-      map((result) => result.matches),
-    );
+    .pipe(map((result) => result.matches));
 }
