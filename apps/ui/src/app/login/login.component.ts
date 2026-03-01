@@ -49,7 +49,7 @@ import { UserService } from '../services/user.service';
         <button
           matButton="filled"
           color="primary"
-          (click)="userService.loginByUser(userControl.value?.at(0))"
+          (click)="userService.loginByUsername(userControl.value?.at(0))"
         >
           Login
         </button>

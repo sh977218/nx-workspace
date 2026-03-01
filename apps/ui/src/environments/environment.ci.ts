@@ -4,5 +4,6 @@ export const environment: EnvironmentModel = {
   production: false,
   api: 'http://localhost:3000',
   rssfeed: 'http://rss.cnn.com/rss/cnn_topstories.rss',
+  idpApi: 'http://localhost:4000',
   idpUrl: 'http://localhost:5200',
 };
