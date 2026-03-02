@@ -1,7 +1,7 @@
 import { Locator, Page } from '@playwright/test';
 
-import { MaterialPo } from './material.po';
 import { HeaderPo } from './header.po';
+import { MaterialPo } from './material.po';
 
 export class LoginPo {
   readonly material: MaterialPo;
