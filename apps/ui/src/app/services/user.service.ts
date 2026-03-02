@@ -16,9 +16,9 @@ export class UserService {
   private readonly _localStorageService = inject(LocalStorageService);
 
   usersUrl = `${environment.api}/users`;
-  jwtUrl = `${environment.authApi}/auth/user`;
-  loginUrl = `${environment.authApi}/auth/login`;
-  logoutUrl = `${environment.authApi}/auth/logout`;
+  jwtUrl = `${environment.authApi}/user`;
+  loginUrl = `${environment.authApi}/login`;
+  logoutUrl = `${environment.authApi}/logout`;
 
   loggedInUser = signal<User | null>(null);
 
