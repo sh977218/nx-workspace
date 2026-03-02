@@ -19,13 +19,12 @@ import { AuthService } from './auth.service';
 @Controller()
 export class AuthController {
   constructor(
-    private authService: AuthService,
     private userService: UserService,
     private jwtService: JwtService,
   ) {}
 
   @HttpCode(HttpStatus.OK)
-  @Post('user')
+  @Get('user')
   async jwt(@Req() req: Request, @Res() res: Response) {
     const jwt = req.cookies?.['jwt'];
     if (!jwt) {
