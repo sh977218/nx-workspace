@@ -31,7 +31,7 @@ export function Login() {
     const redirectUrl = searchParams.get('redirectUrl');
     const username = users[selectedIndex].username;
     const password = users[selectedIndex].password;
-    const response = await fetch('http://localhost:4000/login', {
+    const response = await fetch('/api/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -44,7 +44,9 @@ export function Login() {
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
-    window.location.href = redirectUrl || 'http://localhost:4200';
+    const { jwt } = await response.json();
+    localStorage.setItem('jwt', jwt);
+    setTimeout(() => window.location.href = redirectUrl || 'http://localhost:4200');
   };
 
   return (
