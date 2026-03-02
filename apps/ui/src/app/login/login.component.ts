@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { User } from '@shared-models/shared-models';
 
 import { MaterialModule } from '../material.module';
 import { UserService } from '../services/user.service';
@@ -12,45 +11,19 @@ import { UserService } from '../services/user.service';
       [formGroup]="form"
       class="container max-w-80 flex flex-col justify-center"
     >
-      @if (usersResource.isLoading()) {
-        <div class="loading-container">
-          <mat-spinner></mat-spinner>
-          <p>Loading users...</p>
-        </div>
-      }
-      @if (usersResource.error() && !usersResource.isLoading()) {
-        <div class="error-container">
-          <mat-card class="error-card">
-            <mat-card-content>
-              <mat-icon class="error-icon">error_outline</mat-icon>
-              <p>
-                {{
-                  usersResource.error()?.message ||
-                  'Failed to fetch users. This may be due to CORS restrictions.'
-                }}
-              </p>
-            </mat-card-content>
-          </mat-card>
-        </div>
-      }
-      @if (usersResource.hasValue()) {
-        <mat-selection-list
-          #usersSelectionList
-          formControlName="userControl"
-          [multiple]="false"
-        >
-          @for (user of users; track user.id) {
-            <mat-list-option [value]="user"
-            >{{ user.username }}
-            </mat-list-option>
-          }
-        </mat-selection-list>
-      }
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="usernameControl" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="passwordControl" />
+      </mat-form-field>
       <div>
         <button
           matButton="filled"
           color="primary"
-          (click)="login(userControl.value?.at(0))"
+          (click)="login()"
         >
           Login
         </button>
@@ -64,21 +37,20 @@ import { UserService } from '../services/user.service';
 export class LoginComponent {
   readonly userService = inject(UserService);
 
-  readonly usersResource = this.userService.users;
-  readonly users = this.usersResource.value();
-
   readonly form = new FormGroup({
-    userControl: new FormControl()
+    usernameControl: new FormControl(),
+    passwordControl: new FormControl()
   });
 
-  get userControl() {
-    return this.form.get('userControl') as FormControl;
+  get usernameControl() {
+    return this.form.get('usernameControl') as FormControl;
   }
 
-  login(user: User) {
-    this.userService.login({
-      username: user.username,
-      password: user.password
-    });
+  get passwordControl() {
+    return this.form.get('passwordControl') as FormControl;
+  }
+
+  login() {
+    this.userService.login(this.usernameControl.value, this.passwordControl.value);
   }
 }

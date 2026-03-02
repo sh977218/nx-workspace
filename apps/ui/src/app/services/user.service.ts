@@ -1,4 +1,4 @@
-import { HttpClient, httpResource } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -15,13 +15,10 @@ export class UserService {
   private readonly _http = inject(HttpClient);
   private readonly _localStorageService = inject(LocalStorageService);
 
-  usersUrl = `${environment.api}/users`;
   loginUrl = `${environment.authApi}/login`;
   logoutUrl = `${environment.authApi}/logout`;
 
   loggedInUser = signal<User | null>(null);
-
-  users = httpResource<User[]>(() => this.usersUrl);
 
   isMyself(username: string) {
     return this.loggedInUser()?.username === username;

@@ -31,7 +31,7 @@ export class AuthController {
     @Res() res: Response,
     @Body() { username, password }: SignInDto
   ) {
-    const jwtInCookie = req.cookies['jwt'];
+    const jwtInCookie = req.cookies?.['jwt'];
     if (!jwtInCookie && !username) {
       return res.status(HttpStatus.UNAUTHORIZED).send();
     }
