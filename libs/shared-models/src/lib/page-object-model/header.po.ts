@@ -6,7 +6,7 @@ export class HeaderPo {
   readonly profileMenu: Locator;
 
   constructor(private readonly page: Page) {
-    this.profileButton = this.page.locator(this.CONTAINER).getByRole('button', { name: '' });
+    this.profileButton = this.page.locator(this.CONTAINER).getByRole('button').filter({ hasText: 'person' });
     this.profileMenu = this.page.getByRole('menuitem', { name: 'Profile' });
   }
 }
