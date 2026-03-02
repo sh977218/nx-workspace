@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, computed, inject } from '@angular/core';
+import { User } from '@shared-models/shared-models';
+import { map } from 'rxjs/operators';
 
 import { MaterialModule } from '../material.module';
 import { UserService } from '../services/user.service';
@@ -6,7 +9,7 @@ import { UserService } from '../services/user.service';
 @Component({
   imports: [MaterialModule],
   template: `
-    <table mat-table [dataSource]="dataSource()">
+    <table mat-table [dataSource]="data">
       <ng-container matColumnDef="key">
         <th mat-header-cell *matHeaderCellDef>Key</th>
         <td mat-cell *matCellDef="let element">{{ element.key }}</td>
@@ -25,12 +28,13 @@ import { UserService } from '../services/user.service';
 })
 export class ProfileComponent {
   userService = inject(UserService);
-  dataSource = computed(() => {
-    return Object.entries(this.userService.loggedInUser() ?? {}).map(
-      ([key, value]) => ({
+  http = inject(HttpClient);
+  data = this.http.get<User>('/api/users/me').pipe(
+    map((user) => {
+      return Object.entries(user).map(([key, value]) => ({
         key,
         value
-      })
-    );
-  });
+      }));
+    })
+  );
 }
