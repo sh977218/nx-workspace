@@ -3,6 +3,7 @@ import { LoginPo } from '@shared-models/shared-models';
 
 export const loginFixture = baseTest.extend<{
   username: string;
+  password: string;
   loginPage: LoginPo;
 }>({
   page: async ({ page }, use) => {
@@ -12,16 +13,17 @@ export const loginFixture = baseTest.extend<{
   username: () => {
     return '';
   },
-  loginPage: async ({ page, username }, use) => {
+  loginPage: async ({ page, username, password }, use) => {
     await expect(page).toHaveTitle(`Login`);
     const loginPage = new LoginPo(page);
-    await loginPage.userItem.filter({ hasText: username }).click();
+    await loginPage.usernameInput.fill(username);
+    await loginPage.passwordInput.fill(password);
     await loginPage.loginButton.click();
     await use(loginPage);
     await loginPage.header.profileButton.click();
     await loginPage.header.logoutMenu.click();
     await expect(
-      loginPage.material.snackBar.getByText('You have been logged out.'),
+      loginPage.material.snackBar.getByText('You have been logged out.')
     ).toBeVisible();
 
   }
