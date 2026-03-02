@@ -8,9 +8,8 @@ import { User } from './schema/user.schema';
 @Injectable()
 export class UserService {
   constructor(
-    @InjectModel(User.name) private readonly userModel: Model<User>
-  ) {
-  }
+    @InjectModel(User.name) private readonly userModel: Model<User>,
+  ) {}
 
   async findAll() {
     return await this.userModel.find().lean().exec();

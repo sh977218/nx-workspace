@@ -4,6 +4,6 @@ export const environment: EnvironmentModel = {
   production: false,
   api: '/api',
   rssfeed: '/rssfeed',
-  idpApi: '/idpApi',
+  authApi: '/authApi',
   idpUrl: 'http://localhost:5200',
 };
