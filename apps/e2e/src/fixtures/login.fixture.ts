@@ -13,6 +13,9 @@ export const loginFixture = baseTest.extend<{
   username: () => {
     return '';
   },
+  password: () => {
+    return '';
+  },
   loginPage: async ({ page, username, password }, use) => {
     await expect(page).toHaveTitle(`Login`);
     const loginPage = new LoginPo(page);
@@ -25,6 +28,5 @@ export const loginFixture = baseTest.extend<{
     await expect(
       loginPage.material.snackBar.getByText('You have been logged out.')
     ).toBeVisible();
-
   }
 });
