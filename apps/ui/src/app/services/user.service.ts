@@ -76,7 +76,7 @@ export class UserService {
   }
 
   loginByJwt() {
-    this._http.get<User>(this.jwtUrl).subscribe({
+    this._http.post<User>(this.jwtUrl, {}).subscribe({
       next: (user) => {
         this.loggedInUser.set(user);
         this._snackBar.open(`${user.username} logged in.`, 'Close');
