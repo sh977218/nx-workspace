@@ -51,6 +51,18 @@ export default defineConfig({
       reuseExistingServer: true,
       cwd: workspaceRoot,
     },
+    {
+      command: 'nx run idp-ui:serve',
+      port: 5200,
+      reuseExistingServer: true,
+      cwd: workspaceRoot,
+    },
+    {
+      command: isCI ? 'nx run auth-api:serve:ci' : 'nx run auth-api:serve',
+      port: 4000,
+      reuseExistingServer: true,
+      cwd: workspaceRoot,
+    },
   ],
   projects: [
     {

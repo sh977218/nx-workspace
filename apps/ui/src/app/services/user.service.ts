@@ -16,8 +16,9 @@ export class UserService {
   private readonly _localStorageService = inject(LocalStorageService);
 
   usersUrl = `${environment.api}/users`;
-  loginUrl = `${environment.api}/auth/login`;
-  userUrl = `${environment.api}/users/me`;
+  jwtUrl = `${environment.authApi}/auth/user`;
+  loginUrl = `${environment.authApi}/auth/login`;
+  logoutUrl = `${environment.authApi}/auth/logout`;
 
   loggedInUser = signal<User | null>(null);
 
@@ -27,16 +28,25 @@ export class UserService {
     return this.loggedInUser()?.username === username;
   }
 
-  loginByUser(user: User) {
-    if (user) {
+  loginByUsername({
+                    username,
+                    password
+                  }: {
+    username: string;
+    password: string;
+  }) {
+    if (username) {
       this._http
-        .post<{ access_token: string }>(this.loginUrl, {
-          username: user.username,
-          password: user.password
+        .post<{
+          jwt: string;
+          user: User;
+        }>(this.loginUrl, {
+          username,
+          password
         })
         .subscribe({
-          next: ({ access_token }) => {
-            this._localStorageService.setItem('jwt', access_token);
+          next: ({ jwt, user }) => {
+            this._localStorageService.setItem('jwt', jwt);
             this.loggedInUser.set(user);
             this._snackBar.open(`${user.username} logged in.`, 'Close');
             this._router.navigate(['/']);
@@ -44,7 +54,7 @@ export class UserService {
           error: () => {
             this._localStorageService.removeItem('jwt');
             this.loggedInUser.set(null);
-            this._snackBar.open(`No user selected`, 'Close');
+            this._snackBar.open(`Unable to login`, 'Close');
           }
         });
     } else {
@@ -53,24 +63,25 @@ export class UserService {
     }
   }
 
-  loginByJwt() {
-    this._http.get<User>(this.userUrl).subscribe({
-      next: (user) => {
-        this.loggedInUser.set(user);
-        this._snackBar.open(`${user.username} logged in.`, 'Close');
-        this._router.navigate(['/']);
+  logout() {
+    this._http.post<User>(this.logoutUrl, {}).subscribe({
+      next: () => {
+        this.loggedInUser.set(null);
+        this._snackBar.open(`You have been logged out.`, 'Close');
       },
       error: () => {
-        this._localStorageService.removeItem('jwt');
-        this.loggedInUser.set(null);
-        this._router.navigate(['/login']);
+        this._snackBar.open(`Unable to log out.`, 'Close');
       }
     });
   }
 
-  logout() {
-    this.loggedInUser.set(null);
-    this._localStorageService.removeItem('jwt');
-    this._snackBar.open(`You have been logged out.`, 'Close');
+  loginByJwt() {
+    this._http.get<User>(this.jwtUrl).subscribe({
+      next: (user) => {
+        this.loggedInUser.set(user);
+        this._snackBar.open(`${user.username} logged in.`, 'Close');
+        this._router.navigate(['/']);
+      }
+    });
   }
 }

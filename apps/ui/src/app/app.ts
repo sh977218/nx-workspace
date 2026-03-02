@@ -9,9 +9,11 @@ import { map, shareReplay } from 'rxjs/operators';
 
 import { ChatDialogComponent } from './chat-dialog/chat-dialog.component';
 import { HeaderComponent } from './header/header.component';
+import { LocalStorageService } from './services/local-storage.service';
 import { ThemeService } from './services/theme.service';
 import { UserService } from './services/user.service';
 import { MaterialModule } from './material.module';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
@@ -23,43 +25,44 @@ import { MaterialModule } from './material.module';
     AsyncPipe,
     RouterLink,
     RouterLinkActive,
-    RouterOutlet,
-  ],
+    RouterOutlet
+  ]
 })
 export class App {
   private breakpointObserver = inject(BreakpointObserver);
   readonly dialog = inject(MatDialog);
-  themeService = inject(ThemeService);
-  userService = inject(UserService);
+  readonly themeService = inject(ThemeService);
+  readonly userService = inject(UserService);
+  private readonly _localStorageService = inject(LocalStorageService);
 
   routes = [
     {
       path: 'search',
-      label: 'Search',
+      label: 'Search'
     },
     {
       path: 'threeJs',
-      label: 'Three JS',
+      label: 'Three JS'
     },
     {
       path: 'dashboard',
-      label: 'Dashboard',
+      label: 'Dashboard'
     },
     {
       path: 'video',
-      label: 'Video',
+      label: 'Video'
     },
     {
       path: 'feed',
-      label: 'Feed',
-    },
+      label: 'Feed'
+    }
   ];
 
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
       map((result) => result.matches),
-      shareReplay(),
+      shareReplay()
     );
 
   openChatDialog() {
@@ -67,6 +70,8 @@ export class App {
   }
 
   constructor() {
-    this.userService.loginByJwt();
+    if (this._localStorageService.getItem('jwt')) {
+      this.userService.loginByJwt();
+    }
   }
 }

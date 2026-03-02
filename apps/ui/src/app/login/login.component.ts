@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { User } from '@shared-models/shared-models';
 
 import { MaterialModule } from '../material.module';
 import { UserService } from '../services/user.service';
@@ -25,7 +26,7 @@ import { UserService } from '../services/user.service';
               <p>
                 {{
                   usersResource.error()?.message ||
-                    'Failed to fetch users. This may be due to CORS restrictions.'
+                  'Failed to fetch users. This may be due to CORS restrictions.'
                 }}
               </p>
             </mat-card-content>
@@ -40,7 +41,7 @@ import { UserService } from '../services/user.service';
         >
           @for (user of users; track user.id) {
             <mat-list-option [value]="user"
-              >{{ user.username }}
+            >{{ user.username }}
             </mat-list-option>
           }
         </mat-selection-list>
@@ -49,7 +50,7 @@ import { UserService } from '../services/user.service';
         <button
           matButton="filled"
           color="primary"
-          (click)="userService.loginByUser(userControl.value?.at(0))"
+          (click)="login(userControl.value?.at(0))"
         >
           Login
         </button>
@@ -57,8 +58,8 @@ import { UserService } from '../services/user.service';
     </form>
   `,
   host: {
-    class: 'flex items-center justify-center',
-  },
+    class: 'flex items-center justify-center'
+  }
 })
 export class LoginComponent {
   readonly userService = inject(UserService);
@@ -67,10 +68,17 @@ export class LoginComponent {
   readonly users = this.usersResource.value();
 
   readonly form = new FormGroup({
-    userControl: new FormControl(),
+    userControl: new FormControl()
   });
 
   get userControl() {
     return this.form.get('userControl') as FormControl;
+  }
+
+  login(user: User) {
+    this.userService.loginByUsername({
+      username: user.username,
+      password: user.password
+    });
   }
 }
