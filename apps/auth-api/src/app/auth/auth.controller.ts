@@ -1,4 +1,13 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, Req, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Post,
+  Req,
+  Res,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Request, Response } from 'express';
 
@@ -12,9 +21,8 @@ export class AuthController {
   constructor(
     private authService: AuthService,
     private userService: UserService,
-    private jwtService: JwtService
-  ) {
-  }
+    private jwtService: JwtService,
+  ) {}
 
   @HttpCode(HttpStatus.OK)
   @Get('user')
@@ -34,7 +42,7 @@ export class AuthController {
   async login(@Body() { username, password }: SignInDto, @Res() res: Response) {
     const user = await this.userService.findOneByUsernamePassword(
       username,
-      password
+      password,
     );
     if (!user) {
       return res.status(HttpStatus.UNAUTHORIZED).send();
@@ -43,11 +51,11 @@ export class AuthController {
     const jwt = await this.jwtService.signAsync(payload);
     res.cookie('jwt', jwt, {
       httpOnly: true,
-      path: '/'
+      path: '/',
     });
     return res.status(HttpStatus.OK).send({
       jwt,
-      user
+      user,
     });
   }
 
@@ -56,7 +64,7 @@ export class AuthController {
   logout(@Res() res: Response) {
     res.clearCookie('jwt', {
       httpOnly: true,
-      path: '/'
+      path: '/',
     });
     return res.status(200).send();
   }

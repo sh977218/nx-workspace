@@ -7,9 +7,8 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(
     private readonly userService: UserService,
-    private jwtService: JwtService
-  ) {
-  }
+    private jwtService: JwtService,
+  ) {}
 
   @Get()
   async findAll() {
@@ -17,9 +16,7 @@ export class UserController {
   }
 
   @Get('me')
-  async findOne(
-    @Headers('Authorization') bearer: string
-  ) {
+  async findOne(@Headers('Authorization') bearer: string) {
     if (!bearer) {
       throw new Error('Missing bearer token');
     }

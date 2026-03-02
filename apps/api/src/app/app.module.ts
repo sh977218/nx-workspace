@@ -4,7 +4,6 @@ import { JwtModule } from '@nestjs/jwt';
 import { MongooseModule } from '@nestjs/mongoose';
 import * as Joi from 'joi';
 
-import { AuthModule } from './auth/auth.module';
 import { jwtConstants } from './auth/constants';
 import { DataLoadModule } from './data-load/data-load.module';
 import { EventsModule } from './events/events.module';
@@ -63,7 +62,6 @@ const ENV = process.env.NODE_ENV;
     DataLoadModule,
     FeedModule,
     EventsModule,
-    AuthModule,
     UserModule,
   ],
   controllers: [AppController],
