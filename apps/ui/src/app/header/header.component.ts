@@ -23,7 +23,7 @@ export class HeaderComponent {
   readonly dialog = inject(MatDialog);
   readonly themeService = inject(ThemeService);
   readonly userService = inject(UserService);
-  readonly idpUrl = `${environment.idpUrl}/login?redirectUrl=${encodeURIComponent(window.location.host)}`;
+  readonly idpUrl = `${environment.idpUrl}/login?redirectUrl=${encodeURIComponent(window.location.href)}`;
 
   toggleDrawer = output();
 

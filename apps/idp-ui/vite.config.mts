@@ -9,11 +9,19 @@ export default defineConfig(() => ({
   cacheDir: '../../node_modules/.vite/apps/idp-ui',
   server: {
     port: 5200,
-    host: 'localhost'
+    host: 'localhost',
+    proxy: {
+      // Proxy requests starting with '/api'
+      '/api': {
+        target: 'http://localhost:4000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''), // Rewrite path if needed
+      },
+    },
   },
   preview: {
     port: 5200,
-    host: 'localhost'
+    host: 'localhost',
   },
   plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md'])],
   // Uncomment this if you are using workers.
@@ -25,8 +33,8 @@ export default defineConfig(() => ({
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
-      transformMixedEsModules: true
-    }
+      transformMixedEsModules: true,
+    },
   },
   test: {
     name: 'idp-ui',
@@ -37,7 +45,7 @@ export default defineConfig(() => ({
     reporters: ['default'],
     coverage: {
       reportsDirectory: '../../coverage/apps/idp-ui',
-      provider: 'v8' as const
-    }
-  }
+      provider: 'v8' as const,
+    },
+  },
 }));

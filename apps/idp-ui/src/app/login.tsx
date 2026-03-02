@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import { User } from '@shared-models/shared-models';
@@ -6,8 +6,6 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router';
 
 export function Login() {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
   const [searchParams] = useSearchParams();
   const [users, setUsers] = useState<User[]>([]);
 
@@ -31,22 +29,24 @@ export function Login() {
 
   const onSignIn = async () => {
     const redirectUrl = searchParams.get('redirectUrl');
-    const _username = email || users[selectedIndex].email;
-    const _password = password || users[selectedIndex].password;
-    const response = await fetch('http://localhost:4000', {
+    const username = users[selectedIndex].username;
+    const password = users[selectedIndex].password;
+    const response = await fetch('/api/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        username: _username,
-        password: _password
+        username,
+        password
       })
     });
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
-    window.location.href = 'http://localhost:4200';
+    const { jwt } = await response.json();
+    localStorage.setItem('jwt', jwt);
+    setTimeout(() => window.location.href = redirectUrl || 'http://localhost:4200');
   };
 
   return (
@@ -70,23 +70,6 @@ export function Login() {
             </ListItemButton>
           ))}
         </List>
-        <TextField
-          id="email"
-          label="Email"
-          value={email}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setEmail(event.target.value);
-          }}
-        />
-        <TextField
-          id="password"
-          type="password"
-          label="Password"
-          value={password}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setPassword(event.target.value);
-          }}
-        />
       </Box>
       <Box
         component="form"
