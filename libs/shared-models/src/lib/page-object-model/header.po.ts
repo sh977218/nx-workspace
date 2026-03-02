@@ -1,7 +1,7 @@
 import { Locator, Page } from '@playwright/test';
 
 export class HeaderPo {
-  private readonly CONTAINER = '.app-header';
+  private readonly CONTAINER = 'app-header';
   readonly profileButton: Locator;
   readonly profileMenu: Locator;
 
