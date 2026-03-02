@@ -16,7 +16,7 @@ import { UserService } from '../user/user.service';
 import { SignInDto } from './dto/sign-in-dto';
 import { AuthService } from './auth.service';
 
-@Controller('auth')
+@Controller()
 export class AuthController {
   constructor(
     private authService: AuthService,
