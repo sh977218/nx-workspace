@@ -29,9 +29,9 @@ export class UserService {
   }
 
   loginByUsername({
-    username,
-    password,
-  }: {
+                    username,
+                    password
+                  }: {
     username: string;
     password: string;
   }) {
@@ -42,7 +42,7 @@ export class UserService {
           user: User;
         }>(this.loginUrl, {
           username,
-          password,
+          password
         })
         .subscribe({
           next: ({ jwt, user }) => {
@@ -55,7 +55,7 @@ export class UserService {
             this._localStorageService.removeItem('jwt');
             this.loggedInUser.set(null);
             this._snackBar.open(`Unable to login`, 'Close');
-          },
+          }
         });
     } else {
       this.loggedInUser.set(null);
@@ -64,14 +64,14 @@ export class UserService {
   }
 
   logout() {
-    this._http.get<User>(this.logoutUrl).subscribe({
+    this._http.post<User>(this.logoutUrl, {}).subscribe({
       next: () => {
         this.loggedInUser.set(null);
         this._snackBar.open(`You have been logged out.`, 'Close');
       },
       error: () => {
         this._snackBar.open(`Unable to log out.`, 'Close');
-      },
+      }
     });
   }
 
@@ -81,7 +81,7 @@ export class UserService {
         this.loggedInUser.set(user);
         this._snackBar.open(`${user.username} logged in.`, 'Close');
         this._router.navigate(['/']);
-      },
+      }
     });
   }
 }
