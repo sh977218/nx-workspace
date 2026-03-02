@@ -71,7 +71,7 @@ export class App {
 
   constructor() {
     if (this._localStorageService.getItem('jwt')) {
-      this.userService.loginByJwt();
+      this.userService.login();
     }
   }
 }

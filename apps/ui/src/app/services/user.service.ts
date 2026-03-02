@@ -16,9 +16,8 @@ export class UserService {
   private readonly _localStorageService = inject(LocalStorageService);
 
   usersUrl = `${environment.api}/users`;
-  jwtUrl = `${environment.authApi}/auth/user`;
-  loginUrl = `${environment.authApi}/auth/login`;
-  logoutUrl = `${environment.authApi}/auth/logout`;
+  loginUrl = `${environment.authApi}/login`;
+  logoutUrl = `${environment.authApi}/logout`;
 
   loggedInUser = signal<User | null>(null);
 
@@ -28,39 +27,32 @@ export class UserService {
     return this.loggedInUser()?.username === username;
   }
 
-  loginByUsername({
-                    username,
-                    password
-                  }: {
-    username: string;
-    password: string;
-  }) {
+  login(username?: string, password?: string) {
+    const body: { username?: string; password?: string } = {};
     if (username) {
-      this._http
-        .post<{
-          jwt: string;
-          user: User;
-        }>(this.loginUrl, {
-          username,
-          password
-        })
-        .subscribe({
-          next: ({ jwt, user }) => {
-            this._localStorageService.setItem('jwt', jwt);
-            this.loggedInUser.set(user);
-            this._snackBar.open(`${user.username} logged in.`, 'Close');
-            this._router.navigate(['/']);
-          },
-          error: () => {
-            this._localStorageService.removeItem('jwt');
-            this.loggedInUser.set(null);
-            this._snackBar.open(`Unable to login`, 'Close');
-          }
-        });
-    } else {
-      this.loggedInUser.set(null);
-      this._snackBar.open(`No user selected`, 'Close');
+      body.username = username;
+      body.password = password;
     }
+    this._http
+      .post<{
+        jwt: string;
+        user: User;
+      }>(this.loginUrl, body)
+      .subscribe({
+        next: ({ jwt, user }) => {
+          if (jwt) {
+            this._localStorageService.setItem('jwt', jwt);
+          }
+          this.loggedInUser.set(user);
+          this._snackBar.open(`${user.username} logged in.`, 'Close');
+          this._router.navigate(['/']);
+        },
+        error: () => {
+          this._localStorageService.removeItem('jwt');
+          this.loggedInUser.set(null);
+          this._snackBar.open(`Unable to login`, 'Close');
+        }
+      });
   }
 
   logout() {
@@ -71,16 +63,6 @@ export class UserService {
       },
       error: () => {
         this._snackBar.open(`Unable to log out.`, 'Close');
-      }
-    });
-  }
-
-  loginByJwt() {
-    this._http.get<User>(this.jwtUrl).subscribe({
-      next: (user) => {
-        this.loggedInUser.set(user);
-        this._snackBar.open(`${user.username} logged in.`, 'Close');
-        this._router.navigate(['/']);
       }
     });
   }

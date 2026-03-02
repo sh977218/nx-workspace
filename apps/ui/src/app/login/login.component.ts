@@ -76,7 +76,7 @@ export class LoginComponent {
   }
 
   login(user: User) {
-    this.userService.loginByUsername({
+    this.userService.login({
       username: user.username,
       password: user.password
     });
