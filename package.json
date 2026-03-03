@@ -9,8 +9,7 @@
     "Playwright"
   ],
   "scripts": {
-    "commit": "git cz",
-    "start": "node dist/apps/api"
+    "commit": "git cz"
   },
   "config": {
     "commitizen": {
