@@ -15,6 +15,8 @@ export class UserService {
   private readonly _http = inject(HttpClient);
   private readonly _localStorageService = inject(LocalStorageService);
 
+  readonly isLoggedIn = signal(false);
+
   jwtUrl = `${environment.authApi}/user`;
   loginUrl = `${environment.authApi}/login`;
   logoutUrl = `${environment.authApi}/logout`;
@@ -40,12 +42,14 @@ export class UserService {
       .subscribe({
         next: ({jwt, user}) => {
           this._localStorageService.setItem('jwt', jwt);
+          this.isLoggedIn.set(true);
           this.loggedInUser.set(user);
           this._snackBar.open(`${user.username} logged in.`, 'Close');
           this._router.navigate(['/']);
         },
         error: () => {
           this._localStorageService.removeItem('jwt');
+          this.isLoggedIn.set(false);
           this.loggedInUser.set(null);
           this._snackBar.open(`Unable to login`, 'Close');
         }
@@ -55,10 +59,12 @@ export class UserService {
   logout() {
     this._http.post<User>(this.logoutUrl, {}).subscribe({
       next: () => {
+        this.isLoggedIn.set(false);
         this.loggedInUser.set(null);
         this._snackBar.open(`You have been logged out.`, 'Close');
       },
       error: () => {
+        this.isLoggedIn.set(true);
         this._snackBar.open(`Unable to log out.`, 'Close');
       }
     });
@@ -67,9 +73,14 @@ export class UserService {
   loginByJwt() {
     this._http.get<User>(this.jwtUrl).subscribe({
       next: (user) => {
+        this.isLoggedIn.set(true);
         this.loggedInUser.set(user);
         this._snackBar.open(`${user.username} logged in.`, 'Close');
         this._router.navigate(['/']);
+      },
+      error: () => {
+        this.isLoggedIn.set(false);
+        this.loggedInUser.set(null);
       }
     });
   }
