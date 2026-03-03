@@ -13,7 +13,7 @@ export function Login() {
 
   const handleListItemClick = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    index: number
+    index: number,
   ) => {
     setSelectedIndex(index);
   };
@@ -34,19 +34,21 @@ export function Login() {
     const response = await fetch('/api/login', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         username,
-        password
-      })
+        password,
+      }),
     });
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
     const { jwt } = await response.json();
     localStorage.setItem('jwt', jwt);
-    setTimeout(() => window.location.href = redirectUrl || 'http://localhost:4200');
+    setTimeout(
+      () => (window.location.href = redirectUrl || 'http://localhost:4200'),
+    );
   };
 
   return (
@@ -84,6 +86,6 @@ export function Login() {
       </Box>
     </>
   );
-};
+}
 
 export default Login;

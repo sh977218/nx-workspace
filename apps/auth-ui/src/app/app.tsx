@@ -28,7 +28,6 @@ const drawerWidth = 240;
 
 const navItems = ['Home', 'About', 'Contact'];
 
-
 export function App(props: Props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -95,14 +94,14 @@ export function App(props: Props) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true // Better open performance on mobile.
+            keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
-              width: drawerWidth
-            }
+              width: drawerWidth,
+            },
           }}
         >
           {drawer}
