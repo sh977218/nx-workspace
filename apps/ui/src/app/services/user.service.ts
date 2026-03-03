@@ -1,14 +1,14 @@
-import { HttpClient, httpResource } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
-import { User } from '@shared-models/shared-models';
+import {HttpClient} from '@angular/common/http';
+import {inject, Injectable, signal} from '@angular/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {Router} from '@angular/router';
+import {User} from '@shared-models/shared-models';
 
-import { environment } from '../../environments/environment';
+import {environment} from '../../environments/environment';
 
-import { LocalStorageService } from './local-storage.service';
+import {LocalStorageService} from './local-storage.service';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class UserService {
   private readonly _snackBar = inject(MatSnackBar);
   private readonly _router = inject(Router);
@@ -25,13 +25,10 @@ export class UserService {
     return this.loggedInUser()?.username === username;
   }
 
-  loginByUsername({
-                    username,
-                    password
-                  }: {
-    username: string;
-    password: string;
-  }) {
+  loginByUsername(
+    username: string,
+    password: string
+  ) {
     this._http
       .post<{
         jwt: string;
@@ -41,7 +38,7 @@ export class UserService {
         password
       })
       .subscribe({
-        next: ({ jwt, user }) => {
+        next: ({jwt, user}) => {
           this._localStorageService.setItem('jwt', jwt);
           this.loggedInUser.set(user);
           this._snackBar.open(`${user.username} logged in.`, 'Close');
