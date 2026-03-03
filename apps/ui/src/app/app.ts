@@ -9,7 +9,6 @@ import { map, shareReplay } from 'rxjs/operators';
 
 import { ChatDialogComponent } from './chat-dialog/chat-dialog.component';
 import { HeaderComponent } from './header/header.component';
-import { LocalStorageService } from './services/local-storage.service';
 import { ThemeService } from './services/theme.service';
 import { UserService } from './services/user.service';
 import { MaterialModule } from './material.module';
@@ -33,7 +32,6 @@ export class App {
   readonly dialog = inject(MatDialog);
   readonly themeService = inject(ThemeService);
   readonly userService = inject(UserService);
-  private readonly _localStorageService = inject(LocalStorageService);
 
   routes = [
     {
@@ -70,8 +68,6 @@ export class App {
   }
 
   constructor() {
-    if (this._localStorageService.getItem('jwt')) {
-      this.userService.loginByJwt();
-    }
+    this.userService.loginByJwt();
   }
 }

@@ -51,6 +51,6 @@ export class LoginComponent {
   }
 
   login() {
-    this.userService.loginByUsername({ username: this.usernameControl.value, password: this.passwordControl.value });
+    this.userService.loginByUsername(this.usernameControl.value, this.passwordControl.value);
   }
 }
