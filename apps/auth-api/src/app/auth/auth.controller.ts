@@ -26,7 +26,7 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @Get('user')
   async jwt(@Req() req: Request, @Res() res: Response) {
-    const jwt = req.cookies?.['jwt'];
+    const jwt = req.cookies['jwt'];
     if (!jwt) {
       return res.status(HttpStatus.UNAUTHORIZED).send();
     }
