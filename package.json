@@ -97,7 +97,7 @@
     "@nx/vitest": "^22.5.3",
     "@nx/web": "22.5.3",
     "@nx/webpack": "22.5.3",
-    "@nx/workspace": "22.5.2",
+    "@nx/workspace": "22.5.3",
     "@playwright/test": "^1.58.2",
     "@schematics/angular": "~21.0.0",
     "@storybook/addon-docs": "^10.2.13",
