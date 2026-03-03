@@ -1,12 +1,11 @@
 import {
   Body,
   Controller,
-  Get,
   HttpCode,
   HttpStatus,
   Post,
   Req,
-  Res,
+  Res
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Request, Response } from 'express';
@@ -20,29 +19,34 @@ import { AuthService } from './auth.service';
 export class AuthController {
   constructor(
     private userService: UserService,
-    private jwtService: JwtService,
-  ) {}
-
-  @HttpCode(HttpStatus.OK)
-  @Get('user')
-  async jwt(@Req() req: Request, @Res() res: Response) {
-    const jwt = req.cookies['jwt'];
-    if (!jwt) {
-      return res.status(HttpStatus.UNAUTHORIZED).send();
-    }
-    const payload = this.jwtService.decode(jwt);
-    const myUsername = payload.username;
-    const user = await this.userService.findOne(myUsername);
-    return res.status(HttpStatus.OK).send(user);
+    private jwtService: JwtService
+  ) {
   }
 
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  async login(@Body() { username, password }: SignInDto, @Res() res: Response) {
-    const user = await this.userService.findOneByUsernamePassword(
-      username,
-      password,
-    );
+  async login(
+    @Req() req: Request,
+    @Res() res: Response,
+    @Body() { username, password }: SignInDto
+  ) {
+    const jwtInCookie = req.cookies?.['jwt'];
+    if (!jwtInCookie && !username) {
+      return res.status(HttpStatus.UNAUTHORIZED).send();
+    }
+    let user;
+    if (jwtInCookie) {
+      const payload = this.jwtService.decode(jwtInCookie);
+      const myUsername = payload.username;
+      user = await this.userService.findOne(myUsername);
+    }
+    if (username) {
+      user = await this.userService.findOneByUsernamePassword(
+        username,
+        password
+      );
+    }
+
     if (!user) {
       return res.status(HttpStatus.UNAUTHORIZED).send();
     }
@@ -51,7 +55,7 @@ export class AuthController {
     res.cookie('jwt', jwt);
     return res.status(HttpStatus.OK).send({
       jwt,
-      user,
+      user
     });
   }
 

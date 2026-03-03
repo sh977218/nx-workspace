@@ -17,7 +17,6 @@ export class UserService {
 
   readonly isLoggedIn = signal(false);
 
-  jwtUrl = `${environment.authApi}/user`;
   loginUrl = `${environment.authApi}/login`;
   logoutUrl = `${environment.authApi}/logout`;
 
@@ -27,18 +26,17 @@ export class UserService {
     return this.loggedInUser()?.username === username;
   }
 
-  loginByUsername(
-    username: string,
-    password: string
-  ) {
+  login(username?: string, password?: string) {
+    const body: { username?: string, password?: string } = {};
+    if (username) {
+      body.username = username;
+      body.password = password;
+    }
     this._http
       .post<{
         jwt: string;
         user: User;
-      }>(this.loginUrl, {
-        username,
-        password
-      })
+      }>(this.loginUrl, body)
       .subscribe({
         next: ({jwt, user}) => {
           this._localStorageService.setItem('jwt', jwt);
@@ -66,21 +64,6 @@ export class UserService {
       error: () => {
         this.isLoggedIn.set(true);
         this._snackBar.open(`Unable to log out.`, 'Close');
-      }
-    });
-  }
-
-  loginByJwt() {
-    this._http.get<User>(this.jwtUrl).subscribe({
-      next: (user) => {
-        this.isLoggedIn.set(true);
-        this.loggedInUser.set(user);
-        this._snackBar.open(`${user.username} logged in.`, 'Close');
-        this._router.navigate(['/']);
-      },
-      error: () => {
-        this.isLoggedIn.set(false);
-        this.loggedInUser.set(null);
       }
     });
   }

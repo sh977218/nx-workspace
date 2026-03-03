@@ -5,12 +5,11 @@ import { UserService } from './services/user.service';
 import { App } from './app';
 
 const mockUserService = {
-  loginByJwt: vi.fn()
+  login: vi.fn()
 };
 
 describe('App', () => {
   beforeEach(async () => {
-
     await TestBed.configureTestingModule({
       imports: [App],
       providers: [

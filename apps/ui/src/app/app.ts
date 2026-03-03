@@ -68,6 +68,6 @@ export class App {
   }
 
   constructor() {
-    this.userService.loginByJwt();
+    this.userService.login();
   }
 }
