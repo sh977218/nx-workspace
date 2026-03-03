@@ -5,5 +5,5 @@ import { UserService } from '../services/user.service';
 
 export const profileGuard: CanActivateFn = () => {
   const userService = inject(UserService);
-  return !!userService.loggedInUser();
+  return userService.isLoggedIn();
 };

@@ -4,12 +4,12 @@ import { provideRouter } from '@angular/router';
 import { UserService } from './services/user.service';
 import { App } from './app';
 
+const mockUserService = {
+  login: vi.fn()
+};
+
 describe('App', () => {
   beforeEach(async () => {
-    const mockUserService = {
-      login: vi.fn()
-    };
-
     await TestBed.configureTestingModule({
       imports: [App],
       providers: [

@@ -15,19 +15,21 @@ interface ChatMessage {
   template: `
     <h2 matDialogTitle>Chat</h2>
     <mat-dialog-content>
-      <ul class="flex flex-col gap-2 p-3 border-2 border-gray-300 rounded-lg h-full">
+      <ul
+        class="flex flex-col gap-2 p-3 border-2 border-gray-300 rounded-lg h-full"
+      >
         @for (chatMessage of chatMessages(); track $index) {
           <li
             class="flex align-baseline"
             [class]="{
-              'bg-white': userService.isMyself(chatMessage.sender),
-              'bg-gray-50': !userService.isMyself(chatMessage.sender),
-              'flex-row-reverse': !userService.isMyself(chatMessage.sender),
+              'bg-white': isMyself(chatMessage.sender),
+              'bg-gray-50': !isMyself(chatMessage.sender),
+              'flex-row-reverse': !isMyself(chatMessage.sender),
             }"
           >
             <mat-icon>person</mat-icon>
             {{
-              userService.isMyself(chatMessage.sender)
+              isMyself(chatMessage.sender)
                 ? 'me'
                 : chatMessage.sender
             }}:
@@ -52,6 +54,8 @@ export class ChatDialogComponent {
   message = '';
   roomName = 'chat room';
   chatMessages = signal<ChatMessage[]>([]);
+
+  isMyself = this.userService.isMyself;
 
   constructor() {
     this.socket = io('http://localhost:3000'); // Connect to Socket.IO server
