@@ -24,22 +24,24 @@ export class UserService {
     return this.loggedInUser()?.username === username;
   }
 
-  login(username?: string, password?: string) {
-    const body: { username?: string; password?: string } = {};
-    if (username) {
-      body.username = username;
-      body.password = password;
-    }
+  login({
+                    username,
+                    password
+                  }: {
+    username: string;
+    password: string;
+  }) {
     this._http
       .post<{
         jwt: string;
         user: User;
-      }>(this.loginUrl, body)
+      }>(this.loginUrl, {
+        username,
+        password
+      })
       .subscribe({
         next: ({ jwt, user }) => {
-          if (jwt) {
-            this._localStorageService.setItem('jwt', jwt);
-          }
+          this._localStorageService.setItem('jwt', jwt);
           this.loggedInUser.set(user);
           this._snackBar.open(`${user.username} logged in.`, 'Close');
           this._router.navigate(['/']);

@@ -18,7 +18,6 @@ import { AuthService } from './auth.service';
 @Controller()
 export class AuthController {
   constructor(
-    private authService: AuthService,
     private userService: UserService,
     private jwtService: JwtService
   ) {
