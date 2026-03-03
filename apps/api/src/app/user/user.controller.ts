@@ -1,5 +1,6 @@
-import { Controller, Get, Headers } from '@nestjs/common';
+import { Controller, Get, HttpStatus, Req, Res } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { Request, Response } from 'express';
 
 import { UserService } from './user.service';
 
@@ -17,15 +18,14 @@ export class UserController {
   }
 
   @Get('me')
-  async findOne(
-    @Headers('Authorization') bearer: string
-  ) {
-    if (!bearer) {
-      throw new Error('Missing bearer token');
+  async findOne(@Req() req: Request, @Res() res: Response) {
+    const jwt = req.cookies['jwt'];
+    if (!jwt) {
+      return res.status(HttpStatus.UNAUTHORIZED).send();
     }
-    const jwt = bearer.replace('Bearer ', '');
     const payload = this.jwtService.decode(jwt);
-    const myUsername = payload.username;
-    return this.userService.findOne(myUsername);
+    const username = payload.username;
+    const user = await this.userService.findOne(username);
+    return res.send(user);
   }
 }
