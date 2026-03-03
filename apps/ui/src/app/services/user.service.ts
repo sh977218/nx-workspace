@@ -24,21 +24,17 @@ export class UserService {
     return this.loggedInUser()?.username === username;
   }
 
-  login({
-                    username,
-                    password
-                  }: {
-    username: string;
-    password: string;
-  }) {
+  login(username?: string, password?: string) {
+    const body: { username?: string, password?: string } = {};
+    if (username) {
+      body.username = username;
+      body.password = password;
+    }
     this._http
       .post<{
         jwt: string;
         user: User;
-      }>(this.loginUrl, {
-        username,
-        password
-      })
+      }>(this.loginUrl, body)
       .subscribe({
         next: ({ jwt, user }) => {
           this._localStorageService.setItem('jwt', jwt);
