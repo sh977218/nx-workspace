@@ -6,7 +6,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(() => ({
   root: import.meta.dirname,
-  cacheDir: '../../node_modules/.vite/apps/idp-ui',
+  cacheDir: '../../node_modules/.vite/apps/auth-ui',
   server: {
     port: 5200,
     host: 'localhost',
@@ -29,7 +29,7 @@ export default defineConfig(() => ({
   //   plugins: () => [ nxViteTsPaths() ],
   // },
   build: {
-    outDir: '../../dist/apps/idp-ui',
+    outDir: '../../dist/apps/auth-ui',
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
@@ -37,14 +37,14 @@ export default defineConfig(() => ({
     },
   },
   test: {
-    name: 'idp-ui',
+    name: 'auth-ui',
     watch: false,
     globals: true,
     environment: 'jsdom',
     include: ['{src,tests}/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     reporters: ['default'],
     coverage: {
-      reportsDirectory: '../../coverage/apps/idp-ui',
+      reportsDirectory: '../../coverage/apps/auth-ui',
       provider: 'v8' as const,
     },
   },
