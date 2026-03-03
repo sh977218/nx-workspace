@@ -5,5 +5,5 @@ export const environment: EnvironmentModel = {
   api: 'https://api-6yuk.onrender.com',
   rssfeed: 'http://rss.cnn.com/rss/cnn_topstories.rss',
   authApi: 'https://idp-api-6yuk.onrender.com',
-  idpUrl: 'http://localhost:5200',
+  idpUrl: 'https://auth-ui-clic.onrender.com',
 };

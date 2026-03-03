@@ -67,9 +67,9 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug idp with Nx",
+      "name": "Debug auth-api with Nx",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["nx", "serve", "idp"],
+      "runtimeArgs": ["nx", "serve", "auth-api"],
       "env": {
         "NODE_OPTIONS": "--inspect=9231"
       },
@@ -78,16 +78,16 @@
       "skipFiles": ["<node_internals>/**"],
       "sourceMaps": true,
       "outFiles": [
-        "${workspaceFolder}/apps/idp/dist/**/*.(m|c|)js",
+        "${workspaceFolder}/apps/auth-api/dist/**/*.(m|c|)js",
         "!**/node_modules/**"
       ]
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug idp with Nx",
+      "name": "Debug auth-api with Nx",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["nx", "serve", "idp"],
+      "runtimeArgs": ["nx", "serve", "auth-api"],
       "env": {
         "NODE_OPTIONS": "--inspect=9232"
       },
@@ -96,7 +96,7 @@
       "skipFiles": ["<node_internals>/**"],
       "sourceMaps": true,
       "outFiles": [
-        "${workspaceFolder}/apps/idp/dist/**/*.(m|c|)js",
+        "${workspaceFolder}/apps/auth-api/dist/**/*.(m|c|)js",
         "!**/node_modules/**"
       ]
     }
