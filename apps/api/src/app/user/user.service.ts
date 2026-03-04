@@ -16,13 +16,6 @@ export class UserService {
     return await this.userModel.find().lean().exec();
   }
 
-  async findOneByUsernamePassword(username: string, password: string) {
-    return this.userModel
-      .findOne({ username, password }, { password: 0 })
-      .lean()
-      .exec();
-  }
-
   async findOne(username: string) {
     return this.userModel.findOne({ username }, { password: 0 }).lean().exec();
   }

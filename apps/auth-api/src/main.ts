@@ -13,9 +13,9 @@ async function bootstrap() {
 
   const port = process.env['PORT'] ?? 4000;
   await app.listen(port);
-  Logger.log(`🚀 API Application is running on port ${port}`);
+  Logger.log(`🚀 Auth API Application is running on port ${port}`);
 }
 
 bootstrap().catch((e) => {
-  Logger.log(`idp api server started with error: ${e}`);
+  Logger.log(`Auth api server started with error: ${e}`);
 });
