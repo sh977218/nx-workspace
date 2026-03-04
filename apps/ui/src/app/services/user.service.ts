@@ -1,14 +1,14 @@
-import {HttpClient} from '@angular/common/http';
-import {inject, Injectable, signal} from '@angular/core';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {Router} from '@angular/router';
-import {User} from '@shared-models/shared-models';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable, signal } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { User } from '@shared-models/shared-models';
 
-import {environment} from '../../environments/environment';
+import { environment } from '../../environments/environment';
 
-import {LocalStorageService} from './local-storage.service';
+import { LocalStorageService } from './local-storage.service';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class UserService {
   private readonly _snackBar = inject(MatSnackBar);
   private readonly _router = inject(Router);
@@ -38,7 +38,7 @@ export class UserService {
         user: User;
       }>(this.loginUrl, body)
       .subscribe({
-        next: ({jwt, user}) => {
+        next: ({ jwt, user }) => {
           this._localStorageService.setItem('jwt', jwt);
           this.isLoggedIn.set(true);
           this.loggedInUser.set(user);
@@ -55,16 +55,21 @@ export class UserService {
   }
 
   logout() {
-    this._http.post<User>(this.logoutUrl, {}).subscribe({
-      next: () => {
-        this.isLoggedIn.set(false);
-        this.loggedInUser.set(null);
-        this._snackBar.open(`You have been logged out.`, 'Close');
-      },
-      error: () => {
-        this.isLoggedIn.set(true);
-        this._snackBar.open(`Unable to log out.`, 'Close');
-      }
-    });
+    this._http
+      .post<User>(
+        this.logoutUrl,
+        {}
+      )
+      .subscribe({
+        next: () => {
+          this.isLoggedIn.set(false);
+          this.loggedInUser.set(null);
+          this._snackBar.open(`You have been logged out.`, 'Close');
+        },
+        error: () => {
+          this.isLoggedIn.set(true);
+          this._snackBar.open(`Unable to log out.`, 'Close');
+        },
+      });
   }
 }
