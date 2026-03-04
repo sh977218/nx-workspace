@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -36,7 +36,10 @@ export class UserService {
       .post<{
         jwt: string;
         user: User;
-      }>(this.loginUrl, body, { withCredentials: true })
+      }>(this.loginUrl, body, {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+        withCredentials: true
+      })
       .subscribe({
         next: ({ jwt, user }) => {
           this._localStorageService.setItem('jwt', jwt);
@@ -56,7 +59,14 @@ export class UserService {
 
   logout() {
     this._http
-      .post<User>(this.logoutUrl, {}, { withCredentials: true })
+      .post<User>(
+        this.logoutUrl,
+        {},
+        {
+          headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+          withCredentials: true,
+        },
+      )
       .subscribe({
         next: () => {
           this.isLoggedIn.set(false);
