@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, computed, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { User } from '@shared-models/shared-models';
 import { map } from 'rxjs/operators';
 
+import { environment } from '../../environments/environment';
 import { MaterialModule } from '../material.module';
 import { UserService } from '../services/user.service';
 
@@ -29,7 +30,7 @@ import { UserService } from '../services/user.service';
 export class ProfileComponent {
   userService = inject(UserService);
   http = inject(HttpClient);
-  data = this.http.get<User>('/api/users/me').pipe(
+  data = this.http.get<User>(`${environment.api}/users/me`).pipe(
     map((user) => {
       return Object.entries(user).map(([key, value]) => ({
         key,

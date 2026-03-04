@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
-import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './schema/user.schema';
 
 @Injectable()
@@ -24,13 +23,5 @@ export class UserService {
 
   async findOne(username: string) {
     return this.userModel.findOne({ username }, { password: 0 }).lean().exec();
-  }
-
-  deleteAllUsers() {
-    return this.userModel.deleteMany({});
-  }
-
-  injectUsers(data: CreateUserDto[]) {
-    return this.userModel.insertMany(data);
   }
 }
