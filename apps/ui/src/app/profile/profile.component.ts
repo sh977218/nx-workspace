@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, computed, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { User } from '@shared-models/shared-models';
 import { map } from 'rxjs/operators';
 
+import { environment } from '../../environments/environment';
 import { MaterialModule } from '../material.module';
 import { UserService } from '../services/user.service';
-import { environment } from '../../environments/environment';
 
 @Component({
   imports: [MaterialModule],
