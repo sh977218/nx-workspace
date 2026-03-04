@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -58,7 +58,7 @@ export class UserService {
     this._http
       .post<User>(
         this.logoutUrl,
-        {},
+        {}
       )
       .subscribe({
         next: () => {
