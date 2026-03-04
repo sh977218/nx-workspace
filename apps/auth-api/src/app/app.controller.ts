@@ -17,15 +17,16 @@ import { UserService } from './user/user.service';
 export class AppController {
   constructor(
     private userService: UserService,
-    private jwtService: JwtService,
-  ) {}
+    private jwtService: JwtService
+  ) {
+  }
 
   @HttpCode(HttpStatus.OK)
   @Post('login')
   async login(
     @Req() req: Request,
     @Res() res: Response,
-    @Body() { username, password }: SignInDto,
+    @Body() { username, password }: SignInDto
   ) {
     const jwtInCookie = req.cookies?.['jwt'];
     if (!jwtInCookie && !username) {
@@ -40,7 +41,7 @@ export class AppController {
     if (username) {
       user = await this.userService.findOneByUsernamePassword(
         username,
-        password,
+        password
       );
     }
 
@@ -49,17 +50,19 @@ export class AppController {
     }
     const payload = { sub: user.id, username: user.username };
     const jwt = await this.jwtService.signAsync(payload);
-    res.cookie('jwt', jwt);
+    res.cookie('jwt', jwt, {
+      domain: 'localhost'
+    });
     return res.status(HttpStatus.OK).send({
       jwt,
-      user,
+      user
     });
   }
 
   @HttpCode(HttpStatus.OK)
   @Post('logout')
   logout(@Res() res: Response) {
-    res.clearCookie('jwt');
+    res.clearCookie('jwt', { domain: 'localhost' });
     return res.status(200).send();
   }
 }
