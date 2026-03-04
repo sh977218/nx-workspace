@@ -36,10 +36,7 @@ export class UserService {
       .post<{
         jwt: string;
         user: User;
-      }>(this.loginUrl, body, {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-        withCredentials: true
-      })
+      }>(this.loginUrl, body)
       .subscribe({
         next: ({ jwt, user }) => {
           this._localStorageService.setItem('jwt', jwt);
@@ -62,10 +59,6 @@ export class UserService {
       .post<User>(
         this.logoutUrl,
         {},
-        {
-          headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-          withCredentials: true,
-        },
       )
       .subscribe({
         next: () => {

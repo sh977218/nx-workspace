@@ -31,7 +31,7 @@ export class ProfileComponent {
   userService = inject(UserService);
   http = inject(HttpClient);
   data = this.http
-    .get<User>(`${environment.api}/users/me`, { withCredentials: true })
+    .get<User>(`${environment.api}/users/me`)
     .pipe(
       map((user) => {
         return Object.entries(user).map(([key, value]) => ({
