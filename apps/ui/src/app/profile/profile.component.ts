@@ -24,18 +24,20 @@ import { UserService } from '../services/user.service';
     </table>
   `,
   host: {
-    class: 'flex items-center justify-center'
-  }
+    class: 'flex items-center justify-center',
+  },
 })
 export class ProfileComponent {
   userService = inject(UserService);
   http = inject(HttpClient);
-  data = this.http.get<User>(`${environment.api}/users/me`).pipe(
-    map((user) => {
-      return Object.entries(user).map(([key, value]) => ({
-        key,
-        value
-      }));
-    })
-  );
+  data = this.http
+    .get<User>(`${environment.api}/users/me`, { withCredentials: true })
+    .pipe(
+      map((user) => {
+        return Object.entries(user).map(([key, value]) => ({
+          key,
+          value,
+        }));
+      }),
+    );
 }

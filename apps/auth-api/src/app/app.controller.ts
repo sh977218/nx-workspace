@@ -50,9 +50,7 @@ export class AppController {
     }
     const payload = { sub: user.id, username: user.username };
     const jwt = await this.jwtService.signAsync(payload);
-    res.cookie('jwt', jwt, {
-      domain: 'localhost'
-    });
+    res.cookie('jwt', jwt);
     return res.status(HttpStatus.OK).send({
       jwt,
       user
@@ -62,7 +60,7 @@ export class AppController {
   @HttpCode(HttpStatus.OK)
   @Post('logout')
   logout(@Res() res: Response) {
-    res.clearCookie('jwt', { domain: 'localhost' });
+    res.clearCookie('jwt');
     return res.status(200).send();
   }
 }
