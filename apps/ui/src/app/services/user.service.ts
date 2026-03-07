@@ -17,8 +17,8 @@ export class UserService {
 
   readonly isLoggedIn = signal(false);
 
-  loginUrl = `${environment.authApi}/login`;
-  logoutUrl = `${environment.authApi}/logout`;
+  loginUrl = `${environment.api}/auth/login`;
+  logoutUrl = `${environment.api}/auth/logout`;
 
   loggedInUser = signal<User | null>(null);
 

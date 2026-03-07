@@ -20,6 +20,13 @@ export class UserService {
     return this.userModel.findOne({ username }, { password: 0 }).lean().exec();
   }
 
+  async findOneByUsernamePassword(username: string, password: string) {
+    return this.userModel
+      .findOne({ username, password }, { password: 0 })
+      .lean()
+      .exec();
+  }
+
   deleteAllUsers() {
     return this.userModel.deleteMany({});
   }
