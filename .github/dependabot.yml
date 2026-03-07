@@ -12,7 +12,7 @@ updates:
         update-types:
           - "version-update:semver-major"
           - "version-update:semver-minor"
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 100
     reviewers:
       - "sh977218"
     assignees:
@@ -29,7 +29,7 @@ updates:
     schedule:
       interval: "daily"
       time: "04:00"
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 100
     reviewers:
       - "sh977218"
     assignees:
