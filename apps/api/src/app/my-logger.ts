@@ -1,18 +1,21 @@
 import { Injectable, LoggerService } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { createLogger, format, Logger, transports } from 'winston';
+
 
 @Injectable()
 export class MyLogger implements LoggerService {
   private readonly logger: Logger;
 
-  constructor() {
+  constructor(private configService: ConfigService) {
+    const isDev = this.configService.get<string>('NODE_ENV') || 'development';
     this.logger = createLogger({
       level: 'debug', // Set the minimum logging level
       format: format.combine(format.timestamp(), format.json()),
       transports: [
         new transports.Console(), // Log to console
-        new transports.File({ filename: './error.log' }),
-      ],
+        ...(isDev ? [] : [new transports.File({ filename: './error.log' })])
+      ]
     });
   }
 
