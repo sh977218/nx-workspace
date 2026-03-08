@@ -17,8 +17,8 @@ export class UserService {
 
   readonly isLoggedIn = signal(false);
 
-  loginUrl = `${environment.authApi}/login`;
-  logoutUrl = `${environment.authApi}/logout`;
+  loginUrl = `${environment.api}/auth/login`;
+  logoutUrl = `${environment.api}/auth/logout`;
 
   loggedInUser = signal<User | null>(null);
 
@@ -36,7 +36,7 @@ export class UserService {
       .post<{
         jwt: string;
         user: User;
-      }>(this.loginUrl, body)
+      }>(this.loginUrl, body, { withCredentials: true })
       .subscribe({
         next: ({ jwt, user }) => {
           this._localStorageService.setItem('jwt', jwt);
@@ -69,7 +69,7 @@ export class UserService {
         error: () => {
           this.isLoggedIn.set(true);
           this._snackBar.open(`Unable to log out.`, 'Close');
-        },
+        }
       });
   }
 }

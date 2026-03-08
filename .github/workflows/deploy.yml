@@ -13,11 +13,11 @@ on:
       deploy-to-auth-ui:
         type: boolean
         description: 'Deploy Auth UI?'
-        default: true
+        default: false
       deploy-to-auth-api:
         type: boolean
         description: 'Deploy Auth API?'
-        default: true
+        default: false
       deploy-to-storybook:
         type: boolean
         description: 'Deploy Storybook?'
