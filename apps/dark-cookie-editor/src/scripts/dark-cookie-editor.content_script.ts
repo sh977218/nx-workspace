@@ -1,0 +1,23 @@
+function makeHost(): HTMLDivElement {
+  const host = document.createElement('div');
+  document.body.appendChild(host);
+  return host;
+}
+
+function makeInfoDiv(color = 'black'): HTMLDivElement {
+  const anchors = document.querySelectorAll('a');
+  const infoDiv = document.createElement('div');
+  infoDiv.innerText = `👋🏻 from DarkCookieEditor! There are ${anchors.length} anchor tags on this page `;
+  infoDiv.style.border = `2px solid ${color}`;
+  infoDiv.style.padding = '2em';
+  return infoDiv;
+}
+
+(async function main() {
+  const storage = await chrome.storage.local.get('color');
+  const host = makeHost();
+  const shadow = host.attachShadow({ mode: 'open' });
+  const infoDiv = makeInfoDiv(storage.color);
+  shadow.appendChild(infoDiv);
+})();
+export {};

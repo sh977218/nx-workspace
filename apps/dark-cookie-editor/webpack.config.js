@@ -1,0 +1,35 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const {composePlugins, withNx} = require('@nx/webpack');
+
+module.exports = composePlugins(
+  withNx({
+    target: 'web',
+  }),
+  (config) => {
+    const plugins = ['popup'].map(
+      (s) =>
+        new HtmlWebpackPlugin({
+          template: `./src/${s}.html`,
+          filename: `${s}.html`,
+          chunks: [s],
+        }),
+    );
+    plugins.push(new MiniCssExtractPlugin());
+    if (!config.module.rules) config.module.rules = [];
+
+    config.module.rules.push({
+      test: /\.(sa|sc|c)ss$/,
+      use: [
+        MiniCssExtractPlugin.loader,
+        'css-loader',
+        {
+          loader: 'sass-loader',
+          options: {api: 'modern'},
+        },
+      ],
+    });
+    config.plugins.push(...plugins);
+    return config;
+  },
+);
