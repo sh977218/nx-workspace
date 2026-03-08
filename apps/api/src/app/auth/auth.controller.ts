@@ -8,6 +8,7 @@ import {
   Res
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { User } from '@shared-models/shared-models';
 import { Request, Response } from 'express';
 
 import { UserService } from '../user/user.service';
@@ -33,7 +34,7 @@ export class AuthController {
     if (!jwtInCookie && !username) {
       return res.status(HttpStatus.UNAUTHORIZED).send();
     }
-    let user;
+    let user = null;
     if (jwtInCookie) {
       const payload = this.jwtService.decode(jwtInCookie);
       const myUsername = payload.username;
