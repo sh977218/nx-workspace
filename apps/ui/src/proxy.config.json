@@ -5,6 +5,7 @@
       "^/api": ""
     }
   },
+/*
   "/authApi": {
     "target": "http://localhost:4000",
     "changeOrigin": true,
@@ -12,6 +13,7 @@
       "^/authApi": ""
     }
   },
+*/
   "/rssfeed": {
     "target": "http://rss.cnn.com/rss/cnn_topstories.rss",
     "secure": false,

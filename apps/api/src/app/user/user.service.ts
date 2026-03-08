@@ -13,11 +13,22 @@ export class UserService {
   }
 
   async findAll() {
-    return await this.userModel.find().lean().exec();
+    const user = await this.userModel.find().exec();
+    return user.map(u => u.toObject());
   }
 
   async findOne(username: string) {
-    return this.userModel.findOne({ username }, { password: 0 }).lean().exec();
+    const user = await this.userModel
+      .findOne({ username }, { password: 0 })
+      .exec();
+    return user.toObject();
+  }
+
+  async findOneByUsernamePassword(username: string, password: string) {
+    const user = await this.userModel
+      .findOne({ username, password }, { password: 0 })
+      .exec();
+    return user.toObject();
   }
 
   deleteAllUsers() {
