@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '@shared-models/shared-models';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 import { MaterialModule } from '../material.module';
@@ -28,10 +29,12 @@ import { UserService } from '../services/user.service';
   },
 })
 export class ProfileComponent {
+  private readonly _router = inject(Router);
+
   userService = inject(UserService);
   http = inject(HttpClient);
   data = this.http
-    .get<User>(`${environment.api}/users/me`)
+    .get<User>(`${environment.api}/users/me`, { withCredentials: true })
     .pipe(
       map((user) => {
         return Object.entries(user).map(([key, value]) => ({
@@ -39,5 +42,8 @@ export class ProfileComponent {
           value,
         }));
       }),
+      tap({
+        error:()=>this._router.navigate(['login'])
+      })
     );
 }

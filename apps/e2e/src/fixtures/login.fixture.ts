@@ -22,6 +22,8 @@ export const loginFixture = baseTest.extend<{
     await loginPage.usernameInput.fill(username);
     await loginPage.passwordInput.fill(password);
     await loginPage.loginButton.click();
+    await expect(loginPage.material.snackBar.getByText(username)).toBeVisible();
+    await loginPage.material.snackBar.getByRole('button').click();
     await use(loginPage);
     await loginPage.header.profileButton.click();
     await loginPage.header.logoutMenu.click();
