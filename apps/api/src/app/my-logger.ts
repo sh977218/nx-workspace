@@ -7,8 +7,8 @@ import { createLogger, format, Logger, transports } from 'winston';
 export class MyLogger implements LoggerService {
   private readonly logger: Logger;
 
-  constructor(private configService: ConfigService) {
-    const isDev = this.configService.get<string>('NODE_ENV') || 'development';
+  constructor() {
+    const isDev = process.env.NODE_ENV === 'development';
     this.logger = createLogger({
       level: 'debug', // Set the minimum logging level
       format: format.combine(format.timestamp(), format.json()),
