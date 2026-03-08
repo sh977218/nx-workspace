@@ -36,7 +36,7 @@ export class UserService {
       .post<{
         jwt: string;
         user: User;
-      }>(this.loginUrl, body, { withCredentials: true })
+      }>(this.loginUrl, body)
       .subscribe({
         next: ({ jwt, user }) => {
           this._localStorageService.setItem('jwt', jwt);
