@@ -11,7 +11,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: new MyLogger()
   });
-  app.enableCors();
+  app.enableCors({
+    origin: '*'
+  });
   app.use(cookieParser());
 
   const dataLoadService = app.get(DataLoadService);
