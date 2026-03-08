@@ -12,7 +12,8 @@ async function bootstrap() {
     logger: new MyLogger()
   });
   app.enableCors({
-    origin: '*'
+    origin: 'http://localhost:4200',
+    credentials: true,
   });
   app.use(cookieParser());
 

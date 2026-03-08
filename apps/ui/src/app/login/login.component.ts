@@ -13,18 +13,19 @@ import { UserService } from '../services/user.service';
     >
       <mat-form-field>
         <mat-label>Username</mat-label>
-        <input matInput formControlName="usernameControl" />
+        <input matInput formControlName="usernameControl" autocomplete="username" />
       </mat-form-field>
       <mat-form-field>
         <mat-label>Password</mat-label>
-        <input matInput type="password" formControlName="passwordControl" />
+        <input
+          matInput
+          type="password"
+          formControlName="passwordControl"
+          autocomplete="current-password"
+        />
       </mat-form-field>
       <div>
-        <button
-          matButton="filled"
-          color="primary"
-          (click)="login()"
-        >
+        <button matButton="filled" color="primary" (click)="login()">
           Login
         </button>
       </div>
@@ -51,6 +52,9 @@ export class LoginComponent {
   }
 
   login() {
-    this.userService.login(this.usernameControl.value, this.passwordControl.value);
+    this.userService.login(
+      this.usernameControl.value,
+      this.passwordControl.value
+    );
   }
 }
