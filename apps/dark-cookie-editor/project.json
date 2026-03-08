@@ -1,0 +1,75 @@
+{
+  "name": "dark-cookie-editor",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/dark-cookie-editor/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "webpackConfig": "apps/dark-cookie-editor/webpack.config.js",
+        "target": "web",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/dark-cookie-editor",
+        "main": "apps/dark-cookie-editor/src/main.ts",
+        "outputFileName": "main.js",
+        "additionalEntryPoints": [
+          {
+            "entryName": "sw",
+            "entryPath": "apps/dark-cookie-editor/src/scripts/sw.ts"
+          },
+          {
+            "entryName": "dark-cookie-editor.content_script",
+            "entryPath": "apps/dark-cookie-editor/src/scripts/dark-cookie-editor.content_script.ts"
+          },
+          {
+            "entryName": "popup",
+            "entryPath": "apps/dark-cookie-editor/src/popup.ts"
+          }
+        ],
+        "tsConfig": "apps/dark-cookie-editor/tsconfig.app.json",
+        "assets": [
+          {
+            "glob": "**/*.*",
+            "input": "apps/dark-cookie-editor/src/assets",
+            "output": "assets"
+          },
+          {
+            "glob": "**/*.json",
+            "input": "apps/dark-cookie-editor/src",
+            "output": "."
+          },
+          {
+            "glob": "**/*.css",
+            "input": "apps/dark-cookie-editor/src",
+            "output": "."
+          }
+        ],
+        "generateIndexHtml": false
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/dark-cookie-editor/src/environments/environment.ts",
+              "with": "apps/dark-cookie-editor/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "zip": {
+      "executor": "@gb-nx/browser:zip",
+      "outputs": ["{options.outputFileName}"],
+      "dependsOn": ["build:production"],
+      "options": {
+        "outputFileName": "{workspaceRoot}/zip/dark-cookie-editor.extension@{manifestVersion}.zip"
+      }
+    }
+  }
+}

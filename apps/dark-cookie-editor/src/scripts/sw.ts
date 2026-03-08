@@ -1,0 +1,43 @@
+let counter = 0;
+
+const REFRESH = 'refresh';
+
+chrome.runtime.onInstalled.addListener(async () => {
+  const c: StorageState = await chrome.storage.local.get('color');
+  console.log(c.color);
+  await chrome.storage.local.set({ counter: 0 });
+  chrome.alarms.create(REFRESH, { periodInMinutes: 1 });
+});
+chrome.alarms.onAlarm.addListener(async (alarm) => {
+  switch (alarm.name) {
+    case REFRESH: {
+      console.log(alarm.scheduledTime);
+      break;
+    }
+  }
+});
+chrome.runtime.onMessage.addListener(
+  (
+    request: ExtensionRequest,
+    sender,
+    sendResponse: (response: ExtensionResponse) => void,
+  ) => {
+    console.log(
+      sender.tab
+        ? 'from a content script:' + sender.tab.url
+        : 'from the extension',
+    );
+
+    if (request.type === 'COUNTER_REQUEST') {
+      counter += request.change;
+      sendResponse({
+        type: 'COUNTER_RESPONSE',
+        counter,
+        persistentCounter: -1,
+      });
+    } else {
+      console.warn(request.type, 'unknown');
+    }
+  },
+);
+export {};
