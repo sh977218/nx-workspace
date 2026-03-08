@@ -12,8 +12,8 @@ async function bootstrap() {
     logger: new MyLogger()
   });
   app.enableCors({
-    origin: ['http://localhost:4200', '*.render.com'],
-    credentials: true
+    origin: ['http://localhost:4200', 'https://nx-workspace.onrender.com'],
+    credentials: true,
   });
   app.use(cookieParser());
 
