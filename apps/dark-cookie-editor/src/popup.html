@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dark Cookie Editor</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+<div class="container">
+  <h1>🍪 Dark Cookie Editor</h1>
+  <p class="site-label">Editing cookies for: <span id="current-site">—</span></p>
+
+  <!-- dark_coire_ui (string) -->
+  <div class="field">
+    <label for="dark_coire_ui">dark_coire_ui</label>
+    <input type="text" id="dark_coire_ui" placeholder="Enter value…" />
+  </div>
+
+  <!-- dark_ccs (boolean) -->
+  <div class="field toggle-field">
+    <label for="dark_ccs">dark_ccs</label>
+    <label class="switch">
+      <input type="checkbox" id="dark_ccs" />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- dark_cams (boolean) -->
+  <div class="field toggle-field">
+    <label for="dark_cams">dark_cams</label>
+    <label class="switch">
+      <input type="checkbox" id="dark_cams" />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- dark_caas (boolean) -->
+  <div class="field toggle-field">
+    <label for="dark_caas">dark_caas</label>
+    <label class="switch">
+      <input type="checkbox" id="dark_caas" />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <!-- connect-quicksupport (boolean) -->
+  <div class="field toggle-field">
+    <label for="connect-quicksupport">connect-quicksupport</label>
+    <label class="switch">
+      <input type="checkbox" id="connect-quicksupport" />
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="actions">
+    <button id="save-btn" class="btn primary">Save</button>
+    <button id="clear-btn" class="btn danger">Clear All</button>
+  </div>
+
+  <p id="status" class="status"></p>
+</div>
+
+<script src="popup.js"></script>
+</body>
+</html>
