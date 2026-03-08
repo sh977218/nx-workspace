@@ -8,7 +8,6 @@ import {
   Res
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { User } from '@shared-models/shared-models';
 import { Request, Response } from 'express';
 
 import { UserService } from '../user/user.service';

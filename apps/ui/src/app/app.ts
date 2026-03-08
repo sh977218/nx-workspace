@@ -30,8 +30,8 @@ import { MaterialModule } from './material.module';
     AsyncPipe,
     RouterLink,
     RouterLinkActive,
-    RouterOutlet,
-  ],
+    RouterOutlet
+  ]
 })
 export class App {
   private readonly _http = inject(HttpClient);
@@ -41,44 +41,43 @@ export class App {
   readonly userService = inject(UserService);
   private readonly _localStorageService = inject(LocalStorageService);
   private readonly _snackBar = inject(MatSnackBar);
-  private readonly _router = inject(Router);
 
   loginUrl = `${environment.api}/auth/login`;
 
   routes = [
     {
       path: 'search',
-      label: 'Search',
+      label: 'Search'
     },
     {
       path: 'threeJs',
-      label: 'Three JS',
+      label: 'Three JS'
     },
     {
       path: 'dashboard',
-      label: 'Dashboard',
+      label: 'Dashboard'
     },
     {
       path: 'video',
-      label: 'Video',
+      label: 'Video'
     },
     {
       path: 'feed',
-      label: 'Feed',
-    },
+      label: 'Feed'
+    }
   ];
 
   isHandset$: Observable<boolean> = this._breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
       map((result) => result.matches),
-      shareReplay(),
+      shareReplay()
     );
 
   openChatDialog() {
     this._dialog.open(ChatDialogComponent, {
       height: '1000px',
-      width: '600px',
+      width: '600px'
     });
   }
 
@@ -87,7 +86,7 @@ export class App {
       .post<{
         jwt: string;
         user: User;
-      }>(this.loginUrl,{})
+      }>(this.loginUrl, {}, { withCredentials: true })
       .subscribe({
         next: ({ jwt, user }) => {
           this._localStorageService.setItem('jwt', jwt);
@@ -99,7 +98,7 @@ export class App {
           this._localStorageService.removeItem('jwt');
           this.userService.isLoggedIn.set(false);
           this.userService.loggedInUser.set(null);
-        },
+        }
       });
   }
 }
