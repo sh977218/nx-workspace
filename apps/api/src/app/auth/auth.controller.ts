@@ -52,6 +52,9 @@ export class AuthController {
     const payload = { sub: user.id, username: user.username };
     const jwt = await this.jwtService.signAsync(payload);
     res.cookie('jwt', jwt, {
+      httpOnly:true,
+      sameSite: 'none',
+      secure: true,
       domain: process.env.UI_URL ?? '/'
     });
     return res.status(HttpStatus.OK).send({
