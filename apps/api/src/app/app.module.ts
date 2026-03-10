@@ -2,7 +2,9 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ServeStaticModule } from '@nestjs/serve-static';
 import * as Joi from 'joi';
+import { join } from 'node:path';
 
 import { AuthModule } from './auth/auth.module';
 import { jwtConstants } from './auth/constants';
@@ -35,6 +37,10 @@ const ENV = process.env.NODE_ENV;
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => {
+        console.info(
+          'configService',
+          configService.get('ENV_NAME'),
+        );
         const DATABASE_PROTOCOL =
           configService.get<string>('DATABASE_PROTOCOL');
         const DATABASE_HOST = configService.get<string>('DATABASE_HOST');
@@ -58,6 +64,9 @@ const ENV = process.env.NODE_ENV;
       global: true,
       secret: jwtConstants.secret,
       signOptions: { expiresIn: '60s' },
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'ui/browser'),
     }),
     SquadModule,
     DataLoadModule,
