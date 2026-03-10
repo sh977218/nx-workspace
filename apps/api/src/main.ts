@@ -12,10 +12,16 @@ async function bootstrap() {
     logger: new MyLogger()
   });
   app.enableCors({
-    origin: ['http://localhost:4200', 'https://nx-workspace.onrender.com'],
+    origin: [
+      'http://localhost:4200',
+      'https://nx-workspace.onrender.com',
+      'https://api-6yuk.onrender.com',
+    ],
     credentials: true,
   });
   app.use(cookieParser());
+
+  app.setGlobalPrefix('api');
 
   const dataLoadService = app.get(DataLoadService);
   await dataLoadService.resetAndLoadHeroes();
@@ -28,7 +34,7 @@ async function bootstrap() {
     .addTag('nx workspace')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, documentFactory);
+  SwaggerModule.setup('api-docs', app, documentFactory);
 
   const port = process.env['PORT'] ?? 3000;
   await app.listen(port);
