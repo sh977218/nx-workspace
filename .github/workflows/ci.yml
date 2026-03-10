@@ -121,6 +121,9 @@ jobs:
       - name: Install Playwright Browsers and dependencies
         run: npx playwright install --with-deps
 
+      - name: Build app
+        run: nx run api:build:ci
+
       - name: Run Playwright tests
         run: DEBUG=pw:webserver npx nx run e2e:e2e
 
