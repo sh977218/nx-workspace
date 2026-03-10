@@ -84,7 +84,7 @@ jobs:
       - name: Install Playwright Browsers and dependencies
         run: npx playwright install --with-deps
 
-      - name: Run NX affected lint, build and test
+      - name: Run NX affected test
         run: npx nx affected -t test integration-test
 
       - run: npx nx fix-ci
@@ -96,7 +96,7 @@ jobs:
       cancel-in-progress: true
     name: e2e-test
     if: ${{ github.event.pull_request.draft == false }}
-    needs: [ effect-lint, effect-build,effect-test ]
+    needs: [ effect-lint, effect-build, effect-test ]
     runs-on: ubuntu-latest
     services:
       mongodb:
