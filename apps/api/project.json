@@ -4,6 +4,7 @@
   "sourceRoot": "apps/api/src",
   "projectType": "application",
   "tags": [],
+  "implicitDependencies": ["ui"],
   "targets": {
     "build": {
       "executor": "nx:run-commands",
