@@ -5,7 +5,7 @@ import { defineConfig, devices } from '@playwright/test';
 const isCI = !!process.env['CI'];
 
 // For CI, you may want to set BASE_URL to the deployed application.
-const baseURL = process.env['BASE_URL'] || 'http://localhost:4200';
+const baseURL = isCI ? 'http://localhost:3000' : 'http://localhost:4200';
 
 /**
  * Read environment variables from file.
@@ -22,7 +22,7 @@ export default defineConfig({
   globalSetup: require.resolve('./src/global-setup'),
   timeout: 30 * 1000,
   expect: {
-    timeout: 15000,
+    timeout: 15000
   },
   fullyParallel: true,
   forbidOnly: isCI,
@@ -35,39 +35,36 @@ export default defineConfig({
     actionTimeout: 0,
     trace: 'on',
     video: 'on',
-    screenshot: 'on',
+    screenshot: 'on'
   },
   /* Run your local dev server before starting the tests */
-  webServer: [
-    {
-      command: isCI ? 'nx run ui:serve-static-ci' : 'nx run ui:serve',
-      port: 4200,
-      reuseExistingServer: true,
-      cwd: workspaceRoot,
-    },
-    {
-      command: isCI ? 'nx run api:serve:ci' : 'nx run api:serve',
-      port: 3000,
-      reuseExistingServer: true,
-      cwd: workspaceRoot,
-    },
-    {
-      command: 'nx run auth-ui:serve',
-      port: 5200,
-      reuseExistingServer: true,
-      cwd: workspaceRoot,
-    },
-    {
-      command: isCI ? 'nx run auth-api:serve:ci' : 'nx run auth-api:serve',
-      port: 4000,
-      reuseExistingServer: true,
-      cwd: workspaceRoot,
-    },
-  ],
+  webServer: isCI
+    ? [
+      {
+        command: 'NODE_ENV=ci node dist/apps/api',
+        port: 3000,
+        reuseExistingServer: true,
+        cwd: workspaceRoot
+      }
+    ]
+    : [
+      {
+        command: 'nx run ui:serve',
+        port: 4200,
+        reuseExistingServer: true,
+        cwd: workspaceRoot
+      },
+      {
+        command: 'nx run api:serve',
+        port: 3000,
+        reuseExistingServer: true,
+        cwd: workspaceRoot
+      }
+    ],
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
-  ],
+      use: { ...devices['Desktop Chrome'] }
+    }
+  ]
 });
