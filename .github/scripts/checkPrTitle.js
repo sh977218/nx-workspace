@@ -6,7 +6,10 @@ const TYPE = 'feat|fix|docs|style|refactor|perf|test|chore|build|ci|revert|poc';
 const SCOPE = 'repo|ui|api|ui & api';
 const BOT_SCOPE = 'deps|deps-dev';
 
-const regex = new RegExp(`^(${TYPE})\\(${SCOPE}|${BOT_SCOPE}\\)(!)?:\\s.+$`, 'i');
+const regex = new RegExp(
+  `^(${TYPE})\\(${SCOPE}|${BOT_SCOPE}\\)(!)?:\\s.+$`,
+  'i',
+);
 
 console.log('PR Title:', prTitle);
 console.log('Validating against pattern:', regex);

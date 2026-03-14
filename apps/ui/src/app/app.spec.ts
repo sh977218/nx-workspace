@@ -5,7 +5,7 @@ import { UserService } from './services/user.service';
 import { App } from './app';
 
 const mockUserService = {
-  login: vi.fn()
+  login: vi.fn(),
 };
 
 describe('App', () => {
@@ -14,8 +14,8 @@ describe('App', () => {
       imports: [App],
       providers: [
         provideRouter([]),
-        { provide: UserService, useValue: mockUserService }
-      ]
+        { provide: UserService, useValue: mockUserService },
+      ],
     }).compileComponents();
   });
 

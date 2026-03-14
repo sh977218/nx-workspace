@@ -32,7 +32,7 @@ export const ChannelSchema = z.object({
   image: z.object({
     url: z.string(),
     title: z.string(),
-    link: z.string()
+    link: z.string(),
   }),
   generator: z.string(),
   lastBuildDate: z.string(),
@@ -40,7 +40,7 @@ export const ChannelSchema = z.object({
   copyright: z.string(),
   language: z.string(),
   ttl: z.string(),
-  item: z.array(ItemSchema)
+  item: z.array(ItemSchema),
 });
 
 export const RssSchema = z.object({
@@ -50,10 +50,10 @@ export const RssSchema = z.object({
       'xmlns:content': z.string(),
       'xmlns:atom': z.string(),
       version: z.string(),
-      'xmlns:media': z.string()
+      'xmlns:media': z.string(),
     }),
-    channel: ChannelSchema
-  })
+    channel: ChannelSchema,
+  }),
 });
 
 export type Rss = z.infer<typeof RssSchema>;

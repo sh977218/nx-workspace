@@ -5,7 +5,7 @@ import {
   HttpStatus,
   Post,
   Req,
-  Res
+  Res,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Request, Response } from 'express';
@@ -18,16 +18,15 @@ import { SignInDto } from './dto/sign-in-dto';
 export class AuthController {
   constructor(
     private userService: UserService,
-    private jwtService: JwtService
-  ) {
-  }
+    private jwtService: JwtService,
+  ) {}
 
   @HttpCode(HttpStatus.OK)
   @Post('login')
   async login(
     @Req() req: Request,
     @Res() res: Response,
-    @Body() { username, password }: SignInDto
+    @Body() { username, password }: SignInDto,
   ) {
     const jwtInCookie = req.cookies?.['jwt'];
     if (!jwtInCookie && !username) {
@@ -42,7 +41,7 @@ export class AuthController {
     if (username) {
       user = await this.userService.findOneByUsernamePassword(
         username,
-        password
+        password,
       );
     }
 
@@ -52,14 +51,14 @@ export class AuthController {
     const payload = { sub: user.id, username: user.username };
     const jwt = await this.jwtService.signAsync(payload);
     res.cookie('jwt', jwt, {
-      httpOnly:true,
+      httpOnly: true,
       sameSite: 'none',
       secure: true,
-      domain: process.env.UI_URL ?? '/'
+      domain: process.env.UI_URL ?? '/',
     });
     return res.status(HttpStatus.OK).send({
       jwt,
-      user
+      user,
     });
   }
 
@@ -67,7 +66,7 @@ export class AuthController {
   @Post('logout')
   logout(@Res() res: Response) {
     res.clearCookie('jwt', {
-      domain: process.env.UI_URL ?? '/'
+      domain: process.env.UI_URL ?? '/',
     });
     return res.status(200).send();
   }

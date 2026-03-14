@@ -6,7 +6,7 @@ import { UserModule } from '../user/user.module';
 import { DataLoadService } from './data-load.service';
 
 @Module({
-  imports: [SquadModule,UserModule],
+  imports: [SquadModule, UserModule],
   controllers: [],
   providers: [DataLoadService],
   exports: [DataLoadService],

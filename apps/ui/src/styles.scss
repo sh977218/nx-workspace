@@ -1,11 +1,11 @@
 @use 'color';
-@use "tailwindcss";
-@use "material-theme";
+@use 'tailwindcss';
+@use 'material-theme';
 
 html,
 body {
   margin: 0;
-  height: 100vh
+  height: 100vh;
 }
 
 .active {
@@ -18,7 +18,12 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.8); /* Optional: Adds a semi-transparent background to disable interaction */
+  background: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Optional: Adds a semi-transparent background to disable interaction */
   display: flex; /* Centers the spinner using flexbox */
   align-items: center;
   justify-content: center;

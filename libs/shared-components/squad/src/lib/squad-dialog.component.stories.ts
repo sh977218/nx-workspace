@@ -31,8 +31,8 @@ export const SquadDialogStory: Story = {
         content:
           'A solitary hero operating independently in Lonely City, bearing the weight of duty without team support.',
         avatar: '',
-        members: []
-      }
-    }
-  }
+        members: [],
+      },
+    },
+  },
 };

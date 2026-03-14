@@ -27,7 +27,7 @@ export class UserService {
   }
 
   login(username?: string, password?: string) {
-    const body: { username?: string, password?: string } = {};
+    const body: { username?: string; password?: string } = {};
     if (username) {
       body.username = username;
       body.password = password;
@@ -50,26 +50,21 @@ export class UserService {
           this.isLoggedIn.set(false);
           this.loggedInUser.set(null);
           this._snackBar.open(`Unable to login`, 'Close');
-        }
+        },
       });
   }
 
   logout() {
-    this._http
-      .post<User>(
-        this.logoutUrl,
-        {}
-      )
-      .subscribe({
-        next: () => {
-          this.isLoggedIn.set(false);
-          this.loggedInUser.set(null);
-          this._snackBar.open(`You have been logged out.`, 'Close');
-        },
-        error: () => {
-          this.isLoggedIn.set(true);
-          this._snackBar.open(`Unable to log out.`, 'Close');
-        }
-      });
+    this._http.post<User>(this.logoutUrl, {}).subscribe({
+      next: () => {
+        this.isLoggedIn.set(false);
+        this.loggedInUser.set(null);
+        this._snackBar.open(`You have been logged out.`, 'Close');
+      },
+      error: () => {
+        this.isLoggedIn.set(true);
+        this._snackBar.open(`Unable to log out.`, 'Close');
+      },
+    });
   }
 }

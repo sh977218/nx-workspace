@@ -28,11 +28,7 @@ interface ChatMessage {
             }"
           >
             <mat-icon>person</mat-icon>
-            {{
-              isMyself(chatMessage.sender)
-                ? 'me'
-                : chatMessage.sender
-            }}:
+            {{ isMyself(chatMessage.sender) ? 'me' : chatMessage.sender }}:
             {{ chatMessage.message }}
           </li>
         }
@@ -46,7 +42,7 @@ interface ChatMessage {
       <button matButton cdkFocusInitial (click)="sendMessage()">Send</button>
       <button matButton matDialogClose>Close</button>
     </mat-dialog-actions>
-  `
+  `,
 })
 export class ChatDialogComponent {
   userService = inject(UserService);
@@ -63,7 +59,7 @@ export class ChatDialogComponent {
     this.socket.on('connect', () => {
       this.socket.emit('joinRoom', {
         roomName: this.roomName,
-        userId: this.userService.loggedInUser()?.name
+        userId: this.userService.loggedInUser()?.name,
       });
     });
 
@@ -76,7 +72,7 @@ export class ChatDialogComponent {
     this.socket.emit('sendMessageToRoom', {
       roomName: this.roomName,
       message: this.message,
-      sender: this.userService.loggedInUser()?.username
+      sender: this.userService.loggedInUser()?.username,
     });
     this.message = '';
   }

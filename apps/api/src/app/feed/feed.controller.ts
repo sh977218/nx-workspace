@@ -6,17 +6,16 @@ import { parseStringPromise } from 'xml2js';
 
 @Controller('feed')
 export class FeedController {
-  constructor(private readonly httpService: HttpService) {
-  }
+  constructor(private readonly httpService: HttpService) {}
 
   @Get()
   async getFeed(): Promise<Rss> {
     const response = await firstValueFrom(
-      this.httpService.get('http://rss.cnn.com/rss/cnn_topstories.rss')
+      this.httpService.get('http://rss.cnn.com/rss/cnn_topstories.rss'),
     );
     const data = response.data;
     const feed = await parseStringPromise(data, {
-      explicitArray: false
+      explicitArray: false,
     });
     return RssSchema.parse(feed);
   }

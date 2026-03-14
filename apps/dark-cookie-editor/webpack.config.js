@@ -1,6 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const {composePlugins, withNx} = require('@nx/webpack');
+const { composePlugins, withNx } = require('@nx/webpack');
 
 module.exports = composePlugins(
   withNx({
@@ -25,7 +25,7 @@ module.exports = composePlugins(
         'css-loader',
         {
           loader: 'sass-loader',
-          options: {api: 'modern'},
+          options: { api: 'modern' },
         },
       ],
     });

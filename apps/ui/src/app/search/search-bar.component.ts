@@ -20,7 +20,12 @@ import { SearchFacade } from './search.facade';
         <button type="submit" aria-label="Search" matIconButton>
           <mat-icon fontIcon="search"></mat-icon>
         </button>
-        <button type="reset" aria-label="Reset" matIconButton (click)="facade.onReset()">
+        <button
+          type="reset"
+          aria-label="Reset"
+          matIconButton
+          (click)="facade.onReset()"
+        >
           <mat-icon fontIcon="clear"></mat-icon>
         </button>
       </div>
