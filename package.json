@@ -42,7 +42,7 @@
     "@nestjs/websockets": "^11.1.16",
     "@tailwindcss/postcss": "^4.1.18",
     "ag-grid-angular": "^35.0.1",
-    "angular-three": "^4.0.0",
+    "angular-three": "^4.0.10",
     "axios": "^1.13.6",
     "cookie-parser": "^1.4.7",
     "joi": "^18.0.2",
