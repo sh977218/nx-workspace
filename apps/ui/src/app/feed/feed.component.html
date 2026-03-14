@@ -1,40 +1,45 @@
-  <h1>CNN Top Stories</h1>
+<h1>CNN Top Stories</h1>
 
-  @if (feed.isLoading()) {
-    <div class="loading-container">
-      <mat-spinner></mat-spinner>
-      <p>Loading feed...</p>
-    </div>
-  }
+@if (feed.isLoading()) {
+  <div class="loading-container">
+    <mat-spinner></mat-spinner>
+    <p>Loading feed...</p>
+  </div>
+}
 
-  @if (feed.error() && !feed.isLoading()) {
-    <div class="error-container">
-      <mat-card class="error-card">
-        <mat-card-content>
-          <mat-icon class="error-icon">error_outline</mat-icon>
-          <p>{{ feed.error()?.message || 'Failed to fetch RSS feed. This may be due to CORS restrictions.' }}</p>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  }
+@if (feed.error() && !feed.isLoading()) {
+  <div class="error-container">
+    <mat-card class="error-card">
+      <mat-card-content>
+        <mat-icon class="error-icon">error_outline</mat-icon>
+        <p>
+          {{
+            feed.error()?.message ||
+              'Failed to fetch RSS feed. This may be due to CORS restrictions.'
+          }}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+}
 
-  @if (feed.hasValue()) {
-    <mat-list>
-      @for (item of feed.value().rss.channel.item; track item.link) {
-        <mat-list-item>
-          <div matListItemTitle>
-            <a href="{{item.link}}" class="item-title">
-              {{ item.title }}
-            </a>
-          </div>
-          <div matListItemLine class="item-description">
-            {{ item.pubDate | date }}
-          </div>
-        </mat-list-item>
-      } @empty {
-        <div class="no-items">
-          <p>No feed items found.</p>
+@if (feed.hasValue()) {
+  <mat-list>
+    @for (item of feed.value().rss.channel.item; track item.link) {
+      <mat-list-item>
+        <div matListItemTitle>
+          <a href="{{ item.link }}" class="item-title">
+            {{ item.title }}
+          </a>
         </div>
-      }
-    </mat-list>
-  }
+        <div matListItemLine class="item-description">
+          {{ item.pubDate | date }}
+        </div>
+      </mat-list-item>
+    } @empty {
+      <div class="no-items">
+        <p>No feed items found.</p>
+      </div>
+    }
+  </mat-list>
+}

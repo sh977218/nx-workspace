@@ -5,7 +5,7 @@ import {
   ColDef,
   GridApi,
   GridReadyEvent,
-  ModuleRegistry
+  ModuleRegistry,
 } from 'ag-grid-community';
 
 import { MaterialModule } from '../material.module';

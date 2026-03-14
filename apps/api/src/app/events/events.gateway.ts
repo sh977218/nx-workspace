@@ -3,14 +3,14 @@ import {
   MessageBody,
   SubscribeMessage,
   WebSocketGateway,
-  WebSocketServer
+  WebSocketServer,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 
 @WebSocketGateway({
   cors: {
-    origin: '*'
-  }
+    origin: '*',
+  },
 })
 export class EventsGateway {
   @WebSocketServer()
@@ -18,20 +18,20 @@ export class EventsGateway {
 
   @SubscribeMessage('sendMessageToRoom')
   handleMessage(
-    @MessageBody() data: { roomName: string; message: string; sender: string }
+    @MessageBody() data: { roomName: string; message: string; sender: string },
   ): void {
     // Emit the message to all clients in the specified room, including the sender
     this.server.to(data.roomName).emit('msgToClient', {
       sender: data.sender,
       message: data.message,
-      room: data.roomName
+      room: data.roomName,
     });
   }
 
   @SubscribeMessage('joinRoom')
   handleJoinRoom(
     @MessageBody() data: { roomName: string; userId: string },
-    @ConnectedSocket() client: Socket
+    @ConnectedSocket() client: Socket,
   ): void {
     client.join(data.roomName);
     // Optional: Notify other clients in the room that a new user has joined
@@ -39,14 +39,14 @@ export class EventsGateway {
       .to(data.roomName)
       .emit(
         'userJoined',
-        `${data.userId} has joined the room ${data.roomName}`
+        `${data.userId} has joined the room ${data.roomName}`,
       );
   }
 
   @SubscribeMessage('leaveRoom')
   handleLeaveRoom(
     @MessageBody() data: { roomName: string; userId: string },
-    @ConnectedSocket() client: Socket
+    @ConnectedSocket() client: Socket,
   ): void {
     client.leave(data.roomName);
     client

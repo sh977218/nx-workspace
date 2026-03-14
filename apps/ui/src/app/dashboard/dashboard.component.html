@@ -1,5 +1,10 @@
 <form [formGroup]="stepForm">
-  <mat-stepper formArrayName="steps" labelPosition="bottom" orientation="vertical" #stepper>
+  <mat-stepper
+    formArrayName="steps"
+    labelPosition="bottom"
+    orientation="vertical"
+    #stepper
+  >
     <mat-step [optional]="false">
       <ng-template matStepLabel>Import Excel</ng-template>
       <ng-template matStepContent>
@@ -59,10 +64,11 @@
     <mat-step>
       <ng-template matStepLabel>Highcharts</ng-template>
       <ng-template matStepContent>
-          <highcharts-chart
-            [constructorType]="chartConstructor"
-            [options]="chartOptions()"
-            class="chart"/>
+        <highcharts-chart
+          [constructorType]="chartConstructor"
+          [options]="chartOptions()"
+          class="chart"
+        />
       </ng-template>
       <div>
         <button matButton matStepperPrevious>Back</button>

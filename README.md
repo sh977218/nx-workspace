@@ -10,6 +10,7 @@
 - Database: MongoDB
 
 ### Host code
+
 - Hosting static content at https://nx-workspace.onrender.com/
 - Deploy NestJs - **to be included**
 - Deploy MongoDB - **to be included**

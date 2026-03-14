@@ -20,16 +20,7 @@
       ]
     ],
     "scope-empty": [2, "never"],
-    "scope-enum": [
-      2,
-      "always",
-      [
-        "repo",
-        "ui",
-        "api",
-        "ui & api"
-      ]
-    ]
+    "scope-enum": [2, "always", ["repo", "ui", "api", "ui & api"]]
   },
   "prompt": {
     "questions": {

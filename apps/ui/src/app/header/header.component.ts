@@ -16,7 +16,7 @@ import { UserService } from '../services/user.service';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
-  imports: [AsyncPipe, RouterLink, FormsModule, MaterialModule]
+  imports: [AsyncPipe, RouterLink, FormsModule, MaterialModule],
 })
 export class HeaderComponent {
   private breakpointObserver = inject(BreakpointObserver);

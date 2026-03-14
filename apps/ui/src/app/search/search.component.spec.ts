@@ -9,10 +9,8 @@ describe('SearchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        SearchComponent
-      ],
-      providers: [provideRouter([])]
+      imports: [SearchComponent],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SearchComponent);

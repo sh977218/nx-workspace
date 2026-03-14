@@ -1,2 +1,3 @@
 tools:
-  - microsoft/playwright-mcp/mcp/*
+
+- microsoft/playwright-mcp/mcp/\*

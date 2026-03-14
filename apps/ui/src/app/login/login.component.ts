@@ -1,5 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 import { MaterialModule } from '../material.module';
 import { UserService } from '../services/user.service';
@@ -13,7 +18,11 @@ import { UserService } from '../services/user.service';
     >
       <mat-form-field>
         <mat-label>Username</mat-label>
-        <input matInput formControlName="usernameControl" autocomplete="username" />
+        <input
+          matInput
+          formControlName="usernameControl"
+          autocomplete="username"
+        />
       </mat-form-field>
       <mat-form-field>
         <mat-label>Password</mat-label>
@@ -32,15 +41,15 @@ import { UserService } from '../services/user.service';
     </form>
   `,
   host: {
-    class: 'flex items-center justify-center'
-  }
+    class: 'flex items-center justify-center',
+  },
 })
 export class LoginComponent {
   readonly userService = inject(UserService);
 
   readonly form = new FormGroup({
     usernameControl: new FormControl(),
-    passwordControl: new FormControl()
+    passwordControl: new FormControl(),
   });
 
   get usernameControl() {
@@ -54,7 +63,7 @@ export class LoginComponent {
   login() {
     this.userService.login(
       this.usernameControl.value,
-      this.passwordControl.value
+      this.passwordControl.value,
     );
   }
 }

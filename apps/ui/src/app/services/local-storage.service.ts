@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LocalStorageService {
   setItem(key: string, value: string): void {
@@ -29,5 +29,4 @@ export class LocalStorageService {
       console.error('Error removing from local storage', error);
     }
   }
-
 }

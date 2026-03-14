@@ -8,9 +8,7 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:ng-packagr-lite",
-      "outputs": [
-        "{workspaceRoot}/dist/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "options": {
         "project": "libs/shared-components/ng-package.json",
         "tsConfig": "libs/shared-components/tsconfig.lib.json"
@@ -39,12 +37,7 @@
         "configDir": "libs/shared-components/.storybook",
         "browserTarget": "shared-components:build-storybook",
         "compodoc": true,
-        "compodocArgs": [
-          "-e",
-          "json",
-          "-d",
-          "libs/shared-components/"
-        ]
+        "compodocArgs": ["-e", "json", "-d", "libs/shared-components/"]
       },
       "configurations": {
         "ci": {
@@ -54,20 +47,13 @@
     },
     "build-storybook": {
       "executor": "@storybook/angular:build-storybook",
-      "outputs": [
-        "{options.outputDir}"
-      ],
+      "outputs": ["{options.outputDir}"],
       "options": {
         "outputDir": "dist/storybook/shared-components",
         "configDir": "libs/shared-components/.storybook",
         "browserTarget": "shared-components:build-storybook",
         "compodoc": true,
-        "compodocArgs": [
-          "-e",
-          "json",
-          "-d",
-          "libs/shared-components/"
-        ]
+        "compodocArgs": ["-e", "json", "-d", "libs/shared-components/"]
       },
       "configurations": {
         "ci": {
@@ -77,9 +63,7 @@
     },
     "static-storybook": {
       "executor": "@nx/web:file-server",
-      "dependsOn": [
-        "build-storybook"
-      ],
+      "dependsOn": ["build-storybook"],
       "options": {
         "buildTarget": "shared-components:build-storybook",
         "staticFilePath": "dist/storybook/shared-components",

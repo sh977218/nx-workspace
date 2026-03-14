@@ -30,8 +30,8 @@ import { MaterialModule } from '../material.module';
   imports: [MaterialModule, SquadComponent],
   host: {
     role: 'search',
-    class: 'inline-flex flex-col'
-  }
+    class: 'inline-flex flex-col',
+  },
 })
 export class SearchResultComponent {
   squads = input.required<HttpResourceRef<Squad[] | undefined>>();

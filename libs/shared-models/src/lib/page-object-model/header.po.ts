@@ -7,7 +7,10 @@ export class HeaderPo {
   readonly logoutMenu: Locator;
 
   constructor(private readonly page: Page) {
-    this.profileButton = this.page.locator(this.CONTAINER).getByRole('button').filter({ hasText: 'person' });
+    this.profileButton = this.page
+      .locator(this.CONTAINER)
+      .getByRole('button')
+      .filter({ hasText: 'person' });
     this.profileMenu = this.page.getByRole('menuitem', { name: 'Profile' });
     this.logoutMenu = this.page.getByRole('menuitem', { name: 'Logout' });
   }

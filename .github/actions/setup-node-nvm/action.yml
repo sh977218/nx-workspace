@@ -1,7 +1,7 @@
 name: setup node with nvm
 description: Setup Node.js environment using nvm
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: Setup Node
       uses: actions/setup-node@v6

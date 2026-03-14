@@ -1,8 +1,8 @@
 name: CI PR Test
 on:
   pull_request:
-    branches: [ master ]
-    types: [ opened, synchronize, reopened, ready_for_review ]
+    branches: [master]
+    types: [opened, synchronize, reopened, ready_for_review]
 
 env:
   CI: true
@@ -96,7 +96,7 @@ jobs:
       cancel-in-progress: true
     name: e2e-test
     if: ${{ github.event.pull_request.draft == false }}
-    needs: [ effect-lint, effect-build, effect-test ]
+    needs: [effect-lint, effect-build, effect-test]
     runs-on: ubuntu-latest
     services:
       mongodb:
@@ -137,16 +137,15 @@ jobs:
 
   publish-playwright-report:
     name: Publish playwright report
-    needs: [ e2e-test ]
+    needs: [e2e-test]
     if: ${{ (needs.e2e-test.result != 'skipped') && (failure() || success()) }}
     permissions:
       contents: read
       pages: write
       id-token: write
     concurrency:
-      group: "pages"
-      cancel-in-progress:
-        false
+      group: 'pages'
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

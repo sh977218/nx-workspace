@@ -28,7 +28,7 @@ export const loginFixture = baseTest.extend<{
     await loginPage.header.profileButton.click();
     await loginPage.header.logoutMenu.click();
     await expect(
-      loginPage.material.snackBar.getByText('You have been logged out.')
+      loginPage.material.snackBar.getByText('You have been logged out.'),
     ).toBeVisible();
-  }
+  },
 });

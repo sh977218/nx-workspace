@@ -9,7 +9,7 @@ import { MyLogger } from './app/my-logger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    logger: new MyLogger()
+    logger: new MyLogger(),
   });
   app.enableCors({
     origin: [
@@ -39,7 +39,6 @@ async function bootstrap() {
   const port = process.env['PORT'] ?? 3000;
   await app.listen(port);
   Logger.log(`🚀 API Application is running on port ${port}`);
-
 }
 
 bootstrap().catch((e) => {

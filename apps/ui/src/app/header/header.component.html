@@ -4,7 +4,8 @@
       (click)="toggleDrawer.emit()"
       aria-label="Toggle sidenav"
       matIconButton
-      type="button">
+      type="button"
+    >
       <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
     </button>
     <button matButton routerLink="/">
@@ -19,7 +20,8 @@
     <mat-radio-group
       [(ngModel)]="themeService.selectedColor"
       aria-labelledby="example-radio-group-label"
-      class="flex flex-col">
+      class="flex flex-col"
+    >
       @for (color of themeService.colors; track color) {
         <mat-radio-button [value]="color">{{ color }}</mat-radio-button>
       }
@@ -44,7 +46,7 @@
     </mat-menu>
   } @else {
     <a matButton routerLink="login">Login</a>
-<!--
+    <!--
     <a matButton [href]="idpUrl">Login With IDP</a>
 -->
   }

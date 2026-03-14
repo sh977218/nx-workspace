@@ -15,10 +15,10 @@ describe('FeedController', () => {
           provide: HttpService,
           useValue: {
             get: jest.fn(),
-            post: jest.fn()
-          }
-        }
-      ]
+            post: jest.fn(),
+          },
+        },
+      ],
     }).compile();
 
     controller = module.get<FeedController>(FeedController);
