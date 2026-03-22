@@ -39,7 +39,7 @@
     "@nestjs/platform-socket.io": "^11.1.16",
     "@nestjs/serve-static": "^5.0.4",
     "@nestjs/swagger": "^11.2.4",
-    "@nestjs/websockets": "^11.1.16",
+    "@nestjs/websockets": "^11.1.17",
     "@tailwindcss/postcss": "^4.1.18",
     "ag-grid-angular": "^35.0.1",
     "angular-three": "^4.0.10",
