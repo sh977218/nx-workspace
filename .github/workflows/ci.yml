@@ -30,7 +30,7 @@ jobs:
           filter: tree:0
           fetch-depth: 0
       - name: Set SHAs for Nx Affected
-        uses: nrwl/nx-set-shas@v4
+        uses: nrwl/nx-set-shas@v5
 
       - uses: ./.github/actions/setup-node-nvm
 
@@ -52,7 +52,7 @@ jobs:
           filter: tree:0
           fetch-depth: 0
       - name: Set SHAs for Nx Affected
-        uses: nrwl/nx-set-shas@v4
+        uses: nrwl/nx-set-shas@v5
 
       - uses: ./.github/actions/setup-node-nvm
 
@@ -74,7 +74,7 @@ jobs:
           filter: tree:0
           fetch-depth: 0
       - name: Set SHAs for Nx Affected
-        uses: nrwl/nx-set-shas@v4
+        uses: nrwl/nx-set-shas@v5
 
       - uses: ./.github/actions/setup-node-nvm
 
