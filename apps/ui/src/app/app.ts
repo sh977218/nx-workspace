@@ -1,16 +1,11 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { AsyncPipe, NgClass } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {
-  Router,
-  RouterLink,
-  RouterLinkActive,
-  RouterOutlet,
-} from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { User } from '@shared-models/shared-models';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -38,7 +33,7 @@ import { MaterialModule } from './material.module';
     RouterOutlet,
   ],
 })
-export class App {
+export class App implements OnInit {
   private readonly _http = inject(HttpClient);
   private readonly _breakpointObserver = inject(BreakpointObserver);
   private readonly _dialog = inject(MatDialog);
@@ -86,7 +81,7 @@ export class App {
     });
   }
 
-  constructor() {
+  ngOnInit() {
     this._http
       .post<{
         jwt: string;
