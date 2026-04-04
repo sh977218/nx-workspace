@@ -6,12 +6,6 @@ updates:
     schedule:
       interval: 'daily'
       time: '03:00'
-    # Ignore major and minor version updates for all dependencies
-    ignore:
-      - dependency-name: '*'
-        update-types:
-          - 'version-update:semver-major'
-          - 'version-update:semver-minor'
     open-pull-requests-limit: 100
     reviewers:
       - 'sh977218'
