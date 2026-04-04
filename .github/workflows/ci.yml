@@ -122,10 +122,10 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Build app
-        run: PR_NUMBER=${{github.event.pull_request.number}}  npx nx run api:build:ci
+        run: npx nx run api:build:ci
 
       - name: Run Playwright tests
-        run: DEBUG=pw:webserver npx nx run e2e:e2e
+        run: PR_NUMBER=${{github.event.pull_request.number}} DEBUG=pw:webserver npx nx run e2e:e2e
 
       - name: Upload playwright html report to Artifacts
         uses: actions/upload-artifact@v7
