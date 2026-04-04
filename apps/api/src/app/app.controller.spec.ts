@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 
+import { DataLoadService } from './data-load/data-load.service';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { DataLoadService } from './data-load/data-load.service';
 
 describe('AppController', () => {
   let app: TestingModule;
