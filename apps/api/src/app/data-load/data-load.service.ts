@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { InjectConnection } from '@nestjs/mongoose';
+import mongoose from 'mongoose';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -8,6 +10,7 @@ import { UserService } from '../user/user.service';
 @Injectable()
 export class DataLoadService {
   constructor(
+    @InjectConnection() private readonly connection: mongoose.Connection,
     private readonly squadsService: SquadService,
     private readonly userService: UserService,
   ) {}
@@ -28,5 +31,10 @@ export class DataLoadService {
 
     await this.userService.deleteAllUsers();
     await this.userService.injectUsers(squadsData);
+  }
+
+  async deleteDataBase() {
+    console.info(`Deleting database: ${this.connection.name} `);
+    await this.connection.dropDatabase();
   }
 }

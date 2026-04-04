@@ -20,6 +20,7 @@ export default defineConfig({
   ...nxE2EPreset(__filename, { testDir: './src/tests' }),
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   globalSetup: require.resolve('./src/global-setup'),
+  globalTeardown: require.resolve('./src/global-teardown'),
   timeout: 30 * 1000,
   expect: {
     timeout: 15000,
