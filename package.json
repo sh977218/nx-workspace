@@ -46,7 +46,7 @@
     "axios": "^1.13.6",
     "cookie-parser": "^1.4.7",
     "joi": "^18.0.2",
-    "mongoose": "^9.2.4",
+    "mongoose": "^9.4.1",
     "ngxtension": "^7.0.0",
     "postcss": "^8.5.8",
     "react": "^19.0.0",
