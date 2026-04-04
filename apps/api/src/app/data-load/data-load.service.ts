@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import mongoose from 'mongoose';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -28,5 +29,9 @@ export class DataLoadService {
 
     await this.userService.deleteAllUsers();
     await this.userService.injectUsers(squadsData);
+  }
+
+  async deleteDataBase() {
+    await mongoose.connection.dropDatabase();
   }
 }

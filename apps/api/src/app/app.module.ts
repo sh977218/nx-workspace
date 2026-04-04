@@ -36,6 +36,7 @@ const ENV = process.env.NODE_ENV;
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
+      inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
         const ENV_NAME = configService.get('ENV_NAME');
         console.info(`configService ${ENV_NAME}`);
@@ -59,7 +60,6 @@ const ENV = process.env.NODE_ENV;
           dbName,
         };
       },
-      inject: [ConfigService],
     }),
     JwtModule.register({
       global: true,
