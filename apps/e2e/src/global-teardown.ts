@@ -4,7 +4,7 @@ const baseURL = isCI ? 'http://localhost:3000' : 'http://localhost:4200';
 async function globalTeardown() {
   console.info('Global Teardown');
   try {
-    const response = await fetch(`${baseURL}/delete-db`, {});
+    const response = await fetch(`${baseURL}/api/delete-db`, {});
     if (response.ok) {
       console.info('Database deleted successfully');
     } else {
