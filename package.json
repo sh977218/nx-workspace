@@ -156,7 +156,7 @@
     "prettier": "~3.8.1",
     "sort-package-json": "^3.6.1",
     "storybook": "^10.2.19",
-    "three": "^0.182.0",
+    "three": "^0.183.2",
     "ts-jest": "^29.4.9",
     "ts-node": "10.9.2",
     "tslib": "^2.3.0",
