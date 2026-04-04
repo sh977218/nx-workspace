@@ -94,7 +94,7 @@
     "@nx/react": "^22.5.4",
     "@nx/storybook": "^22.5.4",
     "@nx/vite": "22.5.4",
-    "@nx/vitest": "^22.5.3",
+    "@nx/vitest": "^22.6.4",
     "@nx/web": "22.5.4",
     "@nx/webpack": "22.5.4",
     "@nx/workspace": "22.5.4",
