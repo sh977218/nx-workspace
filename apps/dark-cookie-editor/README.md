@@ -2,12 +2,12 @@
 
 A lightweight Chrome extension to quickly view and edit the following cookies on any site:
 
-| Cookie Name      | Type    | Description            |
-|------------------|---------|------------------------|
-| `dark_coire_ui`  | string  | Free-text string value |
-| `dark_ccs`       | boolean | `true` / `false`       |
-| `dark_cams`      | boolean | `true` / `false`       |
-| `dark_caas`      | boolean | `true` / `false`       |
+| Cookie Name     | Type    | Description            |
+| --------------- | ------- | ---------------------- |
+| `dark_coire_ui` | string  | Free-text string value |
+| `dark_ccs`      | boolean | `true` / `false`       |
+| `dark_cams`     | boolean | `true` / `false`       |
+| `dark_caas`     | boolean | `true` / `false`       |
 
 ## Setup
 
@@ -52,4 +52,3 @@ dark-cookie-editor/
 +-- dist/               # Build output (load this folder in Chrome)
 +-- README.md
 ```
-

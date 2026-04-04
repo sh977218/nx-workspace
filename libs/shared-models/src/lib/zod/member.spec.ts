@@ -1,4 +1,4 @@
-import { MemberResponseSchema,MemberSchema } from './member.zod';
+import { MemberResponseSchema, MemberSchema } from './member.zod';
 
 describe('MemberSchema', () => {
   const validMember = {
@@ -29,7 +29,9 @@ describe('MemberSchema', () => {
     const result = MemberSchema.safeParse(invalid);
     expect(result.success).toBe(false);
     if (!result.success) {
-      expect(result.error.issues.some(i => i.path.includes('name'))).toBe(true);
+      expect(result.error.issues.some((i) => i.path.includes('name'))).toBe(
+        true,
+      );
     }
   });
 
@@ -39,7 +41,9 @@ describe('MemberSchema', () => {
     const result = MemberSchema.safeParse(invalid as unknown);
     expect(result.success).toBe(false);
     if (!result.success) {
-      expect(result.error.issues.some(i => i.path.includes('age'))).toBe(true);
+      expect(result.error.issues.some((i) => i.path.includes('age'))).toBe(
+        true,
+      );
     }
   });
 
@@ -48,7 +52,9 @@ describe('MemberSchema', () => {
     const result = MemberSchema.safeParse(invalid as unknown);
     expect(result.success).toBe(false);
     if (!result.success) {
-      expect(result.error.issues.some(i => i.path.includes('powers'))).toBe(true);
+      expect(result.error.issues.some((i) => i.path.includes('powers'))).toBe(
+        true,
+      );
     }
   });
 });
@@ -81,7 +87,11 @@ describe('MemberResponseSchema', () => {
     expect(result.success).toBe(false);
     if (!result.success) {
       // error path should indicate index 0 and age
-      expect(result.error.issues.some(i => i.path[0] === 0 && i.path.includes('age'))).toBe(true);
+      expect(
+        result.error.issues.some(
+          (i) => i.path[0] === 0 && i.path.includes('age'),
+        ),
+      ).toBe(true);
     }
   });
 });

@@ -1,7 +1,16 @@
 import { Component, computed, inject } from '@angular/core';
-import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import Highcharts from 'highcharts';
-import { ChartConstructorType, HighchartsChartComponent } from 'highcharts-angular';
+import {
+  ChartConstructorType,
+  HighchartsChartComponent,
+} from 'highcharts-angular';
 
 import { MaterialModule } from '../material.module';
 
@@ -17,7 +26,7 @@ import { ExcelService } from './excel.service';
         height: 400px;
         display: block;
       }
-    `
+    `,
   ],
   imports: [
     MaterialModule,
@@ -25,7 +34,7 @@ import { ExcelService } from './excel.service';
     ExcelComponent,
     HighchartsChartComponent,
   ],
-  providers: [ExcelService]
+  providers: [ExcelService],
 })
 export class DashboardComponent {
   readonly excelService = inject(ExcelService);
@@ -36,14 +45,14 @@ export class DashboardComponent {
     steps: new FormArray([
       new FormGroup({}),
       new FormGroup({
-        chartTypeCtrl: new FormControl('bar', [Validators.required])
+        chartTypeCtrl: new FormControl('bar', [Validators.required]),
       }),
       new FormGroup({
         xAxisCtrl: new FormControl('Country'),
         yAxisCtrl: new FormControl('Segment'),
-        sumCtrl: new FormControl('Gross Sales')
-      })
-    ])
+        sumCtrl: new FormControl('Gross Sales'),
+      }),
+    ]),
   });
 
   get steps(): FormArray {
@@ -98,7 +107,7 @@ export class DashboardComponent {
         });
         const totalPerYAxis = [];
         for (const [, countryDataPerSegment] of Object.entries(
-          xAxisDataPerYAxis
+          xAxisDataPerYAxis,
         )) {
           if (countryDataPerSegment) {
             const total = countryDataPerSegment.reduce((acc, row) => {
@@ -110,38 +119,38 @@ export class DashboardComponent {
         }
         barData.push({
           name: k,
-          data: totalPerYAxis
+          data: totalPerYAxis,
         });
       }
     }
 
     return {
       chart: {
-        type: chartType
+        type: chartType,
       },
       title: {
-        text: this.excelService.fileName()
+        text: this.excelService.fileName(),
       },
       xAxis: {
         categories: Object.keys(xAxisData),
         title: {
-          text: null
+          text: null,
         },
         gridLineWidth: 1,
-        lineWidth: 0
+        lineWidth: 0,
       },
       yAxis: {
         min: 0,
         title: {
           text: sum,
-          align: 'high'
+          align: 'high',
         },
         labels: {
-          overflow: 'justify'
+          overflow: 'justify',
         },
-        gridLineWidth: 0
+        gridLineWidth: 0,
       },
-      series: barData
+      series: barData,
     } as Highcharts.Options;
   }
 
@@ -165,7 +174,7 @@ export class DashboardComponent {
         });
         const totalPerYAxis = [];
         for (const [, countryDataPerSegment] of Object.entries(
-          xAxisDataPerYAxis
+          xAxisDataPerYAxis,
         )) {
           if (countryDataPerSegment) {
             const total = countryDataPerSegment.reduce((acc, row) => {
@@ -177,38 +186,38 @@ export class DashboardComponent {
         }
         lineData.push({
           name: k,
-          data: totalPerYAxis
+          data: totalPerYAxis,
         });
       }
     }
 
     return {
       chart: {
-        type: chartType
+        type: chartType,
       },
       title: {
-        text: this.excelService.fileName()
+        text: this.excelService.fileName(),
       },
       xAxis: {
         categories: Object.keys(xAxisData),
         title: {
-          text: null
+          text: null,
         },
         gridLineWidth: 1,
-        lineWidth: 0
+        lineWidth: 0,
       },
       yAxis: {
         min: 0,
         title: {
           text: sum,
-          align: 'high'
+          align: 'high',
         },
         labels: {
-          overflow: 'justify'
+          overflow: 'justify',
         },
-        gridLineWidth: 0
+        gridLineWidth: 0,
       },
-      series: lineData
+      series: lineData,
     } as Highcharts.Options;
   }
 }

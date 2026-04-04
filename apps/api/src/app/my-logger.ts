@@ -1,7 +1,6 @@
 import { Injectable, LoggerService } from '@nestjs/common';
 import { createLogger, format, Logger, transports } from 'winston';
 
-
 @Injectable()
 export class MyLogger implements LoggerService {
   private readonly logger: Logger;
@@ -13,8 +12,8 @@ export class MyLogger implements LoggerService {
       format: format.combine(format.timestamp(), format.json()),
       transports: [
         new transports.Console(), // Log to console
-        ...(isDev ? [] : [new transports.File({ filename: './error.log' })])
-      ]
+        ...(isDev ? [] : [new transports.File({ filename: './error.log' })]),
+      ],
     });
   }
 

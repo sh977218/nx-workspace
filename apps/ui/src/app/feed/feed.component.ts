@@ -10,13 +10,13 @@ import { MaterialModule } from '../material.module';
   imports: [CommonModule, MaterialModule],
   templateUrl: './feed.component.html',
   host: {
-    class: 'flex flex-col'
-  }
+    class: 'flex flex-col',
+  },
 })
 export class FeedComponent {
   feedUrl = `${environment.api}/feed`;
 
   feed = httpResource(() => this.feedUrl, {
-    parse: RssSchema.parse
+    parse: RssSchema.parse,
   });
 }

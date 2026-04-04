@@ -8,13 +8,12 @@ import { User } from './schema/user.schema';
 @Injectable()
 export class UserService {
   constructor(
-    @InjectModel(User.name) private readonly userModel: Model<User>
-  ) {
-  }
+    @InjectModel(User.name) private readonly userModel: Model<User>,
+  ) {}
 
   async findAll() {
     const user = await this.userModel.find().exec();
-    return user.map(u => u.toObject());
+    return user.map((u) => u.toObject());
   }
 
   async findOne(username: string) {

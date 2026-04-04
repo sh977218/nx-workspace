@@ -22,7 +22,7 @@ export const searchFixture = baseTest.extend<{
     const searchPage = new SearchPo(page);
     await use(searchPage);
     await expect(
-      searchPage.searchResult.getByText('No heroes found.')
+      searchPage.searchResult.getByText('No heroes found.'),
     ).toBeVisible();
-  }
+  },
 });

@@ -19,11 +19,13 @@ Checklist (enforced expectations):
    - If tiny inline styles are absolutely necessary, use the `styles` array on the component decorator sparingly and keep them minimal.
 
 Why these rules?
+
 - The modern control-flow micro-syntax makes templates easier to read and maintain.
 - OnPush change detection reduces unnecessary checks and encourages good data flow patterns.
 - Tailwind utility classes keep component styles consistent and avoid style-file churn.
 
 Component creation note: do NOT specify `standalone`
+
 - In this repository the convention is to treat components as standalone by default; do not add the `standalone: true` property to the `@Component` decorator in new components.
 - Avoid including `imports: [...]` on the component decorator as well — import dependencies via the surrounding NgModule when non-standalone patterns are being used by your team, or rely on the workspace defaults that treat components as standalone.
 - If you have a special case that requires an explicit `standalone` property, add a short comment explaining why.
@@ -41,14 +43,20 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
   template: `
     <div class="p-4">
       <ul>
-        <li *ngFor="let user of users; let i = index; trackBy: trackById" class="flex items-center gap-2 py-2">
+        <li
+          *ngFor="let user of users; let i = index; trackBy: trackById"
+          class="flex items-center gap-2 py-2"
+        >
           <span class="font-medium">{{ i + 1 }}.</span>
           <span class="flex-1">{{ user.name }}</span>
           <span class="text-sm text-gray-500">{{ user.email }}</span>
         </li>
       </ul>
 
-      <div *ngIf="(selectedUser$ | async) as selected" class="mt-4 p-3 bg-gray-50 rounded">
+      <div
+        *ngIf="selectedUser$ | async as selected"
+        class="mt-4 p-3 bg-gray-50 rounded"
+      >
         <h4 class="font-semibold">Selected:</h4>
         <p>{{ selected.name }}</p>
       </div>
@@ -78,9 +86,19 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   selector: 'app-counter',
   template: `
     <div class="flex items-center gap-2">
-      <button (click)="decrement()" class="px-3 py-1 bg-red-500 text-white rounded">-</button>
+      <button
+        (click)="decrement()"
+        class="px-3 py-1 bg-red-500 text-white rounded"
+      >
+        -
+      </button>
       <span class="px-2">{{ count$ | async }}</span>
-      <button (click)="increment()" class="px-3 py-1 bg-green-500 text-white rounded">+</button>
+      <button
+        (click)="increment()"
+        class="px-3 py-1 bg-green-500 text-white rounded"
+      >
+        +
+      </button>
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -109,6 +127,7 @@ Notes and best practices
   - If you need component-scoped styles for edge cases, prefer the `styles` array in the decorator with minimal CSS; add a short comment explaining why a non-utility style was necessary.
 
 PR checklist (suggested for reviewers)
+
 - [ ] Component uses `ChangeDetectionStrategy.OnPush`.
 - [ ] Templates use the modern control-flow micro-syntax where applicable.
 - [ ] No `.css`/`.scss` files were added for the component; styling uses Tailwind utilities.

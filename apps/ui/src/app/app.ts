@@ -1,11 +1,11 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { AsyncPipe, NgClass } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { User } from '@shared-models/shared-models';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -30,10 +30,10 @@ import { MaterialModule } from './material.module';
     AsyncPipe,
     RouterLink,
     RouterLinkActive,
-    RouterOutlet
-  ]
+    RouterOutlet,
+  ],
 })
-export class App {
+export class App implements OnInit {
   private readonly _http = inject(HttpClient);
   private readonly _breakpointObserver = inject(BreakpointObserver);
   private readonly _dialog = inject(MatDialog);
@@ -47,41 +47,41 @@ export class App {
   routes = [
     {
       path: 'search',
-      label: 'Search'
+      label: 'Search',
     },
     {
       path: 'threeJs',
-      label: 'Three JS'
+      label: 'Three JS',
     },
     {
       path: 'dashboard',
-      label: 'Dashboard'
+      label: 'Dashboard',
     },
     {
       path: 'video',
-      label: 'Video'
+      label: 'Video',
     },
     {
       path: 'feed',
-      label: 'Feed'
-    }
+      label: 'Feed',
+    },
   ];
 
   isHandset$: Observable<boolean> = this._breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
       map((result) => result.matches),
-      shareReplay()
+      shareReplay(),
     );
 
   openChatDialog() {
     this._dialog.open(ChatDialogComponent, {
       height: '1000px',
-      width: '600px'
+      width: '600px',
     });
   }
 
-  constructor() {
+  ngOnInit() {
     this._http
       .post<{
         jwt: string;
@@ -98,7 +98,7 @@ export class App {
           this._localStorageService.removeItem('jwt');
           this.userService.isLoggedIn.set(false);
           this.userService.loggedInUser.set(null);
-        }
+        },
       });
   }
 }

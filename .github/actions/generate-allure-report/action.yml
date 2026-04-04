@@ -1,12 +1,12 @@
 name: generate-allure-report
 description: generate allure report
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: Download current run allure report from e2e test job
       uses: actions/download-artifact@v3
       with:
-        name: allure-results          # the artifact name uploaded
+        name: allure-results # the artifact name uploaded
         path: allure-results
 
     - name: Create previous-allure-report folder

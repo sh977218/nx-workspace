@@ -43,7 +43,7 @@ export class ProfileComponent {
         }));
       }),
       tap({
-        error:()=>this._router.navigate(['login'])
-      })
+        error: () => this._router.navigate(['login']),
+      }),
     );
 }

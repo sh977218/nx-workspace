@@ -22,7 +22,6 @@
 
 <!-- nx configuration end-->
 
-
 <!-- Additional repository-level guidelines (kept outside nx-managed block) -->
 
 ## Repo-specific guidance

@@ -1,7 +1,7 @@
 name: generate-coverage-report
 description: generate coverage report
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: Download nyc report row data from Previous job(s)
       uses: actions/download-artifact@v3

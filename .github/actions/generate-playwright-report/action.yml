@@ -1,7 +1,7 @@
 name: generate-playwright-report
 description: Generate playwright report
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: Download playwright blob report from Previous job(s)
       uses: actions/download-artifact@v3

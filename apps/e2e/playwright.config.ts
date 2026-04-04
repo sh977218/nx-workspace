@@ -20,9 +20,10 @@ export default defineConfig({
   ...nxE2EPreset(__filename, { testDir: './src/tests' }),
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   globalSetup: require.resolve('./src/global-setup'),
+  globalTeardown: require.resolve('./src/global-teardown'),
   timeout: 30 * 1000,
   expect: {
-    timeout: 15000
+    timeout: 15000,
   },
   fullyParallel: true,
   forbidOnly: isCI,
@@ -35,36 +36,36 @@ export default defineConfig({
     actionTimeout: 0,
     trace: 'on',
     video: 'on',
-    screenshot: 'on'
+    screenshot: 'on',
   },
   /* Run your local dev server before starting the tests */
   webServer: isCI
     ? [
-      {
-        command: 'NODE_ENV=ci node dist/apps/api',
-        port: 3000,
-        reuseExistingServer: true,
-        cwd: workspaceRoot
-      }
-    ]
+        {
+          command: 'NODE_ENV=ci node dist/apps/api',
+          port: 3000,
+          reuseExistingServer: true,
+          cwd: workspaceRoot,
+        },
+      ]
     : [
-      {
-        command: 'nx run ui:serve',
-        port: 4200,
-        reuseExistingServer: true,
-        cwd: workspaceRoot
-      },
-      {
-        command: 'nx run api:serve',
-        port: 3000,
-        reuseExistingServer: true,
-        cwd: workspaceRoot
-      }
-    ],
+        {
+          command: 'nx run ui:serve',
+          port: 4200,
+          reuseExistingServer: true,
+          cwd: workspaceRoot,
+        },
+        {
+          command: 'nx run api:serve',
+          port: 3000,
+          reuseExistingServer: true,
+          cwd: workspaceRoot,
+        },
+      ],
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] }
-    }
-  ]
+      use: { ...devices['Desktop Chrome'] },
+    },
+  ],
 });
