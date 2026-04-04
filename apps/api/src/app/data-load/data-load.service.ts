@@ -32,6 +32,7 @@ export class DataLoadService {
   }
 
   async deleteDataBase() {
+    console.info(`Deleting database: ${mongoose.connection.name} `);
     await mongoose.connection.dropDatabase();
   }
 }
