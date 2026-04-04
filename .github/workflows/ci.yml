@@ -91,9 +91,9 @@ jobs:
         if: always()
 
   e2e-test:
-    concurrency:
-      group: ${{ github.workflow }}
-      cancel-in-progress: true
+#    concurrency:
+#      group: ${{ github.workflow }}
+#      cancel-in-progress: true
     name: e2e-test
     if: ${{ github.event.pull_request.draft == false }}
     needs: [effect-lint, effect-build, effect-test]
