@@ -39,7 +39,6 @@ const ENV = process.env.NODE_ENV;
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
         const ENV_NAME = configService.get('ENV_NAME');
-        console.info(`configService ${ENV_NAME}`);
         const DATABASE_PROTOCOL =
           configService.get<string>('DATABASE_PROTOCOL');
         const DATABASE_HOST = configService.get<string>('DATABASE_HOST');
@@ -51,10 +50,8 @@ const ENV = process.env.NODE_ENV;
           ? `${DATABASE_USERNAME}:${DATABASE_PASSWORD}@`
           : '';
         const uri = `${DATABASE_PROTOCOL}${AUTH_CREDITS}${DATABASE_HOST}`;
-        const DATABASE_NAME = configService.get<string>('DATABASE_NAME');
-        const PR_NUMBER = process.env.DATABASE_NAME;
-        const dbName =
-          ENV_NAME === 'ci' ? `${DATABASE_NAME}-${PR_NUMBER}` : DATABASE_NAME;
+        const dbName = configService.get<string>('DATABASE_NAME');
+        console.info(`configService ${ENV_NAME}`);
         return {
           uri,
           dbName,

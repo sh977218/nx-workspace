@@ -1,5 +1,5 @@
 async function globalSetup() {
-  console.info('Global setup');
+  console.info('\nGlobal setup\n');
 }
 
 export default globalSetup;
