@@ -55,7 +55,6 @@ const ENV = process.env.NODE_ENV;
         const dbName =
           ENV_NAME === 'ci' ? `${DATABASE_NAME}-${PR_NUMBER}` : DATABASE_NAME;
         console.info(`configService ${ENV_NAME}`);
-        console.info(`DATABASE_HOST ${DATABASE_HOST}`);
         return {
           uri,
           dbName,
