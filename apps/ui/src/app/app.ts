@@ -3,7 +3,13 @@ import { AsyncPipe, NgClass } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatButtonModule} from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
+import {  MatIconModule } from '@angular/material/icon';
+import {  MatListModule } from '@angular/material/list';
+import {
+  MatSidenavModule,
+} from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { User } from '@shared-models/shared-models';
@@ -29,6 +35,10 @@ import { UserService } from './services/user.service';
     RouterLink,
     RouterLinkActive,
     RouterOutlet,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
   ],
 })
 export class App implements OnInit {

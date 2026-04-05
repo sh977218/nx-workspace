@@ -1,8 +1,8 @@
 import { HttpResourceRef } from '@angular/common/http';
 import { Component, input } from '@angular/core';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SquadComponent } from '@shared/shared-components/squad';
 import { Squad } from '@shared-models/shared-models';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-search-result',

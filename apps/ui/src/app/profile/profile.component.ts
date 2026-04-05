@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
+import { MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { User } from '@shared-models/shared-models';
 import { map, tap } from 'rxjs/operators';
-import { MatTableModule } from '@angular/material/table';
 
 import { environment } from '../../environments/environment';
 import { UserService } from '../services/user.service';

@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { httpResource } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
@@ -9,7 +10,7 @@ import { RssSchema } from '@shared-models/shared-models';
 import { environment } from '../../environments/environment';
 
 @Component({
-  imports: [MatProgressSpinnerModule, MatCardModule, MatIconModule, MatListModule],
+  imports: [MatProgressSpinnerModule, MatCardModule, MatIconModule, MatListModule, DatePipe],
   templateUrl: './feed.component.html',
   host: {
     class: 'flex flex-col',

@@ -1,4 +1,6 @@
-import { Component, ElementRef, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, inject,ViewChild } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { AgGridAngular } from 'ag-grid-angular';
 import {
   AllCommunityModule,
   ColDef,
@@ -6,8 +8,6 @@ import {
   GridReadyEvent,
   ModuleRegistry,
 } from 'ag-grid-community';
-import { AgGridAngular } from 'ag-grid-angular';
-import { MatButtonModule } from '@angular/material/button';
 
 import { convertDataToWorkbook, getHeader, populateGrid } from './excel';
 import { ExcelService } from './excel.service';
