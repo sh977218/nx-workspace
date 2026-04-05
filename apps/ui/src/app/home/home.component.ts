@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-
-import { MaterialModule } from '../material.module';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
-  imports: [MaterialModule],
+  imports: [MatCardModule],
   template: `
     <div class="welcome-container">
       <mat-card class="welcome-card">

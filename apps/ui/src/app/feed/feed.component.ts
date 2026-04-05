@@ -1,13 +1,15 @@
-import { CommonModule } from '@angular/common';
 import { httpResource } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RssSchema } from '@shared-models/shared-models';
 
 import { environment } from '../../environments/environment';
-import { MaterialModule } from '../material.module';
 
 @Component({
-  imports: [CommonModule, MaterialModule],
+  imports: [MatProgressSpinnerModule, MatCardModule, MatIconModule, MatListModule],
   templateUrl: './feed.component.html',
   host: {
     class: 'flex flex-col',

@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import {
   FormArray,
@@ -6,13 +7,15 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatStepperModule } from '@angular/material/stepper';
 import Highcharts from 'highcharts';
 import {
   ChartConstructorType,
   HighchartsChartComponent,
 } from 'highcharts-angular';
-
-import { MaterialModule } from '../material.module';
 
 import { ExcelComponent } from './excel.component';
 import { ExcelService } from './excel.service';
@@ -29,10 +32,14 @@ import { ExcelService } from './excel.service';
     `,
   ],
   imports: [
-    MaterialModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatButtonModule,
     ReactiveFormsModule,
     ExcelComponent,
     HighchartsChartComponent,
+    CommonModule,
   ],
   providers: [ExcelService],
 })

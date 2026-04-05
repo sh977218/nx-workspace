@@ -1,7 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { FormField } from '@angular/forms/signals';
-
-import { MaterialModule } from '../material.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 import { SearchFacade } from './search.facade';
 
@@ -34,7 +36,7 @@ import { SearchFacade } from './search.facade';
       }
     </mat-form-field>
   `,
-  imports: [MaterialModule, FormField],
+  imports: [MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, FormField],
 })
 export class SearchBarComponent {
   readonly facade = inject(SearchFacade);

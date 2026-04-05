@@ -2,8 +2,6 @@ import { Component, effect, inject, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { MaterialModule } from '../material.module';
-
 import { SearchFacade } from './search.facade';
 import { SearchBarComponent } from './search-bar.component';
 import { SearchResultComponent } from './search-result.component';
@@ -15,7 +13,6 @@ import { SearchResultComponent } from './search-result.component';
   imports: [
     FormsModule,
     SearchResultComponent,
-    MaterialModule,
     SearchBarComponent,
   ],
   providers: [SearchFacade],

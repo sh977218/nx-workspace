@@ -3,11 +3,16 @@ import { AsyncPipe } from '@angular/common';
 import { Component, inject, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { MaterialModule } from '../material.module';
 import { ThemeService } from '../services/theme.service';
 import { UserService } from '../services/user.service';
 
@@ -15,7 +20,7 @@ import { UserService } from '../services/user.service';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
-  imports: [AsyncPipe, RouterLink, FormsModule, MaterialModule],
+  imports: [AsyncPipe, RouterLink, FormsModule, MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule, MatRadioModule, MatSlideToggleModule],
 })
 export class HeaderComponent {
   private breakpointObserver = inject(BreakpointObserver);

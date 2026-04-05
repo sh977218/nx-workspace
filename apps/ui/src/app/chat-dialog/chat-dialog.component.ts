@@ -1,8 +1,13 @@
-import { Component, inject, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { Component, inject, signal } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 
-import { MaterialModule } from '../material.module';
 import { UserService } from '../services/user.service';
 
 interface ChatMessage {
@@ -11,7 +16,7 @@ interface ChatMessage {
 }
 
 @Component({
-  imports: [MaterialModule, FormsModule],
+  imports: [MatDialogModule, MatIconModule, MatFormFieldModule, MatInputModule, MatButtonModule, FormsModule, CommonModule],
   template: `
     <h2 matDialogTitle>Chat</h2>
     <mat-dialog-content>
@@ -39,7 +44,7 @@ interface ChatMessage {
         <mat-label>Type Messages</mat-label>
         <textarea matInput [(ngModel)]="message"></textarea>
       </mat-form-field>
-      <button matButton cdkFocusInitial (click)="sendMessage()">Send</button>
+      <button matButton (click)="sendMessage()">Send</button>
       <button matButton matDialogClose>Close</button>
     </mat-dialog-actions>
   `,

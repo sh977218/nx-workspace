@@ -3,13 +3,13 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '@shared-models/shared-models';
 import { map, tap } from 'rxjs/operators';
+import { MatTableModule } from '@angular/material/table';
 
 import { environment } from '../../environments/environment';
-import { MaterialModule } from '../material.module';
 import { UserService } from '../services/user.service';
 
 @Component({
-  imports: [MaterialModule],
+  imports: [MatTableModule],
   template: `
     <table mat-table [dataSource]="data">
       <ng-container matColumnDef="key">

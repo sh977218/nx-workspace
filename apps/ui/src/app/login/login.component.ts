@@ -5,12 +5,14 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
-import { MaterialModule } from '../material.module';
 import { UserService } from '../services/user.service';
 
 @Component({
-  imports: [MaterialModule, FormsModule, ReactiveFormsModule],
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, FormsModule, ReactiveFormsModule],
   template: `
     <form
       [formGroup]="form"

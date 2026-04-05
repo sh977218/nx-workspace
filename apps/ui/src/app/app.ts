@@ -17,7 +17,6 @@ import { HeaderComponent } from './header/header.component';
 import { LocalStorageService } from './services/local-storage.service';
 import { ThemeService } from './services/theme.service';
 import { UserService } from './services/user.service';
-import { MaterialModule } from './material.module';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +25,6 @@ import { MaterialModule } from './material.module';
     FormsModule,
     NgClass,
     HeaderComponent,
-    MaterialModule,
     AsyncPipe,
     RouterLink,
     RouterLinkActive,

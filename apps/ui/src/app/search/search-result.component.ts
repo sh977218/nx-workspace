@@ -2,8 +2,7 @@ import { HttpResourceRef } from '@angular/common/http';
 import { Component, input } from '@angular/core';
 import { SquadComponent } from '@shared/shared-components/squad';
 import { Squad } from '@shared-models/shared-models';
-
-import { MaterialModule } from '../material.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-search-result',
@@ -27,7 +26,7 @@ import { MaterialModule } from '../material.module';
       }
     </fieldset>
   `,
-  imports: [MaterialModule, SquadComponent],
+  imports: [MatProgressSpinnerModule, SquadComponent],
   host: {
     role: 'search',
     class: 'inline-flex flex-col',

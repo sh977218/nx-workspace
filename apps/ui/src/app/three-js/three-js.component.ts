@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { NgtCanvas, NgtCanvasContent, NgtCanvasImpl } from 'angular-three/dom';
 
-import { MaterialModule } from '../material.module';
-
 import { SceneGraph } from './scene-graph';
 
 @Component({
@@ -12,7 +10,6 @@ import { SceneGraph } from './scene-graph';
     NgtCanvasImpl,
     SceneGraph,
     NgtCanvasContent,
-    MaterialModule,
   ],
   template: `
     <ngt-canvas shadows [camera]="{ position: [5, 5, 5] }" [lookAt]="[0, 1, 0]">

@@ -1,5 +1,4 @@
-import { Component, ElementRef, inject, ViewChild } from '@angular/core';
-import { AgGridAngular } from 'ag-grid-angular';
+import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import {
   AllCommunityModule,
   ColDef,
@@ -7,8 +6,8 @@ import {
   GridReadyEvent,
   ModuleRegistry,
 } from 'ag-grid-community';
-
-import { MaterialModule } from '../material.module';
+import { AgGridAngular } from 'ag-grid-angular';
+import { MatButtonModule } from '@angular/material/button';
 
 import { convertDataToWorkbook, getHeader, populateGrid } from './excel';
 import { ExcelService } from './excel.service';
@@ -50,7 +49,7 @@ ModuleRegistry.registerModules([AllCommunityModule]);
   host: {
     class: 'flex flex-col flex-grow basis-0',
   },
-  imports: [MaterialModule, AgGridAngular],
+  imports: [MatButtonModule, AgGridAngular],
 })
 export class ExcelComponent {
   @ViewChild('fileInput') fileInput!: ElementRef;
