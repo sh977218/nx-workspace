@@ -7,7 +7,6 @@ import { RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { environment } from '../../environments/environment';
 import { MaterialModule } from '../material.module';
 import { ThemeService } from '../services/theme.service';
 import { UserService } from '../services/user.service';
@@ -23,7 +22,6 @@ export class HeaderComponent {
   readonly dialog = inject(MatDialog);
   readonly themeService = inject(ThemeService);
   readonly userService = inject(UserService);
-  readonly idpUrl = `${environment.idpUrl}/login?redirectUrl=${encodeURIComponent(window.location.href)}`;
 
   toggleDrawer = output();
 
