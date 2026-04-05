@@ -5,5 +5,4 @@ export const environment: EnvironmentModel = {
   api: 'https://api-6yuk.onrender.com/api',
   rssfeed: 'http://rss.cnn.com/rss/cnn_topstories.rss',
   //  authApi: 'https://auth-api-d1on.onrender.com',
-  idpUrl: 'https://auth-ui-clic.onrender.com',
 };

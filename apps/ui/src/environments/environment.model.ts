@@ -3,5 +3,4 @@ export interface EnvironmentModel {
   api: string;
   rssfeed: string;
   //  authApi: string;
-  idpUrl: string;
 }
