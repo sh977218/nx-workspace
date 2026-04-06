@@ -15,13 +15,13 @@
       },
       "configurations": {
         "production": {
-          "args": ["--node-env=production"]
+          "args": ["--config-node-env=production"]
         },
         "development": {
-          "args": ["--node-env=development"]
+          "args": ["--config-node-env=development"]
         },
         "ci": {
-          "args": ["--node-env=ci"]
+          "args": ["--config-node-env=ci"]
         }
       }
     },
