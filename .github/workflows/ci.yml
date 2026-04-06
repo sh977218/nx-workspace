@@ -35,7 +35,7 @@ jobs:
       - uses: ./.github/actions/setup-node-nvm
 
       - name: Install dependencies
-        run: npm i
+        run: npm_config_legacy_peer_deps=false npm i
 
       - name: Run NX affected lint
         run: npx nx affected -t lint
@@ -57,7 +57,7 @@ jobs:
       - uses: ./.github/actions/setup-node-nvm
 
       - name: Install dependencies
-        run: npm i
+        run: npm_config_legacy_peer_deps=false npm i
 
       - name: Run NX affected build
         run: npx nx affected -t build
@@ -79,7 +79,7 @@ jobs:
       - uses: ./.github/actions/setup-node-nvm
 
       - name: Install dependencies
-        run: npm i
+        run: npm_config_legacy_peer_deps=false npm i
 
       - name: Install Playwright Browsers and dependencies
         run: npx playwright install --with-deps
@@ -116,7 +116,7 @@ jobs:
       - uses: ./.github/actions/setup-node-nvm
 
       - name: Install dependencies
-        run: npm i
+        run: npm_config_legacy_peer_deps=false npm i
 
       - name: Install Playwright Browsers and dependencies
         run: npx playwright install --with-deps
@@ -277,7 +277,7 @@ jobs:
 #      - name: Checkout repository
 #        uses: actions/checkout@v6
 #
-#      - run: npm i
+#      - run: npm_config_legacy_peer_deps=false npm i
 #
 #      - name: Setup JDK
 #        uses: actions/setup-java@v4.2.1

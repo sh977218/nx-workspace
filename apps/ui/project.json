@@ -73,6 +73,7 @@
       "executor": "@angular/build:unit-test",
       "options": {
         "runner": "vitest",
+        "runnerConfig": "apps/ui/vitest.config.unit.ts",
         "exclude": ["apps/ui/src/integration-test/"]
       }
     },
