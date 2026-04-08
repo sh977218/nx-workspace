@@ -149,7 +149,7 @@
     "jest-util": "^30.0.2",
     "jiti": "2.4.2",
     "joi": "^18.0.2",
-    "jsdom": "^28.1.0",
+    "jsdom": "^29.0.2",
     "jsonc-eslint-parser": "^3.1.0",
     "ng-packagr": "~21.1.0",
     "nx": "22.5.4",
