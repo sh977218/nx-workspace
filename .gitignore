@@ -174,3 +174,6 @@ storybook-static
 
 vite.config.*.timestamp*
 /zip
+
+.claude/worktrees
+.claude/settings.local.json

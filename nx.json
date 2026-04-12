@@ -134,5 +134,6 @@
     "version": {
       "conventionalCommits": true
     }
-  }
+  },
+  "analytics": true
 }
