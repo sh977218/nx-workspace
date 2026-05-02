@@ -1,72 +1,129 @@
-# Simple Web Site
+# Nx Workspace
 
-## This is a playground project, but it has comprehensive software development practices
+This is a monorepo workspace built with Nx, containing multiple applications and libraries for a full-stack web application ecosystem.
 
-### Tech Stacks:
+## Technologies Used
 
-- Frontend: Angular
-  - See `docs/ANGULAR_INSTRUCTIONS.md` for the canonical Angular coding guidelines used by agents and contributors
-- Backend: NestJS
-- Database: MongoDB
+- **Nx**: Monorepo build system
+- **Angular**: Frontend framework
+- **NestJS**: Backend framework
+- **Playwright**: End-to-end testing
+- **TypeScript**: Programming language
+- **Tailwind CSS**: Utility-first CSS framework
+- **Angular Material**: UI component library
 
-### Host code
+## Applications
 
-- Hosting static content at https://nx-workspace.onrender.com/
-- Deploy NestJs - **to be included**
-- Deploy MongoDB - **to be included**
+### ui
+The main Angular application providing the user interface. Features include:
+- Responsive design with Tailwind CSS
+- Angular Material components
+- Highcharts integration for data visualization
+- Three.js integration for 3D graphics
 
-### Development practice:
+### api
+A NestJS-based REST API server handling backend logic.
 
-- Code format
-  - Eslint
-  - Prettier
-- Git hook
-  - Husky
-  - Lint-staged
-- Commit message
-  - Commitizen
-- ChangeLog
-  - Populate changeLog upon release workflow trigger - **to be included**
+### auth-api
+Dedicated authentication API using JWT tokens.
 
-### OpenAPI:
+### dark-cookie-editor
+A browser extension for editing cookies in a dark theme.
 
-- Using NestJS Swagger module to set up swagger
+### e2e
+End-to-end tests using Playwright to ensure application functionality.
 
-### Deploy Production:
+## Libraries
 
-- Client
-  - Using Angular `ng build` to output to folder `/build/client`
-- Server
-  - Using NestJS `nest build` to output to folder `/build`
-- Static content
-  - Using NestJS `ServeStaticModule` to serve client content
-- Tar `/build` folder with `package.json` and `package-lock.json`
-  - `npm install` shall be run on production server, because many libraries have machine specific source code
-  - `tar -cf build.tar .env* build package.json package-lock.json`
-- Ship `build.tar` to production server and start the process
-  - `NODE_ENV=production npm run start`
+### shared-components
+Reusable Angular components shared across applications.
 
-### Automation:
+### shared-models
+Shared TypeScript interfaces and models for type safety.
 
-- Client
-  - Angular karma unit test
-- Server
-  - Jest unit test
-- End to End
-  - Playwright
-    - Using istanbul loader to instrument Angular source code during compilation
-    - Using istanbul loader to instrument NestJS source code during compilation - **to be included**
+## Getting Started
 
-### CI/CD:
+### Prerequisites
 
-- PR title checker - Run PR's title check on PR open/updates
-- Using GitHub Action `service container` (docker container) as 3rd party service dependency when running Playwright e2e
-- PR Deploy
-  - Deploy PR branch build to S3 bucket on PR opens/updates.
-  - Deploy master branch build to S3 bucket after PR merged into master
-- Release - Release build with tag version on manually trigger - **to be included**
-- Playwright - Run playwright e2e with code coverage on PR open/updates
-- Artifact - Using Azure `Storage Account`'s `Blob container` to host all static content populated by GHA
-  - Playwright report
-  - Playwright coverage report
-  - Playwright allure report - aggregated result on current run with past runs
+- Node.js >= 24.0.0
+- npm >= 11
+
+### Installation
+
+```bash
+npm install
+```
+
+### Development
+
+#### Serve the UI application
+```bash
+npx nx serve ui
+```
+
+#### Serve the API
+```bash
+npx nx serve api
+```
+
+#### Serve the auth API
+```bash
+npx nx serve auth-api
+```
+
+### Building
+
+Build all applications:
+```bash
+npx nx run-many --target=build --all
+```
+
+Build specific app:
+```bash
+npx nx build ui
+```
+
+### Testing
+
+Run unit tests:
+```bash
+npx nx run-many --target=test --all
+```
+
+Run e2e tests:
+```bash
+npx nx e2e e2e
+```
+
+### Linting
+
+```bash
+npx nx run-many --target=lint --all
+```
+
+## Project Structure
+
+```
+nx-workspace/
+├── apps/
+│   ├── ui/              # Angular application
+│   ├── api/             # NestJS API
+│   ├── auth-api/        # Authentication API
+│   ├── dark-cookie-editor/  # Browser extension
+│   └── e2e/             # E2E tests
+├── libs/
+│   ├── shared-components/  # Shared Angular components
+│   └── shared-models/      # Shared models
+└── tools/               # Nx tools and configurations
+```
+
+## Contributing
+
+1. Follow conventional commit messages
+2. Ensure all tests pass
+3. Follow the coding standards defined in the ESLint configuration
+4. Use Nx commands for building and testing
+
+## License
+
+MIT

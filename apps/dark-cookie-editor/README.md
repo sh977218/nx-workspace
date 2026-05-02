@@ -1,54 +1,64 @@
-# Dark Cookie Editor – Chrome Extension
+# Dark Cookie Editor
 
-A lightweight Chrome extension to quickly view and edit the following cookies on any site:
+A browser extension for editing cookies with a dark theme interface.
 
-| Cookie Name     | Type    | Description            |
-| --------------- | ------- | ---------------------- |
-| `dark_coire_ui` | string  | Free-text string value |
-| `dark_ccs`      | boolean | `true` / `false`       |
-| `dark_cams`     | boolean | `true` / `false`       |
-| `dark_caas`     | boolean | `true` / `false`       |
+## Features
 
-## Setup
+- Edit browser cookies
+- Dark theme UI
+- Popup interface
+- Manifest V3 compliant
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js >= 24.0.0
+- npm >= 11
+
+### Installation
+
+Dependencies are installed at the workspace root.
+
+### Build
+
+Build the extension:
 
 ```bash
-npm install
-npm run build
+npx nx build dark-cookie-editor
 ```
 
-## Installation (Developer Mode)
+### Development
 
-1. Run `npm run build` to compile TypeScript and copy assets into `dist/`.
-2. Open **Chrome** and navigate to `chrome://extensions/`.
-3. Enable **Developer mode** (toggle in the top-right).
-4. Click **Load unpacked** and select the `dist/` folder inside `dark-cookie-editor`.
-5. The extension icon will appear in the toolbar.
+For development, load the `dist/apps/dark-cookie-editor` directory as an unpacked extension in your browser.
 
-## Usage
+### Testing
 
-1. Navigate to any website.
-2. Click the extension icon in the toolbar.
-3. The popup shows the current cookie values for the active site.
-4. Edit the values:
-   - **dark_coire_ui** – type any string value.
-   - **dark_ccs / dark_cams / dark_caas** – toggle on/off (`true`/`false`).
-5. Click **Save** to write the cookies, or **Clear All** to remove them.
+Run tests:
 
-## File Structure
+```bash
+npx nx test dark-cookie-editor
+```
+
+### Linting
+
+```bash
+npx nx lint dark-cookie-editor
+```
+
+## Project Structure
 
 ```
-dark-cookie-editor/
-+-- src/
-|   +-- popup.ts        # TypeScript source (cookie read/write logic)
-+-- manifest.json       # Extension manifest (MV3)
-+-- popup.html          # Popup UI
-+-- popup.css           # Styles
-+-- package.json        # npm scripts and dev dependencies
-+-- tsconfig.json       # TypeScript configuration
-+-- icons/
-|   +-- icon16.png
-|   +-- icon48.png
-|   +-- icon128.png
-+-- dist/               # Build output (load this folder in Chrome)
-+-- README.md
+apps/dark-cookie-editor/src/
+├── manifest.json        # Extension manifest
+├── popup.html           # Popup HTML
+├── popup.ts             # Popup script
+├── environments/        # Environment configs
+└── lib/                 # Utility libraries
 ```
+
+## Technologies
+
+- **TypeScript**: Language
+- **Chrome Extension API**: Browser integration
+- **Webpack**: Build tool
