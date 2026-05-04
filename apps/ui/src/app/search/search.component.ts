@@ -1,10 +1,10 @@
-import { Component, effect, inject, model } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { MaterialModule } from '../material.module';
 
-import { SearchFacade } from './search.facade';
+import { SearchStore } from './search.store';
 import { SearchBarComponent } from './search-bar.component';
 import { SearchResultComponent } from './search-result.component';
 
@@ -18,16 +18,14 @@ import { SearchResultComponent } from './search-result.component';
     MaterialModule,
     SearchBarComponent,
   ],
-  providers: [SearchFacade],
 })
 export class SearchComponent {
-  readonly facade = inject(SearchFacade);
-  searchTermTemporary = model('');
+  readonly store = inject(SearchStore);
   private readonly _snackBar = inject(MatSnackBar);
 
   constructor() {
     effect(() => {
-      if (this.facade.searchedSquads.error()) {
+      if (this.store.searchedSquads().error()) {
         this._snackBar.open('Could not load squads information', 'Close');
       }
     });

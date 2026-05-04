@@ -1,9 +1,9 @@
-import { Component, inject } from '@angular/core';
-import { FormField } from '@angular/forms/signals';
+import { Component, effect, inject, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { MaterialModule } from '../material.module';
 
-import { SearchFacade } from './search.facade';
+import { SearchStore } from './search.store';
 
 @Component({
   selector: 'app-search-bar',
@@ -11,7 +11,8 @@ import { SearchFacade } from './search.facade';
     <mat-form-field appearance="fill" class="w-full mb-3">
       <mat-label>Search heroes...</mat-label>
       <input
-        [formField]="facade.searchForm.searchTerm"
+        [value]="searchTerm()"
+        (input)="onInput($event)"
         matInput
         type="search"
         placeholder="Ex. legendary"
@@ -24,18 +25,33 @@ import { SearchFacade } from './search.facade';
           type="reset"
           aria-label="Reset"
           matIconButton
-          (click)="facade.onReset()"
+          (click)="onReset()"
         >
           <mat-icon fontIcon="clear"></mat-icon>
         </button>
       </div>
-      @for (error of facade.searchForm.searchTerm().errors(); track error) {
-        <mat-error>{{ error.message }}</mat-error>
-      }
     </mat-form-field>
   `,
-  imports: [MaterialModule, FormField],
+  imports: [MaterialModule, FormsModule],
 })
 export class SearchBarComponent {
-  readonly facade = inject(SearchFacade);
+  readonly store = inject(SearchStore);
+
+  searchTerm = signal('');
+
+  constructor() {
+    effect(() => {
+      this.store.setSearchTerm(this.searchTerm());
+    });
+  }
+
+  onInput(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
+    this.searchTerm.set(value);
+  }
+
+  onReset() {
+    this.searchTerm.set('');
+    this.store.reset();
+  }
 }
