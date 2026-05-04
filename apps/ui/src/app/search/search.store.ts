@@ -1,6 +1,4 @@
-import { computed } from '@angular/core';
 import { patchState,signalStore, withMethods, withState } from '@ngrx/signals';
-import { Squad } from '@shared-models/shared-models';
 
 export interface SearchState {
   searchTerm: string;
