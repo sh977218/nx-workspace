@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, inject, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { MaterialModule } from '../material.module';
@@ -18,7 +18,7 @@ import { SearchStore } from './search.store';
         placeholder="Ex. legendary"
       />
       <div matSuffix>
-        <button type="submit" aria-label="Search" matIconButton>
+        <button type="submit" aria-label="Search" matIconButton (click)="onSearch()">
           <mat-icon fontIcon="search"></mat-icon>
         </button>
         <button
@@ -38,16 +38,15 @@ export class SearchBarComponent {
   readonly store = inject(SearchStore);
 
   searchTerm = signal('');
-
-  constructor() {
-    effect(() => {
-      this.store.setSearchTerm(this.searchTerm());
-    });
-  }
+  searchClicked = output<string>();
 
   onInput(event: Event) {
     const value = (event.target as HTMLInputElement).value;
     this.searchTerm.set(value);
+  }
+
+  onSearch() {
+    this.searchClicked.emit(this.searchTerm());
   }
 
   onReset() {
