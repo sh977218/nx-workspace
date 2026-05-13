@@ -74,7 +74,7 @@
     "@angular/compiler-cli": "^21.2.5",
     "@angular/language-service": "^21.2.5",
     "@angular/material": "^21.2.5",
-    "@commitlint/cli": "^20.4.4",
+    "@commitlint/cli": "^21.0.1",
     "@commitlint/config-conventional": "^20.4.4",
     "@commitlint/cz-commitlint": "^20.4.4",
     "@compodoc/compodoc": "^1.2.1",
