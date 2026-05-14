@@ -16,12 +16,21 @@ export class UserService {
 
   async findOneByUsernamePassword(username: string, password: string) {
     return this.userModel
-      .findOne({ username, password }, { password: 0 })
+      .findOne(
+        {
+          username: { $eq: username },
+          password: { $eq: password },
+        },
+        { password: 0 },
+      )
       .lean()
       .exec();
   }
 
   async findOne(username: string) {
-    return this.userModel.findOne({ username }, { password: 0 }).lean().exec();
+    return this.userModel
+      .findOne({ username: { $eq: username } }, { password: 0 })
+      .lean()
+      .exec();
   }
 }
