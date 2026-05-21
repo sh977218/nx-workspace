@@ -47,7 +47,7 @@
     "@typescript-eslint/typescript-estree": "^8.58.0",
     "ag-grid-angular": "^35.0.1",
     "angular-three": "^4.0.10",
-    "axios": "^1.15.2",
+    "axios": "^1.16.1",
     "cookie-parser": "^1.4.7",
     "highcharts": "^12.5.0",
     "highcharts-angular": "^5.4.0",
