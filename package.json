@@ -100,7 +100,7 @@
     "@nx/webpack": "22.6.5",
     "@nx/workspace": "22.6.5",
     "@playwright/test": "^1.58.2",
-    "@schematics/angular": "~21.0.0",
+    "@schematics/angular": "~22.0.0",
     "@storybook/addon-docs": "^10.2.19",
     "@storybook/angular": "^10.2.19",
     "@swc-node/register": "~1.11.1",
