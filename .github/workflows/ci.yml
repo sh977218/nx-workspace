@@ -68,12 +68,20 @@ jobs:
   effect-test:
     name: Nx effect Test
     runs-on: ubuntu-latest
+    container: mcr.microsoft.com/playwright:v1.59.1-jammy
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v6
         with:
           filter: tree:0
           fetch-depth: 0
+
+      - name: Configure git safe directory
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Fetch master branch
+        run: git fetch origin master:master
+
       - name: Set SHAs for Nx Affected
         uses: nrwl/nx-set-shas@v5
 
@@ -81,9 +89,6 @@ jobs:
 
       - name: Install dependencies
         run: npm_config_legacy_peer_deps=false npm i
-
-      - name: Install Playwright Browsers and dependencies
-        run: npx playwright install --with-deps
 
       - name: Run NX affected test
         run: npx nx affected -t test integration-test
