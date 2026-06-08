@@ -123,7 +123,7 @@
     "ajv": "^8.0.0",
     "allure-commandline": "^2.36.0",
     "allure-playwright": "^3.4.5",
-    "angular-eslint": "21.2.0",
+    "angular-eslint": "22.0.0",
     "angular-three-plugin": "^4.2.1",
     "autoprefixer": "^10.4.27",
     "commitizen": "^4.3.1",
