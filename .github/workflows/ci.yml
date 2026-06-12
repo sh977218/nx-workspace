@@ -152,9 +152,6 @@ jobs:
           path: playwright-report
           retention-days: 30
 
-      - run: npx nx fix-ci
-        if: always()
-
   publish-playwright-report:
     name: Publish playwright report
     needs: [e2e-test]
