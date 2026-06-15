@@ -42,7 +42,11 @@ export default defineConfig({
   webServer: isCI
     ? [
         {
-          command: 'NODE_ENV=ci node dist/apps/api',
+          // In CI we run the built API. Provide DB connection env vars so the
+          // API can connect to the GitHub Actions MongoDB service (available
+          // on localhost:27017 when mapped in the workflow services).
+          command:
+            'NODE_ENV=ci DATABASE_PROTOCOL=mongodb:// DATABASE_HOST=localhost:27017 DATABASE_NAME=nx-workspace node dist/apps/api',
           port: 3000,
           reuseExistingServer: true,
           cwd: workspaceRoot,
