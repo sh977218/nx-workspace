@@ -142,7 +142,7 @@ jobs:
         run: npx nx run api:build:ci
 
       - name: Run Playwright tests
-        run: npx nx run e2e:e2e
+        run: npx nx run e2e:e2e --verbose
 
       - name: Upload playwright html report to Artifacts
         uses: actions/upload-artifact@v7
